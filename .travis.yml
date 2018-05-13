@@ -1,329 +1,167 @@
+# Ubuntu name decoder ring; https://en.wikipedia.org/wiki/List_of_Ubuntu_releases
+# Ubuntu 12.04 LTS (Precise Pangolin) <== Travis CI VM image
+# Ubuntu 12.10 (Quantal Quetzal)
+# Ubuntu 13.04 (Raring Ringtail)
+# Ubuntu 13.10 (Saucy Salamander)
+# Ubuntu 14.04 LTS (Trusty Tahr)
+# Ubuntu 14.10 (Utopic Unicorn)
+# Ubuntu 15.04 (Vivid Vervet)
+# Ubuntu 15.10 (Wily Werewolf)
+# Ubuntu 16.04 LTS (Xenial Xantus)
+
+# language: instructs travis what compilers && environment to set up in build matrix
 language: cpp
 
+# sudo: false instructs travis to build our project in a docker VM (faster)
+# Can not yet install fglrx packages with 'false'
+sudo: required # false
+dist: trusty
+
+# os: expands the build matrix to include multiple os's
+# disable linux, as we get sporadic failures on building boost, needs investigation
+os:
+  - linux
+  - osx
+
+# compiler: expands the build matrix to include multiple compilers (per os)
+compiler:
+  - gcc
+  - clang
+
+addons:
+  # apt: is disabled on osx builds
+  # apt: needed by docker framework to install project dependencies without
+  # sudo.  Apt uses published Ubunto PPA's from https://launchpad.net/
+  # https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+  apt:
+    sources:
+      # ubuntu-toolchain-r-test contains newer versions of gcc to install
+      # - ubuntu-toolchain-r-test
+      # llvm-toolchain-precise-3.6 contains newer versions of clang to install
+      # - llvm-toolchain-precise-3.6
+      # kubuntu-backports contains newer versions of cmake to install
+      - kubuntu-backports
+      # boost-latest contains boost v1.55
+      - boost-latest
+    packages:
+      #- ocl-icd-opencl-dev
+      #- libgl1-mesa-dev
+      - gfortran
+      # g++-4.8 is minimum version considered to be the first good c++11 gnu compiler
+      # - g++-4.8
+      # - clang-3.6
+      # We require v2.8.12 minimum
+      - cmake
+      # I'm finding problems between pre-compiled versions of boost ublas, with gtest
+      # stl_algobase.h: error: no matching function for call to swap()
+      - libboost-program-options1.55-dev
+      # - libboost-serialization1.55-dev
+      # - libboost-filesystem1.55-dev
+      # - libboost-system1.55-dev
+      # - libboost-regex1.55-dev
+      # The package opencl-headers on 'precise' only installs v1.1 cl headers; uncomment for 'trusty' or greater
+#      - opencl-headers
+      # Uncomment one of the following when fglrx modules are added to the apt whitelist
+#      - fglrx
+#      - fglrx=2:8.960-0ubuntu1
+#      - fglrx=2:13.350.1-0ubuntu0.0.1
+
+# env: specifies additional global variables to define per row in build matrix
 env:
   global:
-    # Ubuntu version
-    - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
-    # OpenCL
-    - OPENCL_LIB=default
-    - OPENCL_HEADERS_VER="21"
-    # Khronos OpenCL ICD
+    - CLBLAS_ROOT=${TRAVIS_BUILD_DIR}/bin/make/release
     - OPENCL_REGISTRY=https://www.khronos.org/registry/cl
-    - OPENCL_ROOT=${DEPS_DIR}/opencl
-    # POCL
-    - POCL_BRANCH=release_0_13 # branch/tag
-    #- POCL_COMMIT= # commit id
-    - POCL_LLVM_VERSION=3.8.0
-    - POCL_LLVM_CONFIG=${DEPS_DIR}/llvm-${POCL_LLVM_VERSION}/bin/llvm-config
-    - POCL_CXX_COMPILER=${DEPS_DIR}/llvm-${POCL_LLVM_VERSION}/bin/clang++
-    - POCL_C_COMPILER=${DEPS_DIR}/llvm-${POCL_LLVM_VERSION}/bin/clang
-    # AMD APP SDK
-    - AMDAPPSDKROOT=${OPENCL_ROOT}/AMDAPPSDK
-    # Global build options and C++ flags
-    #- CMAKE_OPTIONS="-DBOOST_COMPUTE_BUILD_TESTS=ON -DBOOST_COMPUTE_BUILD_EXAMPLES=ON -DBOOST_COMPUTE_BUILD_BENCHMARKS=ON -DBOOST_COMPUTE_USE_OFFLINE_CACHE=ON -DBOOST_COMPUTE_HAVE_OPENCV=ON -DBOOST_COMPUTE_THREAD_SAFE=ON"
-    - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow -DCI_BUILD"
-    # Boost
-    - BOOST_VERSION=default
-    # Misc
-    - RUN_TESTS=true
-    - COVERAGE=false
+    - OPENCL_ROOT=${TRAVIS_BUILD_DIR}/bin/opencl
 
+# The following filters our build matrix; we are interested in linux-gcc & osx-clang
 matrix:
-  include:
-    ############################################################################
-    # POCL builds (OpenCL 1.0, 1.1)
-    ############################################################################
-
-    # Trusty, OpenCL 1.0
+  exclude:
     - os: linux
-      sudo: required
       compiler: clang
-      addons:
-        apt:
-          packages: &trusty_pocl_packages
-            - g++-4.8
-            # clang and llvm 3.7 for POCL (llvm-toolchain-trusty-3.7 is not whitelisted)
-            # - clang-3.7
-            # - llvm-3.7
-            # - llvm-3.7-dev (...)
-            # POCL
-            - libltdl-dev
-            - libhwloc-dev
-            - pkg-config
-            - libedit-dev
-            ## Boost
-            #- libboost-chrono1.55-dev
-            #- libboost-date-time1.55-dev
-            #- libboost-test1.55-dev
-            #- libboost-system1.55-dev
-            #- libboost-filesystem1.55-dev
-            #- libboost-timer1.55-dev
-            #- libboost-program-options1.55-dev
-            #- libboost-thread1.55-dev
-            # Misc
-            #- python-yaml
-            #- lcov
-            #- libopencv-dev
-          sources: &trusty_pocl_sources
-            - ubuntu-toolchain-r-test
-            # - llvm-toolchain-trusty-3.7 (not whitelisted yet https://github.com/travis-ci/apt-source-whitelist/issues/199)
-      env:
-       - OPENCL_LIB=pocl
-       - OPENCL_HEADERS_VER="21"
-       - ENV_CXX_FLAGS="-Wno-unused-local-typedef -DBOOST_COMPUTE_MAX_CL_VERSION=100"
-       - ENV_CMAKE_OPTIONS="-DOpenCL_LIBRARY=${OPENCL_ROOT}/pocl/lib/libOpenCL.so -DOpenCL_INCLUDE_DIR=${OPENCL_ROOT}/include"
-    - os: linux
-      sudo: required
-      compiler: gcc
-      addons:
-        apt:
-          packages: *trusty_pocl_packages
-          sources: *trusty_pocl_sources
-      env:
-       - OPENCL_LIB=pocl
-       - OPENCL_HEADERS_VER="21"
-       - ENV_CXX_FLAGS="-Wno-unused-local-typedef -DBOOST_COMPUTE_MAX_CL_VERSION=100"
-       - ENV_CMAKE_OPTIONS="-DOpenCL_LIBRARY=${OPENCL_ROOT}/pocl/lib/libOpenCL.so -DOpenCL_INCLUDE_DIR=${OPENCL_ROOT}/include"
-    # Trusty, OpenCL 1.1
-    - os: linux
-      sudo: required
-      compiler: clang
-      addons:
-        apt:
-          packages: *trusty_pocl_packages
-          sources: *trusty_pocl_sources
-      env:
-       - OPENCL_LIB=pocl
-       - OPENCL_HEADERS_VER="21"
-       - ENV_CXX_FLAGS="-Wno-unused-local-typedef -DBOOST_COMPUTE_MAX_CL_VERSION=101"
-       - ENV_CMAKE_OPTIONS="-DOpenCL_LIBRARY=${OPENCL_ROOT}/pocl/lib/libOpenCL.so -DOpenCL_INCLUDE_DIR=${OPENCL_ROOT}/include"
-    - os: linux
-      sudo: required
-      compiler: gcc
-      addons:
-        apt:
-          packages: *trusty_pocl_packages
-          sources: *trusty_pocl_sources
-      env:
-       - OPENCL_LIB=pocl
-       - OPENCL_HEADERS_VER="21"
-       - ENV_CXX_FLAGS="-DBOOST_COMPUTE_MAX_CL_VERSION=101"
-       - ENV_CMAKE_OPTIONS="-DOpenCL_LIBRARY=${OPENCL_ROOT}/pocl/lib/libOpenCL.so -DOpenCL_INCLUDE_DIR=${OPENCL_ROOT}/include"
-
-    ############################################################################
-    # AMD APP SDK builds (v2.9.1 -> OpenCL 1.2, v3.0 -> OpenCL 2.0)
-    ############################################################################
-
-    ## Trusty, AMD APP SDK v2.9.1, OpenCL 1.2
-    #- os: linux
-    #  sudo: required
-    #  compiler: gcc
-    #  addons:
-    #    apt:
-    #      packages: &trusty_amdappsdk_packages
-    #        - g++-4.8
-    #        # Boost
-    #        - libboost-chrono1.55-dev
-    #        - libboost-date-time1.55-dev
-    #        - libboost-test1.55-dev
-    #        - libboost-system1.55-dev
-    #        - libboost-filesystem1.55-dev
-    #        - libboost-timer1.55-dev
-    #        - libboost-program-options1.55-dev
-    #        - libboost-thread1.55-dev
-    #        # Misc
-    #        - python-yaml
-    #        - lcov
-    #        - libopencv-dev
-    #      sources: &trusty_amdappsdk_sources
-    #        - ubuntu-toolchain-r-test
-    #  env:
-    #    - OPENCL_LIB=amdappsdk
-    #    - OPENCL_HEADERS_VER="21"
-    #    - AMDAPPSDK_VERSION=291 # OpenCL 1.2
-    #    - ENV_CXX_FLAGS="-DBOOST_COMPUTE_MAX_CL_VERSION=102"
-    #    - ENV_CMAKE_OPTIONS="-DOpenCL_INCLUDE_DIR=${OPENCL_ROOT}/include -DBOOST_COMPUTE_ENABLE_COVERAGE=ON -DBOOST_COMPUTE_USE_CPP11=ON"
-    #    - COVERAGE=true
-
-    ############################################################################
-    # OSX
-    ############################################################################
-
-    # OSX build
     - os: osx
-      compiler: clang
-      env:
-        - ENV_CXX_FLAGS="-Wno-c99-extensions"
+      compiler: gcc
 
 before_install:
-    # Install dependencies
-    - |
-      # POCL dependencies for Trusty
-      # llvm-toolchain-trusty-3.7 is not whitelisted yet https://github.com/travis-ci/apt-source-whitelist/issues/199
-      if [[ ${OPENCL_LIB} == "pocl" ]]; then
-        # see https://github.com/travis-ci/travis-ci/issues/6120
-        POCL_LLVM_URL=http://llvm.org/releases/${POCL_LLVM_VERSION}/clang+llvm-${POCL_LLVM_VERSION}-x86_64-linux-gnu-ubuntu-14.04.tar.xz
-        mkdir -p ${DEPS_DIR}/llvm-${POCL_LLVM_VERSION}
-        travis_retry wget --no-check-certificate --quiet -O llvm-${POCL_LLVM_VERSION}.tar.xz ${POCL_LLVM_URL}
-        tar xf llvm-${POCL_LLVM_VERSION}.tar.xz -C ${DEPS_DIR}/llvm-${POCL_LLVM_VERSION} --strip-components 1
-
-        #sudo add-apt-repository -y "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.7 main"
-        #travis_retry wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | travis_retry sudo apt-key add -
-        #sudo apt-get update -qq -
-        #sudo apt-get install -qq -y clang-3.7 libclang-common-3.7-dev libclang-3.7-dev libclang1-3.7 libllvm3.7 lldb-3.7 llvm-3.7 llvm-3.7-dev llvm-3.7-runtime clang-modernize-3.7 clang-format-3.7 lldb-3.7-dev
-      # OSX
-      elif [[ ${TRAVIS_OS_NAME} == "osx" ]]; then
-        brew update
-        /usr/bin/yes | pip uninstall numpy
-        brew outdated boost || brew upgrade boost
-        brew outdated cmake || brew upgrade cmake
-        #brew install lcov homebrew/science/opencv
-      fi
-    - gem install coveralls-lcov
-    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
-
-    # Combine global build options with OS/compiler-dependent options
-    - export CMAKE_OPTIONS=${CMAKE_OPTIONS}" "${ENV_CMAKE_OPTIONS}
-    - export CXX_FLAGS=${CXX_FLAGS}" "${ENV_CXX_FLAGS}
+  # Remove the following linux clause when fglrx can be installed with sudo: false
+  #- if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+  #    sudo apt-get update -qq &&
+  #    sudo apt-get install -qq fglrx=2:13.350.1-0ubuntu0.0.1;
+  #  fi
+  - if [ ${TRAVIS_OS_NAME} == "linux" ]; then .ci/installOpenCL_15.1_Ubuntu.sh; fi
+  #    #    export OPENCL_ROOT="${TRAVIS_BUILD_DIR}/opencl-headers";
+  #    #.ci/installOpenCL_15.1_Ubuntu.sh;
+  #  #fi
+  - if [ ${TRAVIS_OS_NAME} == "osx" ]; then
+      brew update;
+      brew outdated boost || brew upgrade boost;
+      brew outdated cmake || brew upgrade cmake;
+    fi
+  # - if [ ${CXX} = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  - cmake --version;
+  - ${CC} --version;
+  - ${CXX} --version;
 
 install:
-    # Download and install recent cmake
-    - |
-      if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
-        CMAKE_URL="http://www.cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz"
-        mkdir -p ${DEPS_DIR}/cmake
-        travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${DEPS_DIR}/cmake
-        export PATH=${DEPS_DIR}/cmake/bin:${PATH}
-      fi
+  # 'Precise' only distributes v1.1 opencl headers; download 1.2 headers from khronos website
+  # Remove when the travis VM upgrades to 'trusty' or beyond
+  #- if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+  #    mkdir -p ${OPENCL_ROOT}/include/CL;
+  #    pushd ${OPENCL_ROOT}/include/CL;
+  #    wget -w 1 -r -np -nd -nv -A h,hpp https://www.khronos.org/registry/cl/api/1.2/;
+  #    popd;
+  #  fi
+  # The following linux logic is necessary because of Travis's move to the GCE platform, which does not
+  # currently contain packages for fglrx: https://github.com/travis-ci/travis-ci/issues/5221
+  # We build our own linkable .so file
+  #- if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+  #    mkdir -p ${OPENCL_ROOT};
+  #    pushd ${OPENCL_ROOT};
+  #    travis_retry git clone --depth 1 https://github.com/KhronosGroup/OpenCL-ICD-Loader.git;
+  #    mv ./OpenCL-ICD-Loader/* .;
+  #    travis_retry git clone --depth 1 https://github.com/KhronosGroup/OpenCL-Headers.git inc/CL;
+  #    pushd inc/CL;
+  #    travis_retry wget -w 1 -np -nd -nv -A h,hpp ${OPENCL_REGISTRY}/api/2.1/cl.hpp;
+  #    popd;
+  #    mkdir -p lib;
+  #    pushd lib;
+  #    cmake -G "Unix Makefiles" ..;
+  #    make;
+  #    cp ./bin/libOpenCL.so .;
+  #    popd;
+  #    pushd inc/CL;
+  #    travis_retry git fetch origin opencl12:opencl12;
+  #    git checkout opencl12;
+  #    popd;
+  #    mv inc/ include/;
+  #    popd;
+  #  fi
+  # osx image does not contain cl.hpp file; download from Khronos
+  # - if [ ${TRAVIS_OS_NAME} == "osx" ]; then
+  #     pushd /System/Library/Frameworks/OpenCL.framework/Versions/A/Headers/;
+  #     sudo wget -w 1 -np -nd -nv -A h,hpp https://www.khronos.org/registry/cl/api/1.2/cl.hpp;
+  #     popd;
+  #   fi
+  - wget https://github.com/clMathLibraries/clBLAS/releases/download/v2.12/clBLAS-2.12.0-Linux-x64.tar.gz
+  - tar xvf clBLAS-2.12.0-Linux-x64.tar.gz
+  - LD_LIBRARY_PATH=clBLAS-2.12.0-Linux-x64/lib64 clBLAS-2.12.0-Linux-x64/bin/test-functional
 
-    # Download and install Boost
-    - |
-      if [[ ${TRAVIS_OS_NAME} == "linux" && ${BOOST_VERSION} != "default" ]]; then
-        if [ ! -f "${DEPS_DIR}/boost/${BOOST_VERSION}_cached" ]; then
-          # create dirs for source and install
-          mkdir -p ${DEPS_DIR}/boost${BOOST_VERSION}
-          mkdir -p ${DEPS_DIR}/boost
-          rm -rf ${DEPS_DIR}/boost/*
-          # download
-          travis_retry wget --no-check-certificate --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C ${DEPS_DIR}/boost${BOOST_VERSION}
-          pushd ${DEPS_DIR}/boost${BOOST_VERSION}
-          # configure and install
-          echo "using gcc : 4.8 : g++-4.8 ;" > $HOME/user-config.jam
-          ./bootstrap.sh --prefix=${DEPS_DIR}/boost/ --with-libraries=program_options,filesystem,system,thread,test,timer,chrono
-          ./b2 -d0 install
-          popd
-          touch ${DEPS_DIR}/boost/${BOOST_VERSION}_cached
-        else
-          echo 'Using cached Boost ${BOOST_VERSION} libraries.'
-        fi
-        export CMAKE_OPTIONS=${CMAKE_OPTIONS}" -DBOOST_ROOT=${DEPS_DIR}/boost"
-      fi
+# Use before_script: to run configure steps
+#before_script:
+#  - mkdir -p ${CLBLAS_ROOT}
+#  - pushd ${CLBLAS_ROOT}
+#  - cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TEST=OFF -DBUILD_CLIENT=OFF -DOCL_VERSION=2.0 -DOPENCL_ROOT=${OPENCL_ROOT} ${TRAVIS_BUILD_DIR}/src
 
-    ############################################################################
-    # Download OpenCL headers (and cl.hpp)
-    ############################################################################
-    - |
-      if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
-        mkdir -p ${OPENCL_ROOT}/include/CL
-        pushd ${OPENCL_ROOT}/include/CL
-        travis_retry git clone --depth 1 https://github.com/KhronosGroup/OpenCL-Headers.git -b opencl${OPENCL_HEADERS_VER}
-        mv ./OpenCL-Headers/* .
-        travis_retry wget -w 1 -np -nd -nv -A h,hpp --no-check-certificate ${OPENCL_REGISTRY}/api/2.1/cl.hpp;
-        popd
-      fi
-
-    ############################################################################
-    # Build and install POCL https://github.com/pocl/pocl
-    ############################################################################
-    - |
-      if [[ ${TRAVIS_OS_NAME} == "linux" && ${OPENCL_LIB} == "pocl" ]]; then
-        travis_retry git clone --depth 1 https://github.com/pocl/pocl.git -b ${POCL_BRANCH}
-        cd pocl
-        if [[ -n "${POCL_COMMIT}" ]]; then
-          git checkout ${POCL_COMMIT}
-        fi
-        mkdir build
-        cd build
-        cmake -DDIRECT_LINKAGE=ON -DENABLE_ICD=OFF -DCMAKE_C_COMPILER=${POCL_C_COMPILER} -DCMAKE_CXX_COMPILER=${POCL_CXX_COMPILER} -DWITH_LLVM_CONFIG=${POCL_LLVM_CONFIG} -DCMAKE_INSTALL_PREFIX=${OPENCL_ROOT}/pocl/ ..
-        make install
-        cd ../..
-      fi
-
-    ############################################################################
-    # fglrx does not work: https://github.com/travis-ci/travis-ci/issues/5221,
-    # so we build our own linkable .so file.
-    # Thanks to clSPARSE for providing opencl-icd build script.
-    ############################################################################
-    - |
-      if [[ ${TRAVIS_OS_NAME} == "linux" && ${OPENCL_LIB} == "khronos-icd" ]]; then
-        mkdir -p ${OPENCL_ROOT}
-        pushd ${OPENCL_ROOT}
-        travis_retry git clone --depth 1 https://github.com/KhronosGroup/OpenCL-ICD-Loader.git
-        mv ./OpenCL-ICD-Loader/* .
-        mkdir -p inc/CL
-        pushd inc/CL
-        travis_retry git clone --depth 1 https://github.com/KhronosGroup/OpenCL-Headers.git
-        mv ./OpenCL-Headers/* .
-        popd
-        mkdir -p lib
-        pushd lib
-        cmake -G "Unix Makefiles" ..
-        make
-        cp ./bin/libOpenCL.so .
-        popd
-        popd
-      fi
-
-    ############################################################################
-    # Install AMD APP SDK
-    # Thanks to JuliaGPU https://github.com/JuliaGPU/OpenCL.jl
-    ############################################################################
-    - |
-      if [[ ${TRAVIS_OS_NAME} == "linux" && ${OPENCL_LIB} == "amdappsdk" ]]; then
-        mkdir -p ${OPENCL_ROOT}
-        bash .travis/amd_sdk.sh ${AMDAPPSDK_VERSION}
-        tar -xjf AMD-SDK.tar.bz2
-        export OPENCL_VENDOR_PATH=${AMDAPPSDKROOT}/etc/OpenCL/vendors
-        mkdir -p ${OPENCL_VENDOR_PATH}
-        sh AMD-APP-SDK*.sh --tar -xf -C ${AMDAPPSDKROOT}
-        echo libamdocl64.so > ${OPENCL_VENDOR_PATH}/amdocl64.icd
-        if [[ ${AMDAPPSDK_VERSION} == "300" ]]; then
-          export LD_LIBRARY_PATH=${AMDAPPSDKROOT}/lib/x86_64/sdk:${LD_LIBRARY_PATH}
-          export CMAKE_LIBRARY_PATH=${AMDAPPSDKROOT}/lib/x86_64/sdk
-          cp ${AMDAPPSDKROOT}/lib/x86_64/libamdocl12cl64.so ${AMDAPPSDKROOT}/lib/x86_64/sdk/libamdocl12cl64.so
-        # 291
-        else
-          export LD_LIBRARY_PATH=${AMDAPPSDKROOT}/lib/x86_64:${LD_LIBRARY_PATH}
-          export CMAKE_LIBRARY_PATH=${AMDAPPSDKROOT}/lib/x86_64
-        fi
-        chmod +x ${AMDAPPSDKROOT}/bin/x86_64/clinfo
-        ${AMDAPPSDKROOT}/bin/x86_64/clinfo
-      fi
-
+# use script: to execute build steps
 script:
-    - echo "done !"
-    ############################################################################
-    # Build Boost.Compute tests, benchmarks and examples
-    ############################################################################
-    #- mkdir -p build
-    #- cd build
-    #- echo ${CMAKE_OPTIONS}
-    #- echo ${CXX_FLAGS}
-    #- cmake ${CMAKE_OPTIONS} -DCMAKE_CXX_FLAGS="${CXX_FLAGS}" ..
-    #- make -j4
-    #- |
-    #  if [[ ${RUN_TESTS} == "true" ]]; then
-    #    # print OpenCL devices
-    #    ./example/list_devices
-    #    # run tests and examples
-    #    ctest --output-on-failure
-    #    ctest --output-on-failure
-    #  fi
+  - echo "hello world !" #make package
 
-#__after_success:
-#    - |
-#      if [[ ${COVERAGE} == "true" ]]; then
-#        lcov --directory test --base-directory ../include/boost/compute/ --capture --output-file coverage.info
-#        lcov --remove coverage.info '/usr*' '*/test/*' -o coverage.info
-#        cd .. && coveralls-lcov build/coverage.info
-#      fi
+#deploy:
+#  provider: releases
+#  prerelease: true
+#  draft: true
+#  skip_cleanup: true
+#  file: ${CLBLAS_ROOT}/clBLAS-build/*.tar.gz
+#  file_glob: true
+#  on:
+#    all_branches: true
+#    tags: true
