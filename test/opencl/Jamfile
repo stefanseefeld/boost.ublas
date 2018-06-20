@@ -18,5 +18,5 @@ project boost/ublas/test/opencl
     ;
 
 test-suite ocl
-  : [ run test.cpp ]
+  : [ run prod_test.cpp ]
     ;

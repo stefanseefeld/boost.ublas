@@ -22,6 +22,12 @@
 #include <boost/serialization/array.hpp>
 #include <boost/serialization/nvp.hpp>
 
+#ifdef ENABLE_OPENCL
+#include <boost/numeric/ublas/opencl/matrix.hpp>
+#include <boost/numeric/ublas/opencl/operations.hpp>
+#endif
+
+
 // Iterators based on ideas of Jeremy Siek
 
 namespace boost { namespace numeric { 
