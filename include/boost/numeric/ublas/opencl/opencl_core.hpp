@@ -97,7 +97,12 @@ public:
 	data_ = allocator.allocate(layout_type::storage_size(size1, size2)).get_buffer();
   }
 
-
+  template <typename A>
+  matrix(matrix<T, L, A> m, compute::command_queue &q)
+    : matrix(m.size1(), m.size2(), q.get_context())
+  {
+    from_host(m, q);
+  }
 
   /** Dense matrix constructor with size (size1,size2) and resides on memory of device of queue q and initialize all elements to value
   * \param 2 is the boost::compute::command_queue that contains the matrix on its device memory
@@ -343,4 +348,4 @@ private:
 
 
 
-#endif 
+#endif

@@ -34,77 +34,95 @@ namespace ublas = boost::numeric::ublas;
 * \param result matrix on device to store the product of the result of (A*B)
 * \param queue has the queue of the device which has the result matrix and which will do the computation
 *
-* \tparam T datatype of the matrices
 * \tparam L layout of the matrices (row_major or column_major)
 */
-template <class T, class L>
-  void prod(ublas::matrix<T, L, opencl::storage>& a, ublas::matrix<T, L, opencl::storage>& b, ublas::matrix<T, L, opencl::storage>& result , compute::command_queue & queue)
+template <class L>
+void prod(matrix<float, L, opencl::storage> &a,
+          matrix<float, L, opencl::storage> &b,
+          matrix<float, L, opencl::storage> &result,
+          compute::command_queue &queue)
 {
-  //check all matrices are on same context
-  assert(  (a.device() == b.device()) && (a.device() == result.device()) && (a.device()== queue.get_device()) );
-
-  //check dimension of matrices (MxN) * (NxK)
+  assert(a.device() == b.device() && a.device() == result.device() && a.device()== queue.get_device());
   assert(a.size2() == b.size1());
-
-  result.fill(0, queue);
-
-  cl_event event = NULL;
-
-  clblasOrder Order = std::is_same<L, ublas::basic_row_major<> >::value ? clblasRowMajor : clblasColumnMajor;
+  clblasOrder Order = std::is_same<L, basic_row_major<> >::value ? clblasRowMajor : clblasColumnMajor;
   int lda = Order == clblasRowMajor ? a.size2() : a.size1();
   int ldb = Order == clblasRowMajor ? b.size2() : a.size2();
   int ldc = Order == clblasRowMajor ? b.size2() : a.size1();
-
-
-
-  if (std::is_same<T, float>::value)
-	//Call clBLAS extended function. Perform gemm for float
-	clblasSgemm(Order, clblasNoTrans, clblasNoTrans,
-	  a.size1(), b.size2(), a.size2(),
-	  1, (cl_mem)a.begin().get_buffer().get(), 0, lda,
-	  (cl_mem)b.begin().get_buffer().get(), 0, ldb, 1,
-	  (cl_mem)result.begin().get_buffer().get(), 0, ldc,
-	  1, &(queue.get()), 0, NULL, &event);
-
-
-  else if (std::is_same<T, double>::value)
-	//Call clBLAS extended function. Perform gemm for double
-	clblasDgemm(Order, clblasNoTrans, clblasNoTrans,
-	  a.size1(), b.size2(), a.size2(),
-	  1, (cl_mem)a.begin().get_buffer().get(), 0, lda,
-	  (cl_mem)b.begin().get_buffer().get(), 0, ldb, 1,
-	  (cl_mem)result.begin().get_buffer().get(), 0, ldc,
-	  1, &(queue.get()), 0, NULL, &event);
-
-  else if (std::is_same<T, std::complex<float>>::value)
-	//Call clBLAS extended function. Perform gemm for complext float
-	clblasCgemm(Order, clblasNoTrans, clblasNoTrans,
-	  a.size1(), b.size2(), a.size2(),
-	  ONE_FLOAT_COMPLEX, (cl_mem)a.begin().get_buffer().get(), 0, lda,
-	  (cl_mem)b.begin().get_buffer().get(), 0, ldb, ONE_FLOAT_COMPLEX,
-	  (cl_mem)result.begin().get_buffer().get(), 0, ldc,
-	  1, &(queue.get()), 0, NULL, &event);
-
-  else if (std::is_same<T, std::complex<double>>::value)
-	//Call clBLAS extended function. Perform gemm for complex double
-	clblasZgemm(Order, clblasNoTrans, clblasNoTrans,
-	  a.size1(), b.size2(), a.size2(),
-	  ONE_DOUBLE_COMPLEX, (cl_mem)a.begin().get_buffer().get(), 0, lda,
-	  (cl_mem)b.begin().get_buffer().get(), 0, ldb, ONE_DOUBLE_COMPLEX,
-	  (cl_mem)result.begin().get_buffer().get(), 0, ldc,
-	  1, &(queue.get()), 0, NULL, &event);
-
-
-
-  //Wait for calculations to be finished.
+  cl_event event = NULL;
+  clblasSgemm(Order, clblasNoTrans, clblasNoTrans,
+              a.size1(), b.size2(), a.size2(),
+              1, (cl_mem)a.begin().get_buffer().get(), 0, lda,
+              (cl_mem)b.begin().get_buffer().get(), 0, ldb, 1,
+              (cl_mem)result.begin().get_buffer().get(), 0, ldc,
+              1, &(queue.get()), 0, NULL, &event);
   clWaitForEvents(1, &event);
-
-
-
 }
 
+template <class L>
+void prod(matrix<double, L, opencl::storage> &a,
+          matrix<double, L, opencl::storage> &b,
+          matrix<double, L, opencl::storage> &result,
+          compute::command_queue &queue)
+{
+  assert(a.device() == b.device() && a.device() == result.device() && a.device()== queue.get_device());
+  assert(a.size2() == b.size1());
+  clblasOrder Order = std::is_same<L, basic_row_major<> >::value ? clblasRowMajor : clblasColumnMajor;
+  int lda = Order == clblasRowMajor ? a.size2() : a.size1();
+  int ldb = Order == clblasRowMajor ? b.size2() : a.size2();
+  int ldc = Order == clblasRowMajor ? b.size2() : a.size1();
+  cl_event event = NULL;
+  clblasDgemm(Order, clblasNoTrans, clblasNoTrans,
+              a.size1(), b.size2(), a.size2(),
+              1, (cl_mem)a.begin().get_buffer().get(), 0, lda,
+              (cl_mem)b.begin().get_buffer().get(), 0, ldb, 1,
+              (cl_mem)result.begin().get_buffer().get(), 0, ldc,
+              1, &(queue.get()), 0, NULL, &event);
+  clWaitForEvents(1, &event);
+}
 
+template <class L>
+void prod(matrix<std::complex<float>, L, opencl::storage> &a,
+          matrix<std::complex<float>, L, opencl::storage> &b,
+          matrix<std::complex<float>, L, opencl::storage> &result,
+          compute::command_queue &queue)
+{
+  assert(a.device() == b.device() && a.device() == result.device() && a.device()== queue.get_device());
+  assert(a.size2() == b.size1());
+  clblasOrder Order = std::is_same<L, basic_row_major<> >::value ? clblasRowMajor : clblasColumnMajor;
+  int lda = Order == clblasRowMajor ? a.size2() : a.size1();
+  int ldb = Order == clblasRowMajor ? b.size2() : a.size2();
+  int ldc = Order == clblasRowMajor ? b.size2() : a.size1();
+  cl_event event = NULL;
+  clblasCgemm(Order, clblasNoTrans, clblasNoTrans,
+              a.size1(), b.size2(), a.size2(),
+              ONE_FLOAT_COMPLEX, (cl_mem)a.begin().get_buffer().get(), 0, lda,
+              (cl_mem)b.begin().get_buffer().get(), 0, ldb, ONE_FLOAT_COMPLEX,
+              (cl_mem)result.begin().get_buffer().get(), 0, ldc,
+              1, &(queue.get()), 0, NULL, &event);
+  clWaitForEvents(1, &event);
+}
 
+template <class L>
+void prod(matrix<std::complex<double>, L, opencl::storage> &a,
+          matrix<std::complex<double>, L, opencl::storage> &b,
+          matrix<std::complex<double>, L, opencl::storage> &result,
+          compute::command_queue &queue)
+{
+  assert(a.device() == b.device() && a.device() == result.device() && a.device()== queue.get_device());
+  assert(a.size2() == b.size1());
+  clblasOrder Order = std::is_same<L, basic_row_major<> >::value ? clblasRowMajor : clblasColumnMajor;
+  int lda = Order == clblasRowMajor ? a.size2() : a.size1();
+  int ldb = Order == clblasRowMajor ? b.size2() : a.size2();
+  int ldc = Order == clblasRowMajor ? b.size2() : a.size1();
+  cl_event event = NULL;
+  clblasZgemm(Order, clblasNoTrans, clblasNoTrans,
+              a.size1(), b.size2(), a.size2(),
+              ONE_DOUBLE_COMPLEX, (cl_mem)a.begin().get_buffer().get(), 0, lda,
+              (cl_mem)b.begin().get_buffer().get(), 0, ldb, ONE_DOUBLE_COMPLEX,
+              (cl_mem)result.begin().get_buffer().get(), 0, ldc,
+              1, &(queue.get()), 0, NULL, &event);
+  clWaitForEvents(1, &event);
+}
 
 		
 /**This function computes the product of 2 matrices not on device (a*b) and stores it at matrix result which is also not on device
@@ -120,27 +138,19 @@ template <class T, class L>
 * \tparam L layout of the matrices (row_major or column_major)
 * \tparam A storage type that has the data of the matrices
 */
-template <class T, class L, class A>
-  void prod(ublas::matrix<T, L, A>& a, ublas::matrix<T, L, A>& b, ublas::matrix<T, L, A>& result, compute::command_queue &queue)
+template <typename T, typename L, typename A,
+          typename = std::enable_if<std::is_same<T, float>::value |
+                                    std::is_same<T, double>::value |
+                                    std::is_same<T, std::complex<float>>::value |
+                                    std::is_same<T, std::complex<double>>::value>>
+void prod(matrix<T, L, A> &a, matrix<T, L, A> &b, matrix<T, L, A> &result, compute::command_queue &queue)
 {
-
-  ///copy the data from a to aHolder
-  ublas::matrix<T, L, opencl::storage> aHolder(a.size1(), a.size2(), queue.get_context());
-  aHolder.from_host(a,queue);
-
-  ///copy the data from b to bHolder
-  ublas::matrix<T, L, opencl::storage> bHolder(b.size1(), b.size2() ,queue.get_context());
-  bHolder.from_host(b,queue);
-
-  ublas::matrix<T, L, opencl::storage> resultHolder(a.size1(), b.size2(), queue.get_context());
-
-  prod(aHolder, bHolder, resultHolder, queue); //call the prod function that multiplies
-
-  resultHolder.to_host(result,queue);
-
-
+  matrix<T, L, opencl::storage> aHolder(a, queue);
+  matrix<T, L, opencl::storage> bHolder(b, queue);
+  matrix<T, L, opencl::storage> resultHolder(a.size1(), b.size2(), queue.get_context());
+  prod(aHolder, bHolder, resultHolder, queue);
+  resultHolder.to_host(result, queue);
 }
-
 
 /**This function computes the product of 2 matrices not on device (a*b) and stores it at matrix result which is also not on device
 *
@@ -154,11 +164,14 @@ template <class T, class L, class A>
 * \tparam L layout of the matrices (row_major or column_major)
 * \tparam A storage type that has the data of the matrices
 */
-
-template <class T, class L, class A>
-  ublas::matrix<T, L, A> prod(ublas::matrix<T, L, A>& a, ublas::matrix<T, L, A>& b, compute::command_queue &queue)
+template <typename T, typename L, typename A,
+          typename = std::enable_if<std::is_same<T, float>::value |
+                                    std::is_same<T, double>::value |
+                                    std::is_same<T, std::complex<float>>::value |
+                                    std::is_same<T, std::complex<double>>::value>>
+matrix<T, L, A> prod(matrix<T, L, A> &a, matrix<T, L, A> &b, compute::command_queue &queue)
 {
-  ublas::matrix<T, L, A> result(a.size1(), b.size2());
+  matrix<T, L, A> result(a.size1(), b.size2());
   prod(a, b, result, queue);
   return result;
 }
@@ -1359,4 +1372,4 @@ template <class T, class L, class A>
 }//boost
 
 
-#endif 
+#endif
