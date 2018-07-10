@@ -1,0 +1,28 @@
+# Copyright (c) 2018 Stefan Seefeld
+#
+# Distributed under the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+import os ;
+import path ;
+
+make html
+     : index.rst
+     : @sphinx-build
+     : <location>.
+     ;
+
+if [ os.name ] = NT
+{
+  actions sphinx-build { chdir "$(>:D)" && make clean && make html}
+}
+else
+{
+  actions sphinx-build { make -C "$(>:D)" clean html}
+}
+
+###############################################################################
+alias boostdoc ;
+explicit boostdoc ;
+alias boostrelease : html ;
+explicit boostrelease ;
