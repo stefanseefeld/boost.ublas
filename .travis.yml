@@ -12,6 +12,11 @@ branches:
     - doc
     - ci
 
+env:
+  global:
+    - secure: "jI+2KbpfwGbWuuU2WtNav3AXd0B9nXlbtu003lcNV1wVD2OaJ80F8yFIbqt4oyafhfmlPXeHr2+2Vc0kSKZPVEfSSLICLmxHcxkpcJMrH8N6Q/6RYFuTYgIm2Y3IemUeLfkaO+1yJ6bHjzDVq4Lcl3WmIqPFU1INfp+9QHUX4/gTLS4sKKqk9EsMRMYQzLg/+FyayidaYArvRg3MIOk9tz60b3Rv7slRWO4J9CDi9ryh9+cnDyS0cD6imc+DxSTUUkYW3jC836VhcMD7dlB8p+anQvHhUMkOnXF6qTxIhfNs3UpDF/JzLAjy9Ctui64DHyNIayLLMKcHbnka86nI0VLTGD+/bgSMHa5YTqY892U1MnM7wC9aHDnlZLYPbgqC3HlS/g2oUk1D+HUqYUxVY9qTL2zgSlnQ34niJFWB3KK7jUCPnjdHxs6+5GvqHgYL9Wp/A6lMeiVCtvLJoFeNbVAzIEJXaD/b2w6k5PXyUfFwEyeqXb9eLxufhDUuYUoatInYCFdYda1eKVtFNYZEaBv9TzteUHVfolgGpgrx/Aq6K/j4itnGARHUdpLMAMR0D7edvsWHWVHHvGj2cj0kdMWbdm3pbwEy/PrRFa6e+k0tVQHvNpo8SgWyCjSnKnBDX+63guQrwu2ypFT96b3112qm+oM30HrOHV0FBR1psls="
+
+
 matrix:
   include:
     - os: linux
@@ -26,8 +31,15 @@ matrix:
     - os: osx
       env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++11
 
+    - os: linux
+      env: DOC=1
+
 
 install:
+  - |-
+    if [ "$DOC" ]; then
+      pip install --user sphinx
+    fi
   - cd ..
   - git clone -b master --depth 1 https://github.com/boostorg/boost.git boost-root
   - cd boost-root
@@ -36,14 +48,30 @@ install:
   - git submodule update --init tools/boostdep
   - mkdir -p libs/numeric/
   - cp -r $TRAVIS_BUILD_DIR/* libs/numeric/ublas
+  - cp -r $TRAVIS_BUILD_DIR/.ci libs/numeric/ublas
   - python tools/boostdep/depinst/depinst.py numeric/ublas
   - ./bootstrap.sh
   - ./b2 headers
 
 script:
   - |-
-    echo "using $TOOLSET : : $COMPILER : <cxxflags>-std=$CXXSTD ;" > ~/user-config.jam
-  - ./b2 libs/numeric/ublas/test toolset=$TOOLSET
+    if [ "$DOC" ]; then
+      ./b2 libs/numeric/ublas/doc
+    else
+      echo "using $TOOLSET : : $COMPILER : <cxxflags>-std=$CXXSTD ;" > ~/user-config.jam
+      ./b2 libs/numeric/ublas/test toolset=$TOOLSET
+    fi
+
+after_success:
+# Upload docs only when building upstream.
+  - |-
+    if [ "$DOC" -a \
+          "$TRAVIS_REPO_SLUG" = "stefanseefeld/boost.ublas" -a \
+          "$TRAVIS_PULL_REQUEST" = "false" ]; then
+      export GH_TOKEN
+      cd libs/numeric/ublas
+      .ci/upload_docs.sh
+    fi
 
 notifications:
   email:
