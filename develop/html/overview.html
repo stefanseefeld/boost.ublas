@@ -86,10 +86,10 @@ classes is acceptable.</p>
 <h2>Resources</h2>
 <p>The development of this library was guided by a couple of similar efforts:</p>
 <ul class="simple">
-<li>BLAS by Jack Dongarra et al.</li>
-<li>Blitz++ by Todd Veldhuizen</li>
-<li>POOMA by Scott Haney et al.</li>
-<li>MTL by Jeremy Siek et al.</li>
+<li><a class="reference external" href="http://www.netlib.org/blas/index.html">BLAS</a> by Jack Dongarra et al.</li>
+<li><a class="reference external" href="http://www.oonumerics.org/blitz/">Blitz++</a> by Todd Veldhuizen</li>
+<li><a class="reference external" href="http://acts.nersc.gov/pooma/">POOMA</a> by Scott Haney et al.</li>
+<li><a class="reference external" href="http://www.lsc.nd.edu/research/mtl/">MTL</a> by Jeremy Siek et al.</li>
 </ul>
 <p>BLAS seems to be the most widely used library for basic linear algebra constructions, so it could be called a de-
 facto standard. Its interface is procedural, the individual functions are somewhat abstracted from simple linear
@@ -201,25 +201,33 @@ time especially for small and space especially for large vectors and matrices. T
 is to use lazy evaluation as known from modern functional programming languages. The principle of this approach is
 to evaluate a complex expression element wise and to assign it directly to the target.</p>
 <p>Two interesting and dangerous facts result:</p>
-</div>
-<div class="section" id="aliases">
-<h3>Aliases</h3>
-<p>One may get serious side effects using element wise evaluation on vectors or matrices. Consider the matrix vector
-product x = A x. Evaluation of A1x and assignment to x1 changes the right hand side, so that the evaluation of A2x
-returns a wrong result. In this case there are aliases of the elements xn on both the left and right hand side of
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Aliases:</th><td class="field-body"><p class="first">One may get serious side effects using element wise evaluation on vectors or matrices.
+Consider the matrix vector product <span class="math notranslate nohighlight">\(x = A x\)</span>. Evaluation of <span class="math notranslate nohighlight">\(A_1 x\)</span> and assignment to <span class="math notranslate nohighlight">\(x_1\)</span>
+changes the right hand side, so that the evaluation of <span class="math notranslate nohighlight">\(A_2 x\)</span> returns a wrong result.
+In this case there are aliases of the elements xn on both the left and right hand side of
 the assignment.</p>
-<p>Our solution for this problem is to evaluate the right hand side of an assignment into a temporary and then to
-assign this temporary to the left hand side. To allow further optimizations, we provide a corresponding member
-function for every assignment operator and also a noalias syntax. By using this syntax a programmer can confirm,
-that the left and right hand sides of an assignment are independent, so that element wise evaluation and direct
+<p>Our solution for this problem is to evaluate the right hand side of an assignment into
+a temporary and then to assign this temporary to the left hand side. To allow further
+optimizations, we provide a corresponding member function for every assignment operator
+and also a noalias syntax. By using this syntax a programmer can confirm, that the left
+and right hand sides of an assignment are independent, so that element wise evaluation and direct
 assignment to the target is safe.</p>
-</div>
-<div class="section" id="complexity">
-<h3>Complexity</h3>
-<p>The computational complexity may be unexpectedly large under certain cirumstances. Consider the chained matrix
-vector product A (B x). Conventional evaluation of A (B x) is quadratic. Deferred evaluation of B xi is linear.
-As every element B xi is needed linearly depending of the size, a completely deferred evaluation of the chained
-matrix vector product A (B x) is cubic. In such cases one needs to reintroduce temporaries in the expression.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Complexity:</th><td class="field-body"><p class="first last">The computational complexity may be unexpectedly large under certain cirumstances.
+Consider the chained matrix vector product <span class="math notranslate nohighlight">\(A (B x)\)</span>. Conventional evaluation
+of <span class="math notranslate nohighlight">\(A (B x)\)</span> is quadratic. Deferred evaluation of <span class="math notranslate nohighlight">\(B x_i\)</span> is linear.
+As every element <span class="math notranslate nohighlight">\(B x_i\)</span> is needed linearly depending of the size, a completely
+deferred evaluation of the chained matrix vector product <span class="math notranslate nohighlight">\(A (B x)\)</span> is cubic.
+In such cases one needs to reintroduce temporaries in the expression.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="eliminating-virtual-function-calls">
 <h3>Eliminating Virtual Function Calls</h3>

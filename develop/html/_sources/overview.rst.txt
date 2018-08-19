@@ -24,10 +24,10 @@ Resources
 
 The development of this library was guided by a couple of similar efforts:
 
-* BLAS by Jack Dongarra et al.
-* Blitz++ by Todd Veldhuizen
-* POOMA by Scott Haney et al.
-* MTL by Jeremy Siek et al.
+* `BLAS <http://www.netlib.org/blas/index.html>`_ by Jack Dongarra et al.
+* `Blitz++ <http://www.oonumerics.org/blitz/>`_ by Todd Veldhuizen
+* `POOMA <http://acts.nersc.gov/pooma/>`_ by Scott Haney et al.
+* `MTL <http://www.lsc.nd.edu/research/mtl/>`_ by Jeremy Siek et al.
 
 BLAS seems to be the most widely used library for basic linear algebra constructions, so it could be called a de-
 facto standard. Its interface is procedural, the individual functions are somewhat abstracted from simple linear
@@ -150,27 +150,25 @@ to evaluate a complex expression element wise and to assign it directly to the t
 
 Two interesting and dangerous facts result:
 
-Aliases
-~~~~~~~
+:Aliases: One may get serious side effects using element wise evaluation on vectors or matrices.
+	  Consider the matrix vector product :math:`x = A x`. Evaluation of :math:`A_1 x` and assignment to :math:`x_1`
+	  changes the right hand side, so that the evaluation of :math:`A_2 x` returns a wrong result.
+	  In this case there are aliases of the elements xn on both the left and right hand side of
+	  the assignment.
 
-One may get serious side effects using element wise evaluation on vectors or matrices. Consider the matrix vector
-product x = A x. Evaluation of A1x and assignment to x1 changes the right hand side, so that the evaluation of A2x
-returns a wrong result. In this case there are aliases of the elements xn on both the left and right hand side of
-the assignment.
+	  Our solution for this problem is to evaluate the right hand side of an assignment into
+	  a temporary and then to assign this temporary to the left hand side. To allow further
+	  optimizations, we provide a corresponding member function for every assignment operator
+	  and also a noalias syntax. By using this syntax a programmer can confirm, that the left
+	  and right hand sides of an assignment are independent, so that element wise evaluation and direct
+	  assignment to the target is safe.
 
-Our solution for this problem is to evaluate the right hand side of an assignment into a temporary and then to
-assign this temporary to the left hand side. To allow further optimizations, we provide a corresponding member
-function for every assignment operator and also a noalias syntax. By using this syntax a programmer can confirm,
-that the left and right hand sides of an assignment are independent, so that element wise evaluation and direct
-assignment to the target is safe.
-
-Complexity
-~~~~~~~~~~
-
-The computational complexity may be unexpectedly large under certain cirumstances. Consider the chained matrix
-vector product A (B x). Conventional evaluation of A (B x) is quadratic. Deferred evaluation of B xi is linear.
-As every element B xi is needed linearly depending of the size, a completely deferred evaluation of the chained
-matrix vector product A (B x) is cubic. In such cases one needs to reintroduce temporaries in the expression.
+:Complexity: The computational complexity may be unexpectedly large under certain cirumstances.
+	     Consider the chained matrix vector product :math:`A (B x)`. Conventional evaluation
+	     of :math:`A (B x)` is quadratic. Deferred evaluation of :math:`B x_i` is linear.
+	     As every element :math:`B x_i` is needed linearly depending of the size, a completely
+	     deferred evaluation of the chained matrix vector product :math:`A (B x)` is cubic.
+	     In such cases one needs to reintroduce temporaries in the expression.
 
 Eliminating Virtual Function Calls
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
