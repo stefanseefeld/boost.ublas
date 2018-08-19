@@ -1,0 +1,124 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Level 3 BLAS - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Concepts" href="concepts.html" />
+    <link rel="prev" title="Special Products" href="products.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Special Products" href="products.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Concepts" href="concepts.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="level-3-blas">
+<h1>Level 3 BLAS</h1>
+<div class="section" id="functions">
+<h2>Functions</h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M3</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span><span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">tmm</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M3</span> <span class="o">&amp;</span><span class="n">m3</span><span class="p">)</span>
+<span class="c1">// triangular matrix multiplication</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">C</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span>  <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">tsm</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+<span class="c1">// triangular solve m2 * x = t * m1 in place, m2 is a triangular matrix</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M3</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span>      <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">gmm</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">t1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">t2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M3</span> <span class="o">&amp;</span><span class="n">m3</span><span class="p">)</span>
+<span class="c1">// general matrix multiplication</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span>        <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">srk</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">t1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">t2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">)</span>
+<span class="c1">// symmetric rank k update: m1 = t * m1 + t2 * (m2 * m2T)</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span>        <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">hrk</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">t1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">t2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">)</span>
+<span class="c1">// hermitian rank k update: m1 = t * m1 + t2 * (m2 * m2H)</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M3</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span>      <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">sr2k</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">t1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">t2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M3</span> <span class="o">&amp;</span><span class="n">m3</span><span class="p">)</span>
+<span class="c1">// generalized symmetric rank k update: m1 = t1 * m1 + t2 * (m2 * m3T) + t2 * (m3 * m2T)</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">M3</span><span class="o">&gt;</span> <span class="n">M1</span> <span class="o">&amp;</span>      <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">blas_3</span><span class="o">::</span><span class="n">hr2k</span> <span class="p">(</span><span class="n">M1</span> <span class="o">&amp;</span><span class="n">m1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">t1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">t2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M2</span> <span class="o">&amp;</span><span class="n">m2</span><span class="p">,</span> <span class="k">const</span> <span class="n">M3</span> <span class="o">&amp;</span><span class="n">m3</span><span class="p">)</span>
+<span class="c1">// generalized hermitian rank k update: m1 = t1 * m1 + t2 * (m2 * m3H) + (m3 * (t2 * m2)H)</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span> <span class="n">BOOST_UBLAS_INLINE</span> <span class="n">M</span> <span class="o">&amp;</span>         <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">axpy_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span> <span class="n">E1</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span> <span class="n">E2</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">M</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">init</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span>
+<span class="c1">// computes M += A X or M = A X in an optimized fashion.</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span> <span class="n">BOOST_UBLAS_INLINE</span> <span class="n">M</span> <span class="o">&amp;</span>         <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="o">::</span><span class="n">opb_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span> <span class="n">E1</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span> <span class="n">E2</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">M</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">init</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span>
+<span class="c1">// computes M += A X or M = A X in an optimized fashion.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-documentation">
+<h2>Function Documentation</h2>
+<ul class="simple">
+<li><cite>M1 &amp;tmm(M1 &amp;m1, const T &amp;t, const M2 &amp;m2, const M3 &amp;m3)</cite> triangular matrix multiplication</li>
+<li><cite>M1 &amp;tsm(M1 &amp;m1, const T &amp;t, const M2 &amp;m2, C)</cite> triangular solve m2 * x = t * m1 in place, m2 is a triangular matrix</li>
+<li><cite>M1 &amp;gmm(M1 &amp;m1, const T1 &amp;t1, const T2 &amp;t2, const M2 &amp;m2, const M3 &amp;m3)</cite> general matrix multiplication</li>
+<li><cite>M1 &amp;srk(M1 &amp;m1, const T1 &amp;t1, const T2 &amp;t2, const M2 &amp;m2)</cite> symmetric rank k update: <span class="math notranslate nohighlight">\(m1 = t * m1 + t2 * (m2 * m2^T)\)</span></li>
+<li><cite>M1 &amp;hrk(M1 &amp;m1, const T1 &amp;t1, const T2 &amp;t2, const M2 &amp;m2)</cite> hermitian rank k update: <span class="math notranslate nohighlight">\(m1 = t * m1 + t2 * (m2 * m2^H)\)</span></li>
+<li><cite>M1 &amp;sr2k(M1 &amp;m1, const T1 &amp;t1, const T2 &amp;t2, const M2 &amp;m2, const M3 &amp;m3)</cite> generalized symmetric rank k update: <span class="math notranslate nohighlight">\(m1 = t1 * m1 + t2 * (m2 * m3^T) + t2 * (m3 * m2^T)\)</span></li>
+<li><cite>M1 &amp;hr2k(M1 &amp;m1, const T1 &amp;t1, const T2 &amp;t2, const M2 &amp;m2, const M3 &amp;m3)</cite>  generalized hermitian rank k update: <span class="math notranslate nohighlight">\(m1 = t1 * m1 + t2 * (m2 * m3^H) + (m3 * (t2 * m2)^H)\)</span></li>
+</ul>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Special Products" href="products.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Concepts" href="concepts.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

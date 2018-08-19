@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Vector Proxies - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Vector Expressions" href="vector_expressions.html" />
+    <link rel="prev" title="Sparse Vector" href="vector_sparse.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Sparse Vector" href="vector_sparse.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Vector Expressions" href="vector_expressions.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="vector-proxies">
+<h1>Vector Proxies</h1>
+<div class="section" id="vector-range">
+<h2>Vector Range</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>The templated class vector_range&lt;V&gt; allows addressing a sub-range of a vector’s element.</p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example</h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector_proxy.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">vector_range</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">vr</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vr</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">vr</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vr</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="definition">
+<h3>Definition</h3>
+<p>Defined in the header vector_proxy.hpp.</p>
+</div>
+<div class="section" id="template-parameters">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">V:</th><td class="field-body">The type of vector referenced.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-of">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+<p>If the specified range falls outside that of the index range of the vector, then the vector_range is not a well
+formed Vector Expression. That is, access to an element which is outside of index range of the vector is undefined.</p>
+</div>
+<div class="section" id="type-requirements">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="public-base-classes">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;vector_range&lt;V&gt; &gt;</p>
+</div>
+<div class="section" id="members">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_range (vector_type &amp;data, const range &amp;r)</cite></td>
+<td>Constructs a sub vector.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type start () const</cite></td>
+<td>Returns the start of the sub vector.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the sub vector.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>reference operator () (size_type i)</cite></td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator [] (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>reference operator [] (size_type i)</cite></td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>vector_range &amp;operator = (const vector_range &amp;vr)</cite></td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>vector_range &amp;assign_temporary (vector_range &amp;vr)</cite></td>
+<td>Assigns a temporary. May change the vector range vr .</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; vector_range &amp;operator = (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>The extended assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; vector_range &amp;assign (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Assigns a vector expression to the sub vector. Left and right hand side of the assignment should
+be independent.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; vector_range &amp;operator += (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>A computed assignment operator. Adds the vector expression to the sub vector.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; vector_range &amp;plus_assign (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Adds a vector expression to the sub vector. Left and right hand side of the assignment should be
+independent.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; vector_range &amp;operator -= (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>A computed assignment operator. Subtracts the vector expression from the sub vector.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; vector_range &amp;minus_assign (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Subtracts a vector expression from the sub vector. Left and right hand side of the assignment should
+be independent.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AT&gt; vector_range &amp;operator *= (const AT &amp;at)</cite></td>
+<td>A computed assignment operator. Multiplies the sub vector with a scalar.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AT&gt; vector_range &amp;operator /= (const AT &amp;at)</cite></td>
+<td>A computed assignment operator. Divides the sub vector through a scalar.</td>
+</tr>
+<tr class="row-odd"><td><cite>void swap (vector_range &amp;vr)</cite></td>
+<td>Swaps the contents of the sub vectors.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the vector_range.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the vector_range.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator begin ()</cite></td>
+<td>Returns a iterator pointing to the beginning of the vector_range.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator end ()</cite></td>
+<td>Returns a iterator pointing to the end of the vector_range.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed vector_range.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed vector_range.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator rbegin ()</cite></td>
+<td>Returns a reverse_iterator pointing to the beginning of the reversed vector_range.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator rend ()</cite></td>
+<td>Returns a reverse_iterator pointing to the end of the reversed vector_range.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="simple-projections">
+<h2>Simple Projections</h2>
+<div class="section" id="id1">
+<h3>Description</h3>
+<p>The free subrange functions support the construction of vector ranges.</p>
+</div>
+<div class="section" id="prototypes">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_range</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">subrange</span> <span class="p">(</span><span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span>
+   <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">start</span><span class="p">,</span> <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">stop</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_range</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">subrange</span> <span class="p">(</span><span class="k">const</span> <span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span>
+   <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">start</span><span class="p">,</span> <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">stop</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="generic-projections">
+<h2>Generic Projections</h2>
+<div class="section" id="id2">
+<h3>Description</h3>
+<p>The free project functions support the construction of vector ranges. Existing matrix_range’s can be
+composed with a further range. The resulting range is computed using this existing range’s compose function.</p>
+</div>
+<div class="section" id="id3">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_range</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">range</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_range</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="k">const</span> <span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">range</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_range</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">vector_range</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">range</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_range</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_range</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">range</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Definition</h3>
+<p>Defined in the header vector_proxy.hpp.</p>
+</div>
+<div class="section" id="id5">
+<h3>Type requirements</h3>
+<blockquote>
+<div>V is a model of Vector Expression .</div></blockquote>
+</div>
+<div class="section" id="complexity">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the range.</p>
+</div>
+<div class="section" id="examples">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector_proxy.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">project</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="vector-slice">
+<h2>Vector Slice</h2>
+<div class="section" id="id6">
+<h3>Description</h3>
+<p>The templated class vector_slice&lt;V&gt; allows addressing a slice of a vector.</p>
+</div>
+<div class="section" id="id7">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector_proxy.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">vs</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slice</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vs</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">vs</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vs</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Definition</h3>
+<p>Defined in the header vector_proxy.hpp.</p>
+</div>
+<div class="section" id="id9">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">V:</th><td class="field-body">The type of vector referenced.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id10">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+<p>If the specified slice falls outside that of the index range of the vector, then the vector_slice is not a well
+formed Vector Expression. That is, access to an element which is outside of index range of the vector is undefined.</p>
+</div>
+<div class="section" id="id11">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="id12">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;vector_slice&lt;V&gt; &gt;</p>
+</div>
+<div class="section" id="id13">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_slice (vector_type &amp;data, const slice &amp;s)</cite></td>
+<td>Constructs a sub vector.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the sub vector.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>reference operator () (size_type i)</cite></td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator [] (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>reference operator [] (size_type i)</cite></td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>vector_slice &amp;operator = (const vector_slice &amp;vs)</cite></td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-odd"><td><cite>vector_slice &amp;assign_temporary (vector_slice &amp;vs)</cite></td>
+<td>Assigns a temporary. May change the vector slice vs .</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; vector_slice &amp;operator = (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>The extended assignment operator.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; vector_slice &amp;assign (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Assigns a vector expression to the sub vector. Left and right hand side of the assignment should be
+independent.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; vector_slice &amp;operator += (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>A computed assignment operator. Adds the vector expression to the sub vector.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; vector_slice &amp;plus_assign (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Adds a vector expression to the sub vector. Left and right hand side of the assignment should be
+independent.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; vector_slice &amp;operator -= (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>A computed assignment operator. Subtracts the vector expression from the sub vector.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; vector_slice &amp;minus_assign (const vector_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Subtracts a vector expression from the sub vector. Left and right hand side of the assignment
+should be independent.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AT&gt; vector_slice &amp;operator *= (const AT &amp;at)</cite></td>
+<td>A computed assignment operator. Multiplies the sub vector with a scalar.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AT&gt; vector_slice &amp;operator /= (const AT &amp;at)</cite></td>
+<td>A computed assignment operator. Divides the sub vector through a scalar.</td>
+</tr>
+<tr class="row-even"><td><cite>void swap (vector_slice &amp;vs)</cite></td>
+<td>Swaps the contents of the sub vectors.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the vector_slice.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the vector_slice.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator begin ()</cite></td>
+<td>Returns a iterator pointing to the beginning of the vector_slice.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator end ()</cite></td>
+<td>Returns a iterator pointing to the end of the vector_slice.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed vector_slice.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed vector_slice.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator rbegin ()</cite></td>
+<td>Returns a reverse_iterator pointing to the beginning of the reversed vector_slice.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator rend ()</cite></td>
+<td>Returns a reverse_iterator pointing to the end of the reversed vector_slice.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>Simple Projections</h2>
+<div class="section" id="id15">
+<h3>Description</h3>
+<p>The free subslice functions support the construction of vector slices.</p>
+</div>
+<div class="section" id="id16">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">subslice</span> <span class="p">(</span><span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span>
+   <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">start</span><span class="p">,</span> <span class="n">V</span><span class="o">::</span><span class="n">difference_type</span> <span class="n">stride</span><span class="p">,</span> <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">size</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_slice</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">subslice</span> <span class="p">(</span><span class="k">const</span> <span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span>
+   <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">start</span><span class="p">,</span> <span class="n">V</span><span class="o">::</span><span class="n">difference_type</span> <span class="n">stride</span><span class="p">,</span> <span class="n">V</span><span class="o">::</span><span class="n">size_type</span> <span class="n">size</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id17">
+<h2>Generic Projections</h2>
+<div class="section" id="id18">
+<h3>Description</h3>
+<p>The free project functions support the construction of vector slices. Existing vector_slice’s can be composed
+with a further range or slices. The resulting slice is computed using this existing slices’s compose function.</p>
+</div>
+<div class="section" id="id19">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">slice</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_slice</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="k">const</span> <span class="n">V</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">slice</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">range</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">range</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">slice</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">project</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_slice</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">slice</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>Definition</h3>
+<p>Defined in the header vector_proxy.hpp.</p>
+</div>
+<div class="section" id="id21">
+<h3>Type requirements</h3>
+<blockquote>
+<div>V is a model of Vector Expression .</div></blockquote>
+</div>
+<div class="section" id="id22">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the slice.</p>
+</div>
+<div class="section" id="id23">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector_proxy.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">project</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slice</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">project</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">slice</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Sparse Vector" href="vector_sparse.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Vector Expressions" href="vector_expressions.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Storage and special containers - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Sparse Storage" href="storage_sparse.html" />
+    <link rel="prev" title="Matrix Expressions" href="matrix_expression.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Matrix Expressions" href="matrix_expression.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Sparse Storage" href="storage_sparse.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="storage-and-special-containers">
+<h1>Storage and special containers</h1>
+<div class="section" id="unbounded-array">
+<h2>Unbounded Array</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>The templated class unbounded_array&lt;T, ALLOC&gt; implements a unbounded storage array using an allocator. The unbounded array is similar to a std::vector in that in can grow in size beyond any fixed bound. However unbounded_array is aimed at optimal performance. Therefore unbounded_array does not model a Sequence like std::vector does.</p>
+<p>When resized unbounded_array will reallocate it’s storage even if the new size requirement is smaller. It is therefore inefficient to resize a unbounded_array</p>
+</div>
+<div class="section" id="example">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/storage.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">unbounded_array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">a</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="definition">
+<h3>Definition</h3>
+<p>Defined in the header storage.hpp.</p>
+</div>
+<div class="section" id="template-parameters">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>T</td>
+<td>The type of object stored in the array.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>ALLOC</td>
+<td>An STL Allocator</td>
+<td>std::allocator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-of">
+<h3>Model of</h3>
+<p>Storage</p>
+</div>
+<div class="section" id="type-requirements">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Storage.</p>
+</div>
+<div class="section" id="public-base-classes">
+<h3>Public base classes</h3>
+<p>None.</p>
+</div>
+<div class="section" id="members">
+<h3>Members</h3>
+<ul class="simple">
+<li>The description does not describe what the member actually does, this can be looked up in the corresponding concept documentation, but instead contains a remark on the implementation of the member inside this model of the concept.</li>
+<li>Typography: Members that are not part of the implemented concepts are in blue.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Where defined</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>value_type</td>
+<td>Container</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>pointer</td>
+<td>Container</td>
+<td>Defined as value_type*</td>
+</tr>
+<tr class="row-even"><td>const_pointer</td>
+<td>Container</td>
+<td>Defined as const value_type*</td>
+</tr>
+<tr class="row-odd"><td>reference</td>
+<td>Container</td>
+<td>Defined as value_type&amp;</td>
+</tr>
+<tr class="row-even"><td>const_reference</td>
+<td>Container</td>
+<td>Defined as const value_type&amp;</td>
+</tr>
+<tr class="row-odd"><td>size_type</td>
+<td>Container</td>
+<td>Defined as Alloc::size_type</td>
+</tr>
+<tr class="row-even"><td>difference_type</td>
+<td>Container</td>
+<td>Defined as Alloc::difference_type</td>
+</tr>
+<tr class="row-odd"><td>iterator</td>
+<td>Container</td>
+<td>Defined as pointer</td>
+</tr>
+<tr class="row-even"><td>const_iterator</td>
+<td>Container</td>
+<td>Defined as const_pointer</td>
+</tr>
+<tr class="row-odd"><td>revere_iterator</td>
+<td>Container</td>
+<td>Defined as std::reverse_iterator&lt;iterator&gt;</td>
+</tr>
+<tr class="row-even"><td>const_revere_iterator</td>
+<td>Container</td>
+<td>Defined as std::reverse_iterator&lt;const_iterator&gt;</td>
+</tr>
+<tr class="row-odd"><td>allocator_type</td>
+<td>&#160;</td>
+<td>Defined as ALLOC</td>
+</tr>
+<tr class="row-even"><td>explicit unbounded_array (ALLOC &amp;a = ALLOC())</td>
+<td>Storage</td>
+<td>Creates an unbounded_array that holds zero elements, using a specified allocator.</td>
+</tr>
+<tr class="row-odd"><td>explicit unbounded_array (size_type size, ALLOC &amp;a = ALLOC())</td>
+<td>Storage</td>
+<td>Creates a uninitialized unbounded_array that holds size elements, using a specified allocator. All the elements are default constructed.</td>
+</tr>
+<tr class="row-even"><td>unbounded_array (size_type size, const T&amp; init, ALLOC&amp; a = ALLOC())</td>
+<td>Storage</td>
+<td>Creates an initialized unbounded_array that holds size elements, using a specified allocator. All the elements are constructed from the init value.</td>
+</tr>
+<tr class="row-odd"><td>unbounded_array (const unbounded_array &amp;a)</td>
+<td>Container</td>
+<td>The copy constructor.</td>
+</tr>
+<tr class="row-even"><td>~unbounded_array ()</td>
+<td>Container</td>
+<td>Deallocates the unbounded_array itself.</td>
+</tr>
+<tr class="row-odd"><td>void resize (size_type n)</td>
+<td>Storage</td>
+<td>Reallocates an unbounded_array to hold n elements. Values are uninitialised.</td>
+</tr>
+<tr class="row-even"><td>void resize(size_type n, const T&amp; t)</td>
+<td>Storage</td>
+<td>Reallocates an unbounded_array to hold n elements. Values are copies of t</td>
+</tr>
+<tr class="row-odd"><td>size_type size () const</td>
+<td>Container</td>
+<td>Returns the size of the unbounded_array.</td>
+</tr>
+<tr class="row-even"><td>const_reference operator [] (size_type i) const</td>
+<td>Container</td>
+<td>Returns a const reference of the i -th element.</td>
+</tr>
+<tr class="row-odd"><td>reference operator [] (size_type i)</td>
+<td>Container</td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-even"><td>unbounded_array &amp;operator = (const unbounded_array &amp;a)</td>
+<td>Container</td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-odd"><td>unbounded_array &amp;assign_temporary (unbounded_array &amp;a)</td>
+<td>&#160;</td>
+<td>Assigns a temporary. May change the array a.</td>
+</tr>
+<tr class="row-even"><td>void swap (unbounded_array &amp;a)</td>
+<td>Container</td>
+<td>Swaps the contents of the arrays.</td>
+</tr>
+<tr class="row-odd"><td>const_iterator begin () const</td>
+<td>Container</td>
+<td>Returns a const_iterator pointing to the beginning of the unbounded_array.</td>
+</tr>
+<tr class="row-even"><td>const_iterator end () const</td>
+<td>Container</td>
+<td>Returns a const_iterator pointing to the end of the unbounded_array.</td>
+</tr>
+<tr class="row-odd"><td>iterator begin ()</td>
+<td>Container</td>
+<td>Returns a iterator pointing to the beginning of the unbounded_array.</td>
+</tr>
+<tr class="row-even"><td>iterator end ()</td>
+<td>Container</td>
+<td>Returns a iterator pointing to the end of the unbounded_array.</td>
+</tr>
+<tr class="row-odd"><td>const_reverse_iterator rbegin () const</td>
+<td>Reversible Container</td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed unbounded_array.</td>
+</tr>
+<tr class="row-even"><td>const_reverse_iterator rend () const</td>
+<td>Reversible Container</td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed unbounded_array.</td>
+</tr>
+<tr class="row-odd"><td>reverse_iterator rbegin ()</td>
+<td>Reversible Container</td>
+<td>Returns a reverse_iterator pointing to the beginning of the reversed unbounded_array.</td>
+</tr>
+<tr class="row-even"><td>reverse_iterator rend ()</td>
+<td>Reversible Container</td>
+<td>Returns a reverse_iterator pointing to the end of the reversed unbounded_array.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="bounded-array">
+<h2>Bounded Array</h2>
+<div class="section" id="id1">
+<h3>Description</h3>
+<p>The templated class bounded_array&lt;T, N, ALLOC&gt; implements a bounded storage array. The bounded array is similar to a C++ array type in that its maximum size is bounded by N and is allocated on the stack instead of the heap. Similarly a bounded_array requires no secondary storage and ALLOC is only used to specify size_type and difference_type.</p>
+<p>When resized bounded_array never reallocated the storage. It is therefore always efficient to resize a bounded_array but the size bound N must not be exceeded.</p>
+</div>
+<div class="section" id="id2">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/storage.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">bounded_array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">a</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">a</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Definition</h3>
+<p>Defined in the header storage.hpp.</p>
+</div>
+<div class="section" id="id4">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>T</td>
+<td>The type of object stored in the array.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>N</td>
+<td>The allocation size of the array.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>ALLOC</td>
+<td>An STL Allocator</td>
+<td>std::allocator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h3>Model of</h3>
+<p>Storage</p>
+</div>
+<div class="section" id="id6">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Storage.</p>
+</div>
+<div class="section" id="id7">
+<h3>Public base classes</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id8">
+<h3>Members</h3>
+<ul class="simple">
+<li>The description does not describe what the member actually does, this can be looked up in the corresponding concept documentation, but instead contains a remark on the implementation of the member inside this model of the concept.</li>
+<li>Typography: Members that are not part of the implemented concepts are in blue.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Where defined</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>value_type</td>
+<td>Container</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>pointer</td>
+<td>Container</td>
+<td>Defined as value_type*</td>
+</tr>
+<tr class="row-even"><td>const_pointer</td>
+<td>Container</td>
+<td>Defined as const value_type*</td>
+</tr>
+<tr class="row-odd"><td>reference</td>
+<td>Container</td>
+<td>Defined as value_type&amp;</td>
+</tr>
+<tr class="row-even"><td>const_reference</td>
+<td>Container</td>
+<td>Defined as const value_type&amp;</td>
+</tr>
+<tr class="row-odd"><td>size_type</td>
+<td>Container</td>
+<td>Defined as Alloc::size_type</td>
+</tr>
+<tr class="row-even"><td>difference_type</td>
+<td>Container</td>
+<td>Defined as Alloc::difference_type</td>
+</tr>
+<tr class="row-odd"><td>iterator</td>
+<td>Container</td>
+<td>Defined as pointer</td>
+</tr>
+<tr class="row-even"><td>const_iterator</td>
+<td>Container</td>
+<td>Defined as const_pointer</td>
+</tr>
+<tr class="row-odd"><td>revere_iterator</td>
+<td>Container</td>
+<td>Defined as std::reverse_iterator&lt;iterator&gt;</td>
+</tr>
+<tr class="row-even"><td>const_revere_iterator</td>
+<td>Container</td>
+<td>Defined as std::reverse_iterator&lt;const_iterator&gt;</td>
+</tr>
+<tr class="row-odd"><td>bounded_array ()</td>
+<td>Storage</td>
+<td>Creates an unbounded_array that holds zero elements.</td>
+</tr>
+<tr class="row-even"><td>bounded_array (size_type size)</td>
+<td>Storage</td>
+<td>Creates a uninitialized bounded_array that holds size elements. All the elements are default constructed.</td>
+</tr>
+<tr class="row-odd"><td>bounded_array (size_type size, const T&amp; init)</td>
+<td>Storage</td>
+<td>Creates an initialized bounded_array that holds size elements. All the elements are constructed from the init value.</td>
+</tr>
+<tr class="row-even"><td>bounded_array (const bounded_array &amp;c)</td>
+<td>Container</td>
+<td>The copy constructor.</td>
+</tr>
+<tr class="row-odd"><td>~bounded_array ()</td>
+<td>Container</td>
+<td>Deallocates the bounded_array itself.</td>
+</tr>
+<tr class="row-even"><td>void resize (size_type size)</td>
+<td>Storage</td>
+<td>Reallocates a bounded_array to hold size elements.</td>
+</tr>
+<tr class="row-odd"><td>void resize (size_type size, const T&amp; t)</td>
+<td>Storage</td>
+<td>Reallocates a bounded_array to hold size elements.</td>
+</tr>
+<tr class="row-even"><td>size_type size () const</td>
+<td>Container</td>
+<td>Returns the size of the bounded_array.</td>
+</tr>
+<tr class="row-odd"><td>const_reference operator [] (size_type i) const</td>
+<td>Container</td>
+<td>Returns a const reference of the i -th element.</td>
+</tr>
+<tr class="row-even"><td>reference operator [] (size_type i)</td>
+<td>Container</td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td>bounded_array &amp;operator = (const bounded_array &amp;a)</td>
+<td>Container</td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-even"><td>bounded_array &amp;assign_temporary (bounded_array &amp;a)</td>
+<td>&#160;</td>
+<td>Assigns a temporary. May change the array a.</td>
+</tr>
+<tr class="row-odd"><td>void swap (bounded_array &amp;a)</td>
+<td>Container</td>
+<td>Swaps the contents of the arrays.</td>
+</tr>
+<tr class="row-even"><td>const_iterator begin () const</td>
+<td>Container</td>
+<td>Returns a const_iterator pointing to the beginning of the bounded_array.</td>
+</tr>
+<tr class="row-odd"><td>const_iterator end () const</td>
+<td>Container</td>
+<td>Returns a const_iterator pointing to the end of the bounded_array.</td>
+</tr>
+<tr class="row-even"><td>iterator begin ()</td>
+<td>Container</td>
+<td>Returns a iterator pointing to the beginning of the bounded_array.</td>
+</tr>
+<tr class="row-odd"><td>iterator end ()</td>
+<td>Container</td>
+<td>Returns a iterator pointing to the end of the bounded_array.</td>
+</tr>
+<tr class="row-even"><td>const_reverse_iterator rbegin () const</td>
+<td>Reversible Container</td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed bounded_array.</td>
+</tr>
+<tr class="row-odd"><td>const_reverse_iterator rend () const</td>
+<td>Reversible Container</td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed bounded_array.</td>
+</tr>
+<tr class="row-even"><td>reverse_iterator rbegin ()</td>
+<td>Reversible Container</td>
+<td>Returns a reverse_iterator pointing to the beginning of the reversed bounded_array.</td>
+</tr>
+<tr class="row-odd"><td>reverse_iterator rend ()</td>
+<td>Reversible Container</td>
+<td>Returns a reverse_iterator pointing to the end of the reversed bounded_array.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="range-and-slice-storage">
+<h2>Range and Slice Storage</h2>
+</div>
+<div class="section" id="range-sizetype-distancetype">
+<h2>Range&lt;SizeType,DistanceType&gt;</h2>
+<div class="section" id="id9">
+<h3>Description</h3>
+<p>The class range specifies a range of indicies. The range is a sequence of indices from a start value to stop value. The indices increase by one and exlude the stop value. range can therefore be used to specify ranges of elements from vectors and matrices.</p>
+</div>
+<div class="section" id="id10">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/storage.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">range</span> <span class="n">r</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>Definition</h3>
+<p>Defined in the header storage.hpp.</p>
+</div>
+<div class="section" id="id12">
+<h3>Model of</h3>
+<p>Reversible Container.</p>
+</div>
+<div class="section" id="id13">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Reversible Container.</p>
+</div>
+<div class="section" id="id14">
+<h3>Public base classes</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id15">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>range (size_type start, size_type stop)</cite></td>
+<td>Constructs a range of indicies from start to stop (excluded) .</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type start () const</cite></td>
+<td>Returns the beginning of the range.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the range.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator [] (size_type i) const</cite></td>
+<td>Returns the value start + i of the i -th element.</td>
+</tr>
+<tr class="row-even"><td><cite>range compose (const range &amp;r) const</cite></td>
+<td>Returns the composite range from start + r.start () to start + r.start () + r.size ().</td>
+</tr>
+<tr class="row-odd"><td><cite>bool operator == (const range &amp;r) const</cite></td>
+<td>Tests two ranges for equality.</td>
+</tr>
+<tr class="row-even"><td><cite>bool operator != (const range &amp;r) const</cite></td>
+<td>Tests two ranges for inequality.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the range.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the range.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed range.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed range.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="preconditions">
+<h3>Preconditions</h3>
+<ul class="simple">
+<li><cite>start () &lt;= stop ()</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="slice-sizetype-distancetype">
+<h2>Slice&lt;SizeType,DistanceType&gt;</h2>
+<div class="section" id="id16">
+<h3>Description</h3>
+<p>The class slice specifies a ‘slice’ of indicies. Slices are more general then ranges, the stride allows the sequence of indicies to increase and decrease by the specified amount between element. slice can therefore be used to specify slices of element from vectors and matrices.</p>
+</div>
+<div class="section" id="id17">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/storage.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">slice</span> <span class="n">s</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Definition</h3>
+<p>Defined in the header storage.hpp.</p>
+</div>
+<div class="section" id="id19">
+<h3>Model of</h3>
+<p>Reversible Container.</p>
+</div>
+<div class="section" id="id20">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Reversible Container.</p>
+</div>
+<div class="section" id="id21">
+<h3>Public base classes</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id22">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>slice (size_type start, size_type stride, size_type size)</cite></td>
+<td>Constructs a slice start,start+stride,start+2*stride… with size elements.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type start () const</cite></td>
+<td>Returns the beginning of the slice.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type stride () const</cite></td>
+<td>Returns the stride of the slice.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the slice.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator [] (size_type i) const</cite></td>
+<td>Returns the value start + i * stride of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>slice compose (const range &amp;r) const</cite></td>
+<td>Returns the composite slice from start + stride * r.start () to start + stride * (r.start () + r.size ()) with stride stride.</td>
+</tr>
+<tr class="row-even"><td><cite>slice compose (const slice &amp;s) const</cite></td>
+<td>Returns the composite slice from start + stride * s.start () to start + stride * s.stride () * (s.start () + s.size ()) with stride stride * s.stride () .</td>
+</tr>
+<tr class="row-odd"><td><cite>bool operator == (const slice &amp;s) const</cite></td>
+<td>Tests two slices for equality.</td>
+</tr>
+<tr class="row-even"><td><cite>bool operator != (const slice &amp;s) const</cite></td>
+<td>Tests two slices for inequality.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the slice.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the slice.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed slice.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed slice.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id23">
+<h3>Preconditions</h3>
+<p>None all strides are vaild. However when an index is returned or an iterator is dereferenced its value must be representable as the size_type.</p>
+</div>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Matrix Expressions" href="matrix_expression.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Sparse Storage" href="storage_sparse.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

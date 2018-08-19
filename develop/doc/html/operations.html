@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview of Matrix and Vector Operations - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Configuration options" href="options.html" />
+    <link rel="prev" title="Overview of Matrix- and Vector-Types" href="types.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Overview of Matrix- and Vector-Types" href="types.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Configuration options" href="options.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="overview-of-matrix-and-vector-operations">
+<h1>Overview of Matrix and Vector Operations</h1>
+<div class="section" id="definitions">
+<h2>Definitions</h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>A</cite>, <cite>B</cite>, <cite>C</cite>:</th><td class="field-body">are matrices</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>u</cite>, <cite>v</cite>, <cite>w</cite>:</th><td class="field-body">are vectors</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>i</cite>, <cite>j</cite>, <cite>k</cite>:</th><td class="field-body">are integer values</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>t</cite>, <cite>t1</cite>, <cite>t2</cite>:</th><td class="field-body">are scalar values</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>r</cite>, <cite>r1</cite>, <cite>r2</cite>:</th><td class="field-body">are ranges, e.g. range(0, 3)</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>s</cite>, <cite>s1</cite>, <cite>s2</cite>:</th><td class="field-body">are slices, e.g. slice(0, 1, 3)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="basic-linear-algebra">
+<h2>Basic Linear Algebra</h2>
+<div class="section" id="standard-operations-addition-subtraction-multiplication-by-a-scalar">
+<h3>standard operations: addition, subtraction, multiplication by a scalar</h3>
+<ul class="simple">
+<li><cite>C = A + B;</cite></li>
+<li><cite>C = A - B;</cite></li>
+<li><cite>C = -A;</cite></li>
+<li><cite>w = u + v;</cite></li>
+<li><cite>w = u - v;</cite></li>
+<li><cite>w = -u;</cite></li>
+<li><cite>C = t * A;</cite></li>
+<li><cite>C = A * t;</cite></li>
+<li><cite>C = A / t;</cite></li>
+<li><cite>w = t * u;</cite></li>
+<li><cite>w = u * t;</cite></li>
+<li><cite>w = u / t;</cite></li>
+</ul>
+</div>
+<div class="section" id="computed-assignments">
+<h3>computed assignments</h3>
+<ul class="simple">
+<li><cite>C += A;</cite></li>
+<li><cite>C -= A;</cite></li>
+<li><cite>w += u;</cite></li>
+<li><cite>w -= u;</cite></li>
+<li><cite>C *= t;</cite></li>
+<li><cite>C /= t;</cite></li>
+<li><cite>w *= t;</cite></li>
+<li><cite>w /= t;</cite></li>
+</ul>
+</div>
+<div class="section" id="inner-outer-and-other-products">
+<h3>inner, outer and other products</h3>
+<ul class="simple">
+<li><cite>t = inner_prod(u, v);</cite></li>
+<li><cite>C = outer_prod(u, v);</cite></li>
+<li><cite>w = prod(A, u);</cite></li>
+<li><cite>w = prod(u, A);</cite></li>
+<li><cite>w = prec_prod(A, u);</cite></li>
+<li><cite>w = prec_prod(u, A);</cite></li>
+<li><cite>C = prod(A, B);</cite></li>
+<li><cite>C = prec_prod(A, B);</cite></li>
+<li><cite>w = element_prod(u, v);</cite></li>
+<li><cite>w = element_div(u, v);</cite></li>
+<li><cite>C = element_prod(A, B);</cite></li>
+<li><cite>C = element_div(A, B);</cite></li>
+</ul>
+</div>
+<div class="section" id="transformations">
+<h3>transformations</h3>
+<ul class="simple">
+<li><cite>w = conj(u);</cite></li>
+<li><cite>w = real(u);</cite></li>
+<li><cite>w = imag(u);</cite></li>
+<li><cite>C = trans(A);</cite></li>
+<li><cite>C = conj(A);</cite></li>
+<li><cite>C = herm(A);</cite></li>
+<li><cite>C = real(A);</cite></li>
+<li><cite>C = imag(A);</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="advanced-functions">
+<h2>Advanced functions</h2>
+<div class="section" id="norms">
+<h3>norms</h3>
+<ul class="simple">
+<li><cite>t = norm_inf(v);</cite></li>
+<li><cite>i = index_norm_inf(v);</cite></li>
+<li><cite>t = norm_1(v);</cite></li>
+<li><cite>t = norm_2(v);</cite></li>
+<li><cite>t = norm_2_square(v);</cite></li>
+<li><cite>t = norm_inf(A);</cite></li>
+<li><cite>i = index_norm_inf(A);</cite></li>
+<li><cite>t = norm_1(A);</cite></li>
+<li><cite>t = norm_frobenius(A);</cite></li>
+</ul>
+</div>
+<div class="section" id="products">
+<h3>products</h3>
+<ul class="simple">
+<li><cite>axpy_prod(A, u, w, true);  // w = A * u</cite></li>
+<li><cite>axpy_prod(A, u, w, false); // w += A * u</cite></li>
+<li><cite>axpy_prod(u, A, w, true);  // w = trans(A) * u</cite></li>
+<li><cite>axpy_prod(u, A, w, false); // w += trans(A) * u</cite></li>
+<li><cite>axpy_prod(A, B, C, true);  // C = A * B</cite></li>
+<li><cite>axpy_prod(A, B, C, false); // C += A * B</cite></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The last argument (bool init) of axpy_prod is optional. Currently it defaults to true, but this may change in the future.
+Setting the init to true is equivalent to calling w.clear() before axpy_prod. There are some specialisation for products
+of compressed matrices that give a large speed up compared to prod.</p>
+</div>
+<ul class="simple">
+<li><cite>w = block_prod&lt;matrix_type, 64&gt; (A, u); // w = A * u</cite></li>
+<li><cite>w = block_prod&lt;matrix_type, 64&gt; (u, A); // w = trans(A) * u</cite></li>
+<li><cite>C = block_prod&lt;matrix_type, 64&gt; (A, B); // C = A * B</cite></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The blocksize can be any integer. However, the actual speed depends very significantly on the combination of blocksize,
+CPU and compiler. The function block_prod is designed for large dense matrices.</p>
+</div>
+</div>
+<div class="section" id="rank-k-updates">
+<h3>rank-k updates</h3>
+<ul class="simple">
+<li><cite>opb_prod(A, B, C, true);  // C = A * B</cite></li>
+<li><cite>opb_prod(A, B, C, false); // C += A * B</cite></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The last argument (bool init) of opb_prod is optional. Currently it defaults to true, but this may change in the future.
+This function may give a speedup if A has less columns than rows, because the product is computed as a sum of outer products.</p>
+</div>
+</div>
+</div>
+<div class="section" id="submatrices-subvectors">
+<h2>Submatrices, Subvectors</h2>
+<div class="section" id="accessing-submatrices-and-subvectors-via-proxies-using-project-functions">
+<h3>Accessing submatrices and subvectors via proxies using project functions</h3>
+<ul class="simple">
+<li><cite>w = project(u, r);         // the subvector of u specifed by the index range r</cite></li>
+<li><cite>w = project(u, s);         // the subvector of u specifed by the index slice s</cite></li>
+<li><cite>C = project(A, r1, r2);    // the submatrix of A specified by the two index ranges r1 and r2</cite></li>
+<li><cite>C = project(A, s1, s2);    // the submatrix of A specified by the two index slices s1 and s2</cite></li>
+<li><cite>w = row(A, i); w = column(A, j);    // a row or column of matrix as a vector</cite></li>
+</ul>
+</div>
+<div class="section" id="assigning-to-submatrices-and-subvectors-via-proxies-using-project-functions">
+<h3>Assigning to submatrices and subvectors via proxies using project functions</h3>
+<ul class="simple">
+<li><cite>project(u, r) = w;         // assign the subvector of u specifed by the index range r</cite></li>
+<li><cite>project(u, s) = w;         // assign the subvector of u specifed by the index slice s</cite></li>
+<li><cite>project(A, r1, r2) = C;    // assign the submatrix of A specified by the two index ranges r1 and r2</cite></li>
+<li><cite>project(A, s1, s2) = C;    // assign the submatrix of A specified by the two index slices s1 and s2</cite></li>
+<li><cite>row(A, i) = w; column(A, j) = w;    // a row or column of matrix as a vector</cite></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A range <cite>r = range(start, stop)</cite> contains all indices <cite>i</cite> with <cite>start &lt;= i &lt; stop</cite>. A slice is something more general.
+The slice <cite>s = slice(start, stride, size)</cite> contains the indices <cite>start</cite>, <cite>start+stride</cite>, <cite>…</cite>, <cite>start+(size-1)*stride</cite>.
+The stride can be <cite>0</cite> or negative! If <cite>start &gt;= stop</cite> for a range or <cite>size == 0</cite> for a slice then it contains no elements.</p>
+</div>
+</div>
+<div class="section" id="sub-ranges-and-sub-slices-of-vectors-and-matrices-can-be-created-directly-with-the-subrange-and-sublice-functions">
+<h3>Sub-ranges and sub-slices of vectors and matrices can be created directly with the subrange and sublice functions</h3>
+<ul class="simple">
+<li><cite>w = subrange(u, 0, 2);         // the 2 element subvector of u</cite></li>
+<li><cite>w = subslice(u, 0, 1, 2);      // the 2 element subvector of u</cite></li>
+<li><cite>C = subrange(A, 0,2, 0,3);     // the 2x3 element submatrix of A</cite></li>
+<li><cite>C = subslice(A, 0,1,2, 0,1,3); // the 2x3 element submatrix of A</cite></li>
+<li><cite>subrange(u, 0, 2) = w;         // assign the 2 element subvector of u</cite></li>
+<li><cite>subslice(u, 0, 1, 2) = w;      // assign the 2 element subvector of u</cite></li>
+<li><cite>subrange(A, 0,2, 0,3) = C;     // assign the 2x3 element submatrix of A</cite></li>
+<li><cite>subrange(A, 0,1,2, 0,1,3) = C; // assigne the 2x3 element submatrix of A</cite></li>
+</ul>
+<p>There are to more ways to access some matrix elements as a vector:</p>
+<ul class="simple">
+<li><cite>matrix_vector_range&lt;matrix_type&gt; (A, r1, r2);</cite></li>
+<li><cite>matrix_vector_slice&lt;matrix_type&gt; (A, s1, s2);</cite></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These matrix proxies take a sequence of elements of a matrix and allow you to access these as a vector.
+In particular matrix_vector_slice can do this in a very general way. matrix_vector_range is less useful as the elements must lie along a diagonal.</p>
+</div>
+<p>Example: To access the first two elements of a sub column of a matrix we access the row with a slice with stride 1 and the column with a slice with stride 0 thus:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_vector_slice</span><span class="o">&lt;</span><span class="n">matrix_type</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="speed-improvements">
+<h2>Speed improvements</h2>
+<div class="section" id="matrix-vector-assignment">
+<h3>Matrix / Vector assignment</h3>
+<p>If you know for sure that the left hand expression and the right hand expression have no common storage, then assignment has no aliasing. A more efficient assignment can be specified in this case:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">noalias</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This avoids the creation of a temporary matrix that is required in a normal assignment. ‘noalias’ assignment requires that the left and right hand side be size conformant.</p>
+</div>
+</div>
+<div class="section" id="sparse-element-access">
+<h2>Sparse element access</h2>
+<p>The matrix element access function A(i1,i2) or the equivalent vector element access functions (v(i) or v[i]) usually create ‘sparse element proxies’
+when applied to a sparse matrix or vector. These proxies allow access to elements without having to worry about nasty C++ issues where references are
+invalidated.</p>
+<p>These ‘sparse element proxies’ can be implemented more efficiently when applied to const objects. Sadly in C++ there is no way to distinguish between
+an element access on the left and right hand side of an assignment. Most often elements on the right hand side will not be changed and therefore it
+would be better to use the const proxies. We can do this by making the matrix or vector const before accessing it’s elements. For example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="k">const_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">VEC</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">)[</span><span class="n">i</span><span class="p">];</span>   <span class="c1">// VEC is the type of V</span>
+</pre></div>
+</div>
+<p>If more then one element needs to be accessed const_iterator’s should be used in preference to iterator’s for the same reason.
+For the more daring ‘sparse element proxies’ can be completely turned off in uBLAS by defining the configuration macro BOOST_UBLAS_NO_ELEMENT_PROXIES.</p>
+</div>
+<div class="section" id="controlling-the-complexity-of-nested-products">
+<h2>Controlling the complexity of nested products</h2>
+<p>What is the complexity (the number of add and multiply operations) required to compute the following?</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prod</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Firstly the complexity depends on matrix size. Also since prod is transitive (not commutative) the bracket order affects the complexity.</p>
+<p>uBLAS evaluates expressions without matrix or vector temporaries and honours the bracketing structure. However avoiding temporaries for nested product unnecessarly increases the complexity. Conversly by explictly using temporary matrices the complexity of a nested product can be reduced.</p>
+<p>uBLAS provides 3 alternative syntaxes for this purpose:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">temp_type</span> <span class="n">T</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">);</span> <span class="n">R</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">T</span><span class="p">);</span>   <span class="c1">// Preferable if T is preallocated</span>
+<span class="n">prod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp_type</span><span class="p">(</span><span class="n">prod</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">));</span>
+<span class="n">prod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">temp_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The ‘temp_type’ is important. Given A,B,C are all of the same type. Say matrix&lt;float&gt;, the choice is easy. However if the value_type is mixed (int with float or double) or the matrix type is mixed (sparse with symmetric) the best solution is not so obvious. It is up to you! It depends on numerical properties of A and the result of the prod(B,C).</p>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Overview of Matrix- and Vector-Types" href="types.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Configuration options" href="options.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

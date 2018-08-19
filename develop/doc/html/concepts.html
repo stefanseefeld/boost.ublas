@@ -1,0 +1,2620 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Concepts - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Level 3 BLAS" href="blas.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Level 3 BLAS" href="blas.html"><img src="_static/prev.png" alt="prev"/></a>
+      
+    </div>
+      
+  <div class="section" id="concepts">
+<h1>Concepts</h1>
+<div class="section" id="container-concepts">
+<h2>Container Concepts</h2>
+<div class="section" id="vector">
+<h3>Vector</h3>
+<div class="section" id="description">
+<h4>Description</h4>
+<p>A Vector describes common aspects of dense, packed and sparse vectors.</p>
+</div>
+<div class="section" id="refinement-of">
+<h4>Refinement of</h4>
+<p>DefaultConstructible, Vector Expression [1].</p>
+</div>
+<div class="section" id="associated-types">
+<h4>Associated types</h4>
+<p>In addition to the types defined by Vector Expression</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Public base</td>
+<td><cite>vector_container&lt;V&gt;</cite></td>
+<td>V must be derived from this public base type.</td>
+</tr>
+<tr class="row-even"><td>Storage array</td>
+<td><cite>V::array_type</cite></td>
+<td>Dense Vector ONLY. The type of underlying storage array used to store the elements. The array_type must model the Storage concept.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="notation">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>V</cite>:</th><td class="field-body">A type that is a model of Vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>v</cite>:</th><td class="field-body">Objects of type V</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>n</cite>, <cite>i</cite>:</th><td class="field-body">Objects of a type convertible to size_type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">t:</th><td class="field-body">Object of a type convertible to value_type</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">p:</th><td class="field-body">Object of a type convertible to bool</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="definitions">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="valid-expressions">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined in DefaultConstructible, Vector Expression the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Name</td>
+<td>Expression</td>
+<td>Type requirements</td>
+<td>Return type</td>
+</tr>
+<tr class="row-even"><td>Sizing constructor</td>
+<td><cite>V v (n)</cite></td>
+<td>&#160;</td>
+<td><cite>V</cite></td>
+</tr>
+<tr class="row-odd"><td>Insert</td>
+<td><cite>v.insert_element (i, t)</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-even"><td>Erase</td>
+<td><cite>v.erase_element (i)</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-odd"><td>Clear</td>
+<td><cite>v.clear ()</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-even"><td>Resize</td>
+<td><cite>v.resize (n)</cite>
+<cite>v.resize (n, p)</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-odd"><td>Storage</td>
+<td><cite>v.data()</cite></td>
+<td><cite>v</cite> is mutable and Dense.</td>
+<td><cite>array_type&amp;</cite> if <cite>v</cite> is mutable, <cite>const array_type&amp;</cite> otherwise</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="expression-semantics">
+<h4>Expression semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in Vector Expression .</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Name</td>
+<td>Expression</td>
+<td>Precondition</td>
+<td>Semantics</td>
+<td>Postcondition</td>
+</tr>
+<tr class="row-even"><td>Sizing constructor</td>
+<td><cite>V v (n)</cite></td>
+<td><cite>n &gt;= 0</cite></td>
+<td>Allocates a vector of n elements.</td>
+<td><cite>v.size () == n</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Element access [2]</td>
+<td><cite>v[n]</cite></td>
+<td><cite>0 &lt; n &gt;v.size()</cite></td>
+<td>returns the n-th element in <cite>v</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Insert</td>
+<td><cite>v.insert_element (i, t)</cite></td>
+<td><cite>0 &lt;= i &lt; v.size ()</cite>.</td>
+<td>Inserts an element at v (i) with value t. The storage requirement of the Vector may be increased.</td>
+<td><cite>v (i)</cite> is equal to <cite>t</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Erase</td>
+<td><cite>v.erase_element (i)</cite></td>
+<td><cite>0 &lt;= i &lt; v.size ()</cite></td>
+<td>Destroys the element as v (i) and replaces it with the default value_type (). The storage requirement of the Vector may be decreased.</td>
+<td><cite>v (i)</cite> is equal to <cite>value_type ()</cite>.</td>
+</tr>
+<tr class="row-even"><td>Clear</td>
+<td><cite>v.clear ()</cite></td>
+<td>Equivalent to <cite>for (i = 0; i &lt; v.size (); ++ i) v.erase_element (i);</cite></td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Resize</td>
+<td><cite>v.resize (n)</cite>
+<cite>v.resize (n, p)</cite></td>
+<td>Reallocates the vector so that it can hold n elements. Erases or appends elements in order to bring the vector to the prescribed size. Appended elements copies of value_type(). When p == false then existing elements are not preserved and elements will not appended as normal. Instead the vector is in the same state as that after an equivalent sizing constructor.</td>
+<td><cite>v.size () == n</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Storage</td>
+<td><cite>v.data()</cite></td>
+<td>&#160;</td>
+<td>Returns a reference to the underlying dense storage.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="complexity-guarantees">
+<h4>Complexity guarantees</h4>
+<p>The run-time complexity of the sizing constructor is linear in the vector’s size.</p>
+<p>The run-time complexity of insert_element and erase_element is specific for the Vector model and it depends on increases/decreases in storage requirements.</p>
+<p>The run-time complexity of resize is linear in the vector’s size.</p>
+</div>
+<div class="section" id="invariants">
+<h4>Invariants</h4>
+</div>
+<div class="section" id="models">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>vector</cite>, <cite>bounded_vector</cite>, <cite>c_vector</cite></li>
+<li><cite>unit_vector</cite>, <cite>zero_vector</cite>, <cite>scalar_vector</cite></li>
+<li><cite>mapped_vector</cite>, <cite>compressed_vector</cite>, <cite>coordinate_vector</cite></li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h4>Notes</h4>
+<p>[1] As a user you need not care about Vector being a refinement of the VectorExpression. Being a refinement of the VectorExpression is only important for the template-expression engine but not the user.</p>
+<p>[2] The operator[] is added purely for convenience and compatibility with the std::vector. In uBLAS however, generally operator() is used for indexing because this can be used for both vectors and matrices.</p>
+</div>
+</div>
+<div class="section" id="matrix">
+<h3>Matrix</h3>
+<div class="section" id="id1">
+<h4>Description</h4>
+<p>A Matrix describes common aspects of dense, packed and sparse matrices.</p>
+</div>
+<div class="section" id="id2">
+<h4>Refinement of</h4>
+<p>DefaultConstructible, Matrix Expression [1] .</p>
+</div>
+<div class="section" id="id3">
+<h4>Associated types</h4>
+<p>In addition to the types defined by Matrix Expression</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Public base</td>
+<td><cite>matrix_container&lt;M&gt;</cite></td>
+<td><cite>M</cite> must be derived from this public base type.</td>
+</tr>
+<tr class="row-even"><td>Storage array</td>
+<td><cite>M::array_type</cite></td>
+<td>Dense Matrix ONLY. The type of underlying storage array used to store the elements. The array_type must model the Storage concept.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>M</cite>:</th><td class="field-body">A type that is a model of Matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>m</cite>:</th><td class="field-body">Objects of type M</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>n1</cite>, <cite>n2</cite>, <cite>i</cite>, <cite>j</cite>:</th><td class="field-body">Objects of a type convertible to size_type</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of a type convertible to value_type</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>p</cite>:</th><td class="field-body">Object of a type convertible to bool</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="id6">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined in Matrix Expression the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Name</td>
+<td>Expression</td>
+<td>Type requirements</td>
+<td>Return type</td>
+</tr>
+<tr class="row-even"><td>Sizing constructor</td>
+<td><cite>M m (n1, n2)</cite></td>
+<td><cite>M</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Insert</td>
+<td><cite>m.insert_element (i, j, t)</cite></td>
+<td><cite>m</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-even"><td>Erase</td>
+<td><cite>m.erase_element (i, j)</cite></td>
+<td><cite>m</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-odd"><td>Clear</td>
+<td><cite>m.clear ()</cite></td>
+<td><cite>m</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-even"><td>Resize</td>
+<td><cite>m.resize (n1, n2)</cite>
+<cite>m.resize (n1, n2, p)</cite></td>
+<td><cite>m</cite> is mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-odd"><td>Storage</td>
+<td><cite>m.data()</cite></td>
+<td><cite>m</cite> is mutable and Dense.</td>
+<td><cite>array_type&amp;</cite> if <cite>m</cite> is mutable, <cite>const array_type&amp;</cite> otherwise</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h4>Expression semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in Matrix Expression .</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Name</td>
+<td>Expression</td>
+<td>Precondition</td>
+<td>Semantics</td>
+<td>Postcondition</td>
+</tr>
+<tr class="row-even"><td>Sizing constructor</td>
+<td><cite>M m (n1, n2)</cite></td>
+<td><cite>n1 &gt;= 0</cite> and <cite>n2 &gt;= 0</cite></td>
+<td>Allocates a matrix of <cite>n1</cite> rows and <cite>n2</cite> columns.</td>
+<td><cite>m.size1 () == n1</cite> and <cite>m.size2 () == n2</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Insert</td>
+<td><cite>m.insert_element (i, j, t)</cite></td>
+<td><cite>0 &lt;= i &lt; m.size1 ()</cite>, <cite>0 &lt;= j &lt; m.size2 ()</cite>.</td>
+<td>Inserts an element at <cite>m (i, j)</cite> with value <cite>t</cite>. The storage requirement of the Matrix may be increased.</td>
+<td><cite>m (i, j)</cite> is equal to <cite>t</cite>.</td>
+</tr>
+<tr class="row-even"><td>Erase</td>
+<td><cite>m.erase_element (i, j)</cite></td>
+<td><cite>0 &lt;= i &lt; m.size1 ()</cite> and <cite>0 &lt;= j &lt; m.size2</cite></td>
+<td>Destroys the element as <cite>m (i, j)</cite> and replaces it with the default <cite>value_type ()</cite>. The storage requirement of the Matrix may be decreased.</td>
+<td><cite>m (i, j)</cite> is equal to <cite>value_type ()</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Clear</td>
+<td><cite>m.clear ()</cite></td>
+<td>Equivalent to <cite>for (i = 0; i &lt; m.size1 (); ++ i) for (j = 0; j &lt; m.size2 (); ++ j) m.erase_element (i, j);</cite></td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Resize</td>
+<td><cite>m.resize (n1, n2)</cite>
+<cite>m.resize (n1, n2, p)</cite></td>
+<td>Reallocate the matrix so that it can hold <cite>n1</cite> rows and <cite>n2</cite> columns.
+Erases or appends elements in order to bring the matrix to the prescribed size. Appended elements are value_type() copies.
+When p == false then existing elements are not preserved and elements will not appended as normal. Instead the matrix is in the same state as that after an equivalent sizing constructor.</td>
+<td><cite>m.size1 () == n1</cite> and <cite>m.size2 () == n2</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Storage</td>
+<td><cite>m.data()</cite></td>
+<td>Returns a reference to the underlying dense storage.</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h4>Complexity guarantees</h4>
+<p>The run-time complexity of the sizing constructor is quadratic in the matrix’s size.</p>
+<p>The run-time complexity of insert_element and erase_element is specific for the Matrix model and it depends on increases/decreases in storage requirements.</p>
+<p>The run-time complexity of resize is quadratic in the matrix’s size.</p>
+</div>
+<div class="section" id="id9">
+<h4>Invariants</h4>
+</div>
+<div class="section" id="id10">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>matrix</cite>, <cite>bounded_matrix</cite>, <cite>c_matrix</cite></li>
+<li><cite>identity_matrix</cite> , <cite>zero_matrix</cite> , <cite>scalar_matrix</cite></li>
+<li><cite>triangular_matrix</cite> , <cite>symmetric_matrix</cite> , <cite>banded_matrix</cite></li>
+<li><cite>mapped_matrix</cite> , <cite>compressed_matrix</cite> , <cite>coordinate_matrix</cite></li>
+</ul>
+<p>Notes
+[1] As a user you need not care about Matrix being a refinement of the MatrixExpression. Being a refinement of the MatrixExpression is only important for the template-expression engine but not the user.</p>
+</div>
+</div>
+</div>
+<div class="section" id="expression-concepts">
+<h2>Expression Concepts</h2>
+<div class="section" id="scalar-expression">
+<h3>Scalar Expression</h3>
+<div class="section" id="id11">
+<h4>Description</h4>
+<p>A Scalar Expression is an expression convertible to a scalar type.</p>
+</div>
+<div class="section" id="id12">
+<h4>Refinement of</h4>
+<p>Default Constructible.</p>
+</div>
+<div class="section" id="id13">
+<h4>Associated types</h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Public base</td>
+<td><cite>scaler_expression&lt;S&gt;</cite></td>
+<td><cite>S</cite> must be derived from this public base type.</td>
+</tr>
+<tr class="row-even"><td>Value type</td>
+<td><cite>value_type</cite></td>
+<td>The type of the scalar expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id14">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>S</cite>:</th><td class="field-body">A type that is a model of Scalar Expression</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id15">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="id16">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined in Default Constructible the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Name</td>
+<td>Expression</td>
+<td>Type requirements</td>
+<td>Return type</td>
+</tr>
+<tr class="row-even"><td>Evaluation</td>
+<td><cite>operator value_type () const</cite></td>
+<td>&#160;</td>
+<td><cite>value_type</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id17">
+<h4>Expression semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in Default Constructible.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Name</td>
+<td>Expression</td>
+<td>Precondition</td>
+<td>Semantics</td>
+<td>Postcondition</td>
+</tr>
+<tr class="row-even"><td>Evaluation</td>
+<td><cite>operator value_type () const</cite></td>
+<td>&#160;</td>
+<td>Evaluates the scalar expression.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h4>Complexity guarantees</h4>
+<p>The run-time complexity of the evaluation is specific for the evaluated scalar expression.</p>
+</div>
+<div class="section" id="id19">
+<h4>Invariants</h4>
+</div>
+<div class="section" id="id20">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>vector_scalar_unary</cite></li>
+<li><cite>vector_scalar_binary</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="vector-expression">
+<h3>Vector Expression</h3>
+<div class="section" id="id21">
+<h4>Description</h4>
+<p>A Vector Expression is an expression evaluatable to a vector. Vector Expression provides an Indexed Bidirectional Iterator or an Indexed Random Access Iterator .</p>
+</div>
+<div class="section" id="id22">
+<h4>Refinement of</h4>
+<p>Default Constructible.</p>
+</div>
+<div class="section" id="id23">
+<h4>Associated types</h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Public base</td>
+<td><cite>vector_expression&lt;V&gt;</cite></td>
+<td><cite>V</cite> must be derived from this public base type.</td>
+</tr>
+<tr class="row-even"><td>Value type</td>
+<td><cite>value_type</cite></td>
+<td>The element type of the vector expression.</td>
+</tr>
+<tr class="row-odd"><td>Reference type</td>
+<td><cite>reference</cite></td>
+<td>The return type when accessing an element of a vector expression.
+Convertable to a <cite>value_type</cite>.</td>
+</tr>
+<tr class="row-even"><td>Const reference type</td>
+<td><cite>const_reference</cite></td>
+<td>The return type when accessing an element of a constant vector expression.
+Convertable to a <cite>value_type</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Size type</td>
+<td><cite>size_type</cite></td>
+<td>The index type of the vector expression. Am unsigned integral type used to represent size and index values.
+Can represent any nonnegative value of difference_type.</td>
+</tr>
+<tr class="row-even"><td>Distance type</td>
+<td><cite>difference_type</cite></td>
+<td>A signed integral type used to represent the distance between two of the vector expression’s iterators.</td>
+</tr>
+<tr class="row-odd"><td>Const iterator type</td>
+<td><cite>const_iterator</cite></td>
+<td>A type of iterator that may be used to examine a vector expression’s elements.</td>
+</tr>
+<tr class="row-even"><td>Iterator type</td>
+<td><cite>iterator</cite></td>
+<td>A type of iterator that may be used to modify a vector expression’s elements.</td>
+</tr>
+<tr class="row-odd"><td>Const reverse iterator type</td>
+<td><cite>const_reverse_iterator</cite></td>
+<td>A Reverse Iterator adaptor whose base iterator type is the vector expression’s const iterator type.</td>
+</tr>
+<tr class="row-even"><td>Reverse iterator type</td>
+<td><cite>reverse_iterator</cite></td>
+<td>A Reverse Iterator adaptor whose base iterator type is the vector expression’s iterator type.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id24">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>V</cite>:</th><td class="field-body">A type that is a model of Vector Expression</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>v</cite>, <cite>v1</cite>, <cite>v2</cite>:</th><td class="field-body">Object of type V</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>i</cite>:</th><td class="field-body">Object of a type convertible to size_type</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of a type convertible to value_type</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id25">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="id26">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined in Default Constructible the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="17%" />
+<col width="41%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Beginning of range</td>
+<td><cite>v.begin ()</cite>
+<cite>v.begin ()</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>const_iterator</cite>
+<cite>iterator</cite></td>
+</tr>
+<tr class="row-odd"><td>End of range</td>
+<td><cite>v.end ()</cite>
+<cite>v.end ()</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>const_iterator</cite>
+<cite>iterator</cite></td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><cite>v.size ()</cite></td>
+<td>&#160;</td>
+<td><cite>size_type</cite></td>
+</tr>
+<tr class="row-odd"><td>Swap</td>
+<td><cite>v1.swap(v2)</cite></td>
+<td><cite>v1</cite> and <cite>v2</cite> are mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-even"><td>Beginning of reverse range</td>
+<td><cite>v.rbegin ()</cite>
+<cite>v.rbegin ()</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>const_reverse_iterator</cite>
+<cite>reverse_iterator</cite></td>
+</tr>
+<tr class="row-odd"><td>End of reverse range</td>
+<td><cite>v.rend ()</cite>
+<cite>v.rend ()</cite></td>
+<td><cite>v</cite> is mutable.</td>
+<td><cite>const_reverse_iterator</cite>
+<cite>reverse_iterator</cite></td>
+</tr>
+<tr class="row-even"><td>Element access</td>
+<td><cite>v(i)</cite></td>
+<td><cite>i</cite> is convertible to <cite>size_type</cite>.</td>
+<td>Convertible to <cite>value_type</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Assignment</td>
+<td><cite>v2 = v1</cite>
+<cite>v2.assign(v1)</cite></td>
+<td><cite>v2</cite> is mutable and <cite>v1</cite> is convertible to <cite>V</cite>.
+<cite>v2</cite> is mutable and <cite>v1</cite> is convertible to <cite>V</cite>.</td>
+<td><cite>V &amp;</cite>
+<cite>V &amp;</cite></td>
+</tr>
+<tr class="row-even"><td>Computed assignment</td>
+<td><cite>v2 += v1</cite>
+<cite>v2.plus_assign(v1)</cite>
+<cite>v2 -= v1</cite>
+<cite>v2.minus_assign(v1)</cite>
+<cite>v *= t</cite></td>
+<td><cite>v2</cite> is mutable and <cite>v1</cite> is convertible to <cite>V</cite>.
+<cite>v2</cite> is mutable and <cite>v1</cite> is convertible to <cite>V</cite>.
+<cite>v2</cite> is mutable and <cite>v1</cite> is convertible to <cite>V</cite>.
+<cite>v2</cite> is mutable and <cite>v1</cite> is convertible to <cite>V</cite>.
+<cite>v</cite> is mutable and <cite>t</cite> is convertible to <cite>value_type</cite>.</td>
+<td><cite>V &amp;</cite>
+<cite>V &amp;</cite>
+<cite>V &amp;</cite>
+<cite>V &amp;</cite>
+<cite>V &amp;</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id27">
+<h4>Expression semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in Default Constructible.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="17%" />
+<col width="19%" />
+<col width="22%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Beginning of range</td>
+<td><cite>v.begin()</cite></td>
+<td>&#160;</td>
+<td>Returns an iterator
+pointing to the first
+element in the vector
+expression.</td>
+<td><cite>v.begin()</cite> is either
+dereferenceable or
+past-the-end. It is
+past-the-end if and only if
+<cite>v.size () == 0</cite>.</td>
+</tr>
+<tr class="row-odd"><td>End of range</td>
+<td><cite>v.end()</cite></td>
+<td>&#160;</td>
+<td>Returns an iterator
+pointing one past the last
+element in the vector
+expression.</td>
+<td><cite>v.end()</cite> is past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><cite>v.size()</cite></td>
+<td>&#160;</td>
+<td>Returns the size of the
+vector expression, that is,
+its number of elements.</td>
+<td><cite>v.size () &gt;= 0</cite></td>
+</tr>
+<tr class="row-odd"><td>Swap</td>
+<td><cite>v1.swap(v2)</cite></td>
+<td>&#160;</td>
+<td>Equivalent to
+<cite>swap(v1, v2)</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Beginning of reverse range</td>
+<td><cite>v.rbegin()</cite></td>
+<td>&#160;</td>
+<td>Equivalent to
+<cite>reverse_iterator(v.end())</cite>.</td>
+<td><cite>v.rbegin()</cite> is either
+dereferenceable or
+past-the-end. It is
+past-the-end if and only if
+<cite>v.size() == 0</cite>.</td>
+</tr>
+<tr class="row-odd"><td>End of reverse range</td>
+<td><cite>v.rend()</cite></td>
+<td>&#160;</td>
+<td>Equivalent to
+<cite>reverse_iterator(v.begin())</cite></td>
+<td><cite>v.rend()</cite> is past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Element access</td>
+<td><cite>v(i)</cite></td>
+<td><cite>0 &lt;= i &lt; v.size()</cite></td>
+<td>Returns the i-th element of
+the vector expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Assignment</td>
+<td><p class="first"><cite>v2 = v1</cite></p>
+<p class="last"><cite>v2.assign(v1)</cite></p>
+</td>
+<td><p class="first"><cite>v1.size() == v2.size()</cite></p>
+<p class="last"><cite>v1.size() == v2.size()</cite></p>
+</td>
+<td>Assigns every element of the
+evaluated vector expression
+<cite>v1</cite> to the corresponding
+element of <cite>v2</cite> .
+Assigns every element of <cite>v1</cite>
+to the corresponding element
+of <cite>v2</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Computed assignment</td>
+<td><p class="first"><cite>v2 += v1</cite></p>
+<p><cite>v2.plus_assign(v1)</cite></p>
+<p><cite>v2 -= v1</cite></p>
+<p><cite>v2.minus_assign(v1)</cite></p>
+<p class="last"><cite>v *= t</cite></p>
+</td>
+<td><p class="first"><cite>v1.size() == v2.size()</cite></p>
+<p><cite>v1.size() == v2.size()</cite></p>
+<p><cite>v1.size() == v2.size()</cite></p>
+<p class="last"><cite>v1.size() == v2.size()</cite></p>
+</td>
+<td>Adds every element of the
+evaluated vector expression
+<cite>v1</cite> to the corresponding
+element of <cite>v2</cite>.
+Adds every element of <cite>v1</cite>
+to the corresponding element
+of <cite>v2</cite>.
+Subtracts every element of
+the evaluated vector
+expression <cite>v1</cite> from the
+corresponding element of
+<cite>v2</cite>.
+Subtracts every element of
+<cite>v1</cite> from the corresponding
+element of <cite>v2</cite>.
+Multiplies every element of
+<cite>v</cite> with <cite>t</cite>.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id28">
+<h4>Complexity guarantees</h4>
+<p>The run-time complexity of begin () and end () is specific for the evaluated vector expression, typically amortized constant time.</p>
+<p>The run-time complexity of size () is constant time.</p>
+<p>The run-time complexity of swap () is specific for the evaluated vector expression, typically constant time.</p>
+<p>The run-time complexity of rbegin () and rend () is specific for the evaluated vector expression, typically amortized constant time.</p>
+<p>The run-time complexity of the element access is specific for the evaluated vector expression, typically amortized constant time for the dense and logarithmic for the sparse case.</p>
+<p>The run-time complexity of the arithmetic operations is specific for the evaluated vector expressions, typically linear in the size of the expressions.</p>
+</div>
+<div class="section" id="id29">
+<h4>Invariants</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Valid range:</th><td class="field-body">For any vector expression <cite>v</cite>, [<cite>v.begin ()</cite>, <cite>v.end ()</cite>) is a valid range.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Completeness:</th><td class="field-body">An algorithm that iterates through the range [<cite>v.begin ()</cite>, <cite>v.end ()</cite>) will pass through every element of <cite>v</cite> .</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Valid reverse range:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">[<cite>v.rbegin ()</cite>, <cite>v.rend ()</cite>) is a valid range.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Equivalence of ranges:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">The distance from <cite>v.begin ()</cite> to <cite>v.end ()</cite> is the same as the distance from <cite>v.rbegin ()</cite> to <cite>v.rend ()</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id30">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>vector_range</cite></li>
+<li><cite>vector_slice</cite></li>
+<li><cite>matrix_row</cite></li>
+<li><cite>matrix_column</cite></li>
+<li><cite>matrix_vector_range</cite></li>
+<li><cite>matrix_vector_slice</cite></li>
+<li><cite>vector_unary</cite></li>
+<li><cite>vector_binary</cite></li>
+<li><cite>vector_binary_scalar1</cite></li>
+<li><cite>vector_binary_scalar2</cite></li>
+<li><cite>matrix_vector_unary1</cite></li>
+<li><cite>matrix_vector_unary2</cite></li>
+<li><cite>matrix_vector_binary1</cite></li>
+<li><cite>matrix_vector_binary2</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="matrix-expression">
+<h3>Matrix Expression</h3>
+<div class="section" id="id31">
+<h4>Description</h4>
+<p>A Matrix Expression is an expression evaluatable to a matrix. Matrix Expression provides an Indexed Bidirectional Column/Row Iterator or an Indexed Random Access Column/Row Iterator .</p>
+</div>
+<div class="section" id="id32">
+<h4>Refinement of</h4>
+<p>Default Constructible.</p>
+</div>
+<div class="section" id="id33">
+<h4>Associated types</h4>
+<div class="section" id="immutable-types">
+<h5>immutable types</h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="19%" />
+<col width="59%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Public base</td>
+<td><cite>matrix_expression&lt;M&gt;</cite></td>
+<td><cite>M</cite> must be derived from this public base type.</td>
+</tr>
+<tr class="row-even"><td>Value type</td>
+<td><cite>value_type</cite></td>
+<td>The element type of the matrix expression.</td>
+</tr>
+<tr class="row-odd"><td>Const reference type</td>
+<td><cite>const_reference</cite></td>
+<td>The return type when accessing an element of a constant matrix expression.
+Convertable to a value_type.</td>
+</tr>
+<tr class="row-even"><td>Size type</td>
+<td><cite>size_type</cite></td>
+<td>The index type of the matrix expression. Am unsigned integral type used to
+represent size and index values. Can represent any nonnegative value of
+<cite>difference_type</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Distance type</td>
+<td><cite>difference_type</cite></td>
+<td>A signed integral type used to represent the distance between two of the matrix
+expression’s iterators.</td>
+</tr>
+<tr class="row-even"><td>Const iterator types</td>
+<td><p class="first"><cite>const_iterator1</cite></p>
+<p class="last"><cite>const_iterator2</cite></p>
+</td>
+<td>A type of column iterator that may be used to examine a matrix expression’s
+elements.
+A type of row iterator that may be used to examine a matrix expression’s
+elements.</td>
+</tr>
+<tr class="row-odd"><td>Const reverse iterator types</td>
+<td><p class="first"><cite>const_reverse_iterator1</cite></p>
+<p class="last"><cite>const_reverse_iterator2</cite></p>
+</td>
+<td>A Reverse Iterator adaptor whose base iterator type is the matrix expression’s
+const column iterator type.
+A Reverse Iterator adaptor whose base iterator type is the matrix expression’s
+const row iterator type.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mutable-types">
+<h5>mutable types</h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="18%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Reference type</td>
+<td><cite>reference</cite></td>
+<td>The return type when accessing an element of a matrix expression. Convertable to a
+<cite>value_type</cite>.</td>
+</tr>
+<tr class="row-even"><td>Iterator types</td>
+<td><cite>iterator1</cite>
+<cite>iterator2</cite></td>
+<td>A type of column iterator that may be used to modify a matrix expression’s elements.
+A type of row iterator that may be used to modify a matrix expression’s elements.</td>
+</tr>
+<tr class="row-odd"><td>Reverse iterator types</td>
+<td><p class="first"><cite>reverse_iterator1</cite></p>
+<p class="last"><cite>reverse_iterator2</cite></p>
+</td>
+<td>A Reverse Iterator adaptor whose base iterator type is the matrix expression’s column
+iterator type.
+A Reverse Iterator adaptor whose base iterator type is the matrix expression’s row
+iterator type.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>M</cite>:</th><td class="field-body">A type that is a model of Matrix Expression</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>m</cite>, <cite>m1</cite>, <cite>m2</cite>:</th><td class="field-body">Object of type <cite>M</cite></td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>i</cite>, <cite>j</cite>:</th><td class="field-body">Objects of a type convertible to <cite>size_type</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of a type convertible to <cite>value_type</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id35">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="id36">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined in Default Constructible the following expressions must be valid.</p>
+<div class="section" id="immutable-expressions">
+<h5>immutable expressions</h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="24%" />
+<col width="35%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Size</td>
+<td><cite>m.size1()</cite>
+<cite>m.size2()</cite></td>
+<td>&#160;</td>
+<td><cite>size_type</cite>
+<cite>size_type</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="possibly-mutable-expressions">
+<h5>possibly mutable expressions</h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="17%" />
+<col width="41%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Beginning of range</td>
+<td><cite>m.begin1()</cite>
+<cite>m.begin2()</cite>
+<cite>m.begin1()</cite>
+<cite>m.begin2()</cite></td>
+<td><cite>m</cite> is mutable.
+<cite>m</cite> is mutable.</td>
+<td><cite>const_iterator1</cite>
+<cite>const_iterator2</cite>
+<cite>iterator1</cite>
+<cite>iterator2</cite></td>
+</tr>
+<tr class="row-odd"><td>End of range</td>
+<td><cite>m.end1()</cite>
+<cite>m.end2()</cite>
+<cite>m.end1()</cite>
+<cite>m.end2()</cite></td>
+<td><cite>m</cite> is mutable.
+<cite>m</cite> is mutable.</td>
+<td><cite>const_iterator1</cite>
+<cite>const_iterator2</cite>
+<cite>iterator1</cite>
+<cite>iterator2</cite></td>
+</tr>
+<tr class="row-even"><td>Swap</td>
+<td><cite>m1.swap (m2)</cite></td>
+<td><cite>m1</cite> and <cite>m2</cite> are mutable.</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-odd"><td>Beginning of reverse range</td>
+<td><cite>m.rbegin1()</cite>
+<cite>m.rbegin2()</cite>
+<cite>m.rbegin1()</cite>
+<cite>m.rbegin2()</cite></td>
+<td><cite>m</cite> is mutable.
+<cite>m</cite> is mutable.</td>
+<td><cite>const_reverse_iterator1</cite>
+<cite>const_reverse_iterator2</cite>
+<cite>reverse_iterator1</cite>
+<cite>reverse_iterator2</cite></td>
+</tr>
+<tr class="row-even"><td>End of reverse range</td>
+<td><cite>m.rend1()</cite>
+<cite>m.rend2()</cite>
+<cite>m.rend1()</cite>
+<cite>m.rend2()</cite></td>
+<td><cite>m</cite> is mutable.
+<cite>m</cite> is mutable.</td>
+<td><cite>const_reverse_iterator1</cite>
+<cite>const_reverse_iterator2</cite>
+<cite>reverse_iterator1</cite>
+<cite>reverse_iterator2</cite></td>
+</tr>
+<tr class="row-odd"><td>Element access</td>
+<td><cite>m(i, j)</cite></td>
+<td><cite>i</cite> and <cite>j</cite> are convertible to <cite>size_type</cite>.</td>
+<td>Convertible to <cite>value_type</cite>.</td>
+</tr>
+<tr class="row-even"><td>Assignment</td>
+<td><cite>m2 = m1</cite>
+<cite>m2.assign(m1)</cite></td>
+<td><cite>m2</cite> is mutable and <cite>m1</cite> is convertible to <cite>M</cite>.
+<cite>m2</cite> is mutable and <cite>m1</cite> is convertible to <cite>M</cite>.</td>
+<td><cite>M &amp;</cite>
+<cite>M &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Computed assignment</td>
+<td><cite>m2 += m1</cite>
+<cite>m2.plus_assign(m1)</cite>
+<cite>m2 -= m1</cite>
+<cite>m2.minus_assign(m1)</cite>
+<cite>m *= t</cite></td>
+<td><cite>m2</cite> is mutable and <cite>m1</cite> is convertible to <cite>M</cite>.
+<cite>m2</cite> is mutable and <cite>m1</cite> is convertible to <cite>M</cite>.
+<cite>m2</cite> is mutable and <cite>m1</cite> is convertible to <cite>M</cite>.
+<cite>m2</cite> is mutable and <cite>m1</cite> is convertible to <cite>M</cite>.
+<cite>m</cite> is mutable and <cite>t</cite> is convertible to <cite>value_type</cite>.</td>
+<td><cite>M &amp;</cite>
+<cite>M &amp;</cite>
+<cite>M &amp;</cite>
+<cite>M &amp;</cite>
+<cite>M &amp;</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id37">
+<h4>Expression semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in Default Constructible.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="19%" />
+<col width="25%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Beginning of range</td>
+<td><p class="first"><cite>m.begin1()</cite></p>
+<p class="last"><cite>m.begin2()</cite></p>
+</td>
+<td>&#160;</td>
+<td><p class="first">Returns an iterator pointing to
+the first element in the first
+column of a matrix expression.</p>
+<p class="last">Returns an iterator pointing to
+the first element in the first
+row of a matrix expression.</p>
+</td>
+<td><cite>m.begin1()</cite> is either
+dereferenceable or past-the-end.
+It is past-the-end if and only
+if <cite>m.size1 () == 0</cite>.
+<cite>m.begin2()</cite> is either
+dereferenceable or past-the-end.
+It is past-the-end if and only
+if <cite>m.size2 () == 0</cite>.</td>
+</tr>
+<tr class="row-odd"><td>End of range</td>
+<td><p class="first"><cite>m.end1()</cite></p>
+<p class="last"><cite>m.end2()</cite></p>
+</td>
+<td>&#160;</td>
+<td>Returns an iterator pointing
+one past the last element in
+the matrix expression.
+Returns an iterator pointing
+one past the last element in
+the matrix expression.</td>
+<td><p class="first"><cite>m.end1()</cite> is past-the-end.</p>
+<p class="last"><cite>m.end2()</cite> is past-the-end.</p>
+</td>
+</tr>
+<tr class="row-even"><td>Size</td>
+<td><p class="first"><cite>m.size1()</cite></p>
+<p class="last"><cite>m.size2()</cite></p>
+</td>
+<td>&#160;</td>
+<td>Returns the number of rows of
+the matrix expression.
+Returns the number of columns
+of the matrix expression.</td>
+<td><p class="first"><cite>m.size1 () &gt;= 0</cite></p>
+<p class="last"><cite>m.size2 () &gt;= 0</cite></p>
+</td>
+</tr>
+<tr class="row-odd"><td>Swap</td>
+<td><cite>m1.swap(m2)</cite></td>
+<td>&#160;</td>
+<td>Equivalent to <cite>swap (m1, m2)</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Beginning of reverse
+range</td>
+<td><p class="first"><cite>m.rbegin1()</cite></p>
+<p class="last"><cite>m.rbegin2()</cite></p>
+</td>
+<td>&#160;</td>
+<td><p class="first">Equivalent to
+<cite>reverse_iterator1(m.end1 ())</cite>.</p>
+<p class="last">Equivalent to
+<cite>reverse_iterator2(m.end2())</cite>.</p>
+</td>
+<td><p class="first"><cite>m.rbegin1()</cite> is either
+dereferenceable or past-the-end.
+It is past-the-end if and only
+if <cite>m.size1() == 0</cite>.</p>
+<p class="last"><cite>m.rbegin2()</cite> is either
+dereferenceable or past-the-end.
+It is past-the-end if and only
+if <cite>m.size2 () == 0</cite>.</p>
+</td>
+</tr>
+<tr class="row-odd"><td>End of reverse range</td>
+<td><p class="first"><cite>m.rend1()</cite></p>
+<p class="last"><cite>m.rend2()</cite></p>
+</td>
+<td>&#160;</td>
+<td>Equivalent to
+<cite>reverse_iterator1(m.begin1())</cite>.
+Equivalent to
+<cite>reverse_iterator2(m.begin2())</cite>.</td>
+<td><p class="first"><cite>m.rend1()</cite> is past-the-end.</p>
+<p class="last"><cite>m.rend2()</cite> is past-the-end.</p>
+</td>
+</tr>
+<tr class="row-even"><td>Element access</td>
+<td><cite>m(i, j)</cite></td>
+<td><cite>0 &lt;= i &lt; m.size1()</cite> and
+<cite>0 &lt;= j &lt; m.size2 ()</cite></td>
+<td>Returns the j-th element of the
+i-th row of the matrix expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td rowspan="2">Assignment</td>
+<td><cite>m2 = m1</cite></td>
+<td><cite>m1.size1() == m2.size1()</cite>
+and
+<cite>m1.size2() == m2.size2()</cite></td>
+<td>Assigns every element of the
+evaluated matrix expression <cite>m1</cite>
+to the corresponding element of
+<cite>m2</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><cite>m2.assign(m1)</cite></td>
+<td><cite>m1.size1() == m2.size1()</cite>
+and
+<cite>m1.size2() == m2.size2()</cite></td>
+<td>Assigns every element of m1 to the
+corresponding element of <cite>m2</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Computed assignment</td>
+<td><p class="first"><cite>m2 += m1</cite></p>
+<p><cite>m2.plus_assign(m1)</cite></p>
+<p><cite>m2 -= m1</cite></p>
+<p><cite>m2.minus_assign(m1)</cite></p>
+<p class="last"><cite>m *= t</cite></p>
+</td>
+<td><p class="first"><cite>m1.size1() == m2.size1()</cite>
+and
+<cite>m1.size2() == m2.size2()</cite></p>
+<p><cite>m1.size1() == m2.size1()</cite>
+and
+<cite>m1.size2() == m2.size2()</cite>
+<cite>m1.size1() == m2.size1()</cite>
+and
+<cite>m1.size2() == m2.size2()</cite></p>
+<p class="last"><cite>m1.size1() == m2.size1()</cite>
+and
+<cite>m1.size2() == m2.size2()</cite></p>
+</td>
+<td><p class="first">Adds every element of the
+evaluated matrix expression <cite>m1</cite>
+to the corresponding element of
+<cite>m2</cite>.
+Adds every element of <cite>m1</cite> to the
+corresponding element of <cite>m2</cite>.</p>
+<p class="last">Subtracts every element of the
+evaluated matrix expression <cite>m1</cite>
+from the corresponding element of
+<cite>m2</cite>.
+Subtracts every element of <cite>m1</cite>
+from the corresponding element of
+<cite>m2</cite>.
+Multiplies every element of <cite>m</cite>
+with <cite>t</cite>.</p>
+</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id38">
+<h4>Complexity guarantees</h4>
+<p>The run-time complexity of begin1 (), begin2 () , end1 () and end2 () is specific for the evaluated matrix expression.</p>
+<p>The run-time complexity of size1 () and size2 () is constant time.</p>
+<p>The run-time complexity of swap () is specific for the evaluated matrix expression, typically constant time.</p>
+<p>The run-time complexity of rbegin1 (), rbegin2 () , rend1 () and rend2 () is specific for the evaluated matrix expression.</p>
+<p>The run-time complexity of the element access is specific for the evaluated matrix expression, typically amortized constant time for the dense and logarithmic for the sparse case.</p>
+<p>The run-time complexity of the arithmetic operations is specific for the evaluated matrix expressions, typically quadratic in the size of the proxies.</p>
+</div>
+<div class="section" id="id39">
+<h4>Invariants</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Valid range:</th><td class="field-body">For any matrix expression <cite>m</cite>, [<cite>m.begin1 ()</cite>, <cite>m.end1 ()</cite>) and [<cite>m.begin2 ()</cite>, <cite>m.end2 ()</cite>) are valid ranges.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Completeness:</th><td class="field-body">An algorithm that iterates through the range [<cite>m.begin1 ()</cite>, <cite>m.end1 ()</cite>) will pass through every row of <cite>m</cite>, an algorithm that iterates through the range [<cite>m.begin2 ()</cite>, <cite>m.end2 ()</cite>) will pass through every column of <cite>m</cite>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Valid reverse range:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">[<cite>m.rbegin1 ()</cite>, <cite>m.rend1 ()</cite>) and [<cite>m.rbegin2 ()</cite>, <cite>m.rend2 ()</cite>) are valid ranges.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Equivalence of ranges:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">The distance from <cite>m.begin1 ()</cite> to <cite>m.end1 ()</cite> is the same as the distance from <cite>m.rbegin1 ()</cite> to <cite>m.rend1 ()</cite> and the distance from <cite>m.begin2 ()</cite> to <cite>m.end2 ()</cite> is the same as the distance from <cite>m.rbegin2 ()</cite> to <cite>m.rend2 ()</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id40">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>matrix_range</cite></li>
+<li><cite>matrix_slice</cite></li>
+<li><cite>triangular_adaptor</cite></li>
+<li><cite>symmetric_adaptor</cite></li>
+<li><cite>banded_adaptor</cite></li>
+<li><cite>vector_matrix_binary</cite></li>
+<li><cite>matrix_unary1</cite></li>
+<li><cite>matrix_unary2</cite></li>
+<li><cite>matrix_binary</cite></li>
+<li><cite>matrix_binary_scalar1</cite></li>
+<li><cite>matrix_binary_scalar2</cite></li>
+<li><cite>matrix_matrix_binary</cite></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="storage-concept">
+<h2>Storage concept</h2>
+<div class="section" id="id41">
+<h3>Description</h3>
+<p>Storage is a variable-size container whose elements are arranged in a strict linear order.</p>
+<p>Storage extends the STL Container concept with some STL Sequence-like functionality. The main difference with the Sequence concept however is that the Storage concept does not require default-initialisation of its elements.</p>
+</div>
+<div class="section" id="id42">
+<h3>Refinement of</h3>
+<p>Random Access Container and Default Constructible</p>
+</div>
+<div class="section" id="id43">
+<h3>Associated types</h3>
+<p>No additional types beyond those defined by Random Access Container</p>
+</div>
+<div class="section" id="id44">
+<h3>Notation</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>X</cite>:</th><td class="field-body">A type that is model of Storage</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The <cite>value_type</cite> of <cite>X</cite></td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">An object of type <cite>T</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>n</cite>:</th><td class="field-body">object of type convertible to <cite>X::size_type</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id45">
+<h3>Definitions</h3>
+<div class="section" id="id46">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined in Random Access Container, and Default Constructible the following expressions must be valid:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="43%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Size constructor</td>
+<td><cite>X(n)</cite></td>
+<td><cite>T</cite> is DefaultConstructible</td>
+<td><cite>X</cite></td>
+</tr>
+<tr class="row-odd"><td>Fill constructor</td>
+<td><cite>X(n,t)</cite></td>
+<td>&#160;</td>
+<td><cite>X</cite></td>
+</tr>
+<tr class="row-even"><td>Range constructor</td>
+<td><cite>X(i, j)</cite></td>
+<td><cite>i</cite> and <cite>j</cite> are Input Iterators whose
+value type is convertible to <cite>T</cite></td>
+<td><cite>X</cite></td>
+</tr>
+<tr class="row-odd"><td>Resize</td>
+<td><cite>a.resize(n, t)</cite></td>
+<td><cite>a</cite> is mutable</td>
+<td><cite>void</cite></td>
+</tr>
+<tr class="row-even"><td>Resize</td>
+<td><cite>a.resize(n)</cite></td>
+<td><cite>a</cite> is mutable</td>
+<td><cite>void</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id47">
+<h4>Expression semantics</h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="16%" />
+<col width="32%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default-constructor</td>
+<td><cite>X()</cite></td>
+<td>&#160;</td>
+<td>Creates 0 elements.</td>
+<td><cite>size()==0</cite></td>
+</tr>
+<tr class="row-odd"><td>Size-constructor</td>
+<td><cite>X(n)</cite></td>
+<td><cite>n&gt;=0</cite></td>
+<td>Creates n elements. Elements are
+constructed without an initializer. That
+is if <cite>T</cite> is a (possibly cv-qualified)
+non-POD class type (or array thereof),
+the object is default initialized.
+Otherwise, the object created has
+indeterminate value. See the sentance “If
+new initializer is omitted” in section
+5.3.4 paragraph 15 of the ISO C++ standard.</td>
+<td><cite>size()==n</cite></td>
+</tr>
+<tr class="row-even"><td>Fill-constructor</td>
+<td><cite>X(n,t)</cite></td>
+<td><cite>n&gt;=0</cite></td>
+<td>Creates <cite>n</cite> initialised element with
+copies of <cite>t</cite></td>
+<td><cite>size()==n</cite></td>
+</tr>
+<tr class="row-odd"><td>Range constructor</td>
+<td><cite>X(i,j)</cite></td>
+<td><cite>[i,j)</cite> is a
+valid range.</td>
+<td>copies the range <cite>[i,j)</cite> to the storage</td>
+<td><cite>size()</cite> is equal to the distance
+from <cite>i</cite> to <cite>j</cite>. Each element is
+a copy of the corresponding
+element in the range <cite>[i,j)</cite>.</td>
+</tr>
+<tr class="row-even"><td>Resize</td>
+<td><cite>a.resize(n,t)</cite></td>
+<td><cite>n &lt;= a.max_size()</cite></td>
+<td>Modified the container so that it has
+exactly n elements. The container may be
+reallocated if its size changes. Existing
+element values are preserved, additional
+elements are copies of <cite>t</cite>.</td>
+<td><cite>a.size() == n</cite></td>
+</tr>
+<tr class="row-odd"><td>Resize</td>
+<td><cite>a.resize(n)</cite></td>
+<td><cite>n &lt;= a.max_size()</cite></td>
+<td>Modified the container so that it has
+exactly n elements. The container may be
+reallocated if its size changes. Element
+values are uninitialised. That is, each
+element value may be a previously assigned
+value or default construced value for <cite>T</cite>.</td>
+<td><cite>a.size() == n</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id48">
+<h4>Complexity guarantees</h4>
+</div>
+<div class="section" id="id49">
+<h4>Invariants</h4>
+</div>
+<div class="section" id="id50">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>unbounded_array</cite></li>
+<li><cite>bounded_array</cite></li>
+</ul>
+<p>Notes</p>
+</div>
+</div>
+</div>
+<div class="section" id="iterator-concepts">
+<h2>Iterator concepts</h2>
+<p>An Iterator is a restricted pointer-like object pointing into a vector or matrix container.</p>
+</div>
+<div class="section" id="indexed-bidirectional-iterator">
+<h2>Indexed Bidirectional Iterator</h2>
+<div class="section" id="id51">
+<h3>Description</h3>
+<p>An Indexed Bidirectional Iterator is an iterator of a container that can be dereferenced, incremented, decremented and carries index information.</p>
+</div>
+<div class="section" id="id52">
+<h3>Refinement of</h3>
+<p>Assignable, Equality Comparable, Default Constructible.</p>
+</div>
+<div class="section" id="id53">
+<h3>Associated types</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Value type:</th><td class="field-body">The type of the value obtained by dereferencing a Indexed Bidirectional Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Container type:</th><td class="field-body">The type of the container a Indexed Bidirectional Iterator points into.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id54">
+<h3>Notation</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>I</cite>:</th><td class="field-body">A type that is a model of Indexed Bidirectional Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The value type of I</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>C</cite>:</th><td class="field-body">The container type of I</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><cite>it</cite>, <cite>itt</cite>, <cite>it1</cite>, <cite>it2</cite>:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Objects of type I</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of type T</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>c</cite>:</th><td class="field-body">Object of type C</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id55">
+<h3>Definitions</h3>
+<p>A Indexed Bidirectional Iterator may be mutable, meaning that the values referred to by objects of that type may be modified, or constant , meaning that they may not. If an iterator type is mutable, this implies that its value type is a model of Assignable; the converse, though, is not necessarily true.</p>
+<p>A Indexed Bidirectional Iterator may have a singular value, meaning that the results of most operations, including comparison for equality, are undefined. The only operation that is guaranteed to be supported is assigning a nonsingular iterator to a singular iterator.</p>
+<p>A Indexed Bidirectional Iterator may have a dereferenceable value, meaning that dereferencing it yields a well-defined value. Dereferenceable iterators are always nonsingular, but the converse is not true.</p>
+<p>An Indexed Bidirectional Iterator is past-the-end if it points beyond the last element of a container. Past-the-end values are nonsingular and nondereferenceable.</p>
+<p>Valid expressions
+In addition to the expressions defined for Assignable, Equality Comparable and Default Constructible, the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="13%" />
+<col width="43%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default constructor</td>
+<td><cite>I it</cite></td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Dereference</td>
+<td><cite>*it</cite></td>
+<td>&#160;</td>
+<td>Convertible to <cite>T</cite>.</td>
+</tr>
+<tr class="row-even"><td>Dereference assignment</td>
+<td><cite>*it = t</cite></td>
+<td><cite>I</cite> is mutable.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Member access</td>
+<td><cite>it-&gt;m</cite></td>
+<td><cite>T</cite> is a type for which <cite>t.m</cite> is defined.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Preincrement</td>
+<td><cite>++it</cite></td>
+<td>&#160;</td>
+<td><cite>I &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Postincrement</td>
+<td><cite>it++</cite></td>
+<td>&#160;</td>
+<td><cite>I</cite></td>
+</tr>
+<tr class="row-even"><td>Predecrement</td>
+<td><cite>–it</cite></td>
+<td>&#160;</td>
+<td><cite>I &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Postdecrement</td>
+<td><cite>it–</cite></td>
+<td>&#160;</td>
+<td><cite>I</cite></td>
+</tr>
+<tr class="row-even"><td>Index</td>
+<td><cite>it.index()</cite></td>
+<td>&#160;</td>
+<td><cite>C::size_type</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id56">
+<h3>Expression Semantics</h3>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in, Assignable, Equality Comparable and Default Constructible.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="19%" />
+<col width="25%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default constructor</td>
+<td><cite>I it</cite></td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td><cite>it</cite> is singular.</td>
+</tr>
+<tr class="row-odd"><td>Dereference</td>
+<td><cite>*it</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Dereference assignment</td>
+<td><cite>*it = t</cite></td>
+<td>Same as for <cite>*it</cite>.</td>
+<td>&#160;</td>
+<td><cite>*it</cite> is a copy of <cite>t</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Member access</td>
+<td><cite>it-&gt;m</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>Equivalent to <cite>(*it).m</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Preincrement</td>
+<td><cite>++it</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td><cite>it</cite> is modified to point
+to the next element.</td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end. <cite>&amp;it == &amp;++it</cite>.
+If <cite>it1 == it2</cite>, then <cite>++it1 == ++it2</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Postincrement</td>
+<td><cite>it++</cite></td>
+<td>Same as for <cite>++it</cite>.</td>
+<td>Equivalent to
+<cite>{I itt = it; ++it; return itt;}</cite></td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Predecrement</td>
+<td><cite>–it</cite></td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end. There exists
+a dereferenceable iterator
+<cite>itt</cite> such that
+<cite>it == ++itt</cite>.</td>
+<td><cite>it</cite> is modified to point to the
+previous element.</td>
+<td><cite>it</cite> is dereferenceable. <cite>&amp;it = &amp;–it</cite>.
+If <cite>it1 == it2</cite>, then <cite>–it1 == –it2</cite>.
+If <cite>it2</cite> is dereferenceable and
+<cite>it1 == ++it2</cite>, then <cite>–it1</cite> == <cite>it2</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Postdecrement</td>
+<td><cite>it–</cite></td>
+<td>Same as for <cite>–it</cite>.</td>
+<td>Equivalent to
+<cite>{ I itt = it; –it; return itt;}</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+</tr>
+<tr class="row-even"><td>Index</td>
+<td><cite>it.index()</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td><cite>it.index() &gt;= 0</cite> and
+<cite>it.index() &lt; it().size()</cite></td>
+<td>If <cite>it1 == it2</cite>, then
+<cite>it1.index() == it2.index()</cite>. If
+<cite>it1 == it2</cite>, then
+<cite>it1.index() &lt; (++it2).index()</cite>. If
+<cite>it1 == it2</cite>, then
+<cite>it1.index() &gt; (–it2).index()</cite>.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id57">
+<h4>Complexity guarantees</h4>
+<p>The complexity of operations on indexed bidirectional iterators is guaranteed to be amortized constant time.</p>
+</div>
+<div class="section" id="id58">
+<h4>Invariants</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Identity:</th><td class="field-body"><cite>it1 == it2</cite> if and only if <cite>&amp;*it1 == &amp;*it2</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Symmetry of increment and decrement:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">If <cite>it</cite> is dereferenceable, then <cite>++it; –it;</cite> is a null operation. Similarly, <cite>–it; ++ it;</cite> is a null operation.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Relation between iterator index and container element operator:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it</cite> is dereferenceable, <cite>*it == it()(it.index())</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id59">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>sparse_vector::iterator</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indexed-random-access-iterator">
+<h3>Indexed Random Access Iterator</h3>
+<div class="section" id="id60">
+<h4>Description</h4>
+<p>An Indexed Random Access Iterator is an iterator of a container that can be dereferenced, moved forward, moved backward and carries index information.</p>
+</div>
+<div class="section" id="id61">
+<h4>Refinement of</h4>
+<p>LessThanComparable, Indexed Bidirectional Iterator .</p>
+</div>
+<div class="section" id="id62">
+<h4>Associated types</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Value type:</th><td class="field-body">The type of the value obtained by dereferencing a Indexed Random Access Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Container type:</th><td class="field-body">The type of the container a Indexed Random Access Iterator points into.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id63">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>I</cite>:</th><td class="field-body">A type that is a model of Indexed Random Access Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The value type of I</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>C</cite>:</th><td class="field-body">The container type of I</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><cite>it</cite>, <cite>itt</cite>, <cite>it1</cite>, <cite>it2</cite>:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Objects of type I</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of type T</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>n</cite>:</th><td class="field-body">Object of type C::difference_type</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id64">
+<h4>Definitions</h4>
+<p>An Indexed Random Access Iterator it1 is reachable from an Indexed Random Access Iterator it2 if, after applying operator ++ to it2 a finite number of times, it1 == it2.</p>
+</div>
+<div class="section" id="id65">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined for Indexed Bidirectional Iterator , the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="18%" />
+<col width="24%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Forward motion</td>
+<td><cite>it += n</cite></td>
+<td>&#160;</td>
+<td><cite>I &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Iterator addition</td>
+<td><cite>it + n</cite></td>
+<td>&#160;</td>
+<td><cite>I</cite></td>
+</tr>
+<tr class="row-even"><td>Backward motion</td>
+<td><cite>i -= n</cite></td>
+<td>&#160;</td>
+<td><cite>I &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Iterator subtraction</td>
+<td><cite>it - n</cite></td>
+<td><cite>I</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Difference</td>
+<td><cite>it1 - it2</cite></td>
+<td>&#160;</td>
+<td><cite>C::difference_type</cite></td>
+</tr>
+<tr class="row-odd"><td>Element operator</td>
+<td><cite>it[n]</cite></td>
+<td>&#160;</td>
+<td>Convertible to <cite>T</cite>.</td>
+</tr>
+<tr class="row-even"><td>Element assignment</td>
+<td><cite>it[n] = t</cite></td>
+<td><cite>I</cite> is mutable</td>
+<td>Convertible to <cite>T</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id66">
+<h4>Expression Semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in, Indexed Bidirectional Iterator .</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="9%" />
+<col width="24%" />
+<col width="26%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Forward motion</td>
+<td><cite>it += n</cite></td>
+<td>Including it itself, there must
+be <cite>n</cite> dereferenceable or
+past-the-end iterators following
+or preceding it, depending on
+whether <cite>n</cite> is positive or
+negative.</td>
+<td>If <cite>n &gt; 0</cite>, equivalent to executing
+<cite>++it</cite> <cite>n</cite> times. If <cite>n &lt; 0</cite>,
+equivalent to executing <cite>–it</cite>
+<cite>n</cite> times. If <cite>n == 0</cite>, this is a
+null operation.</td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-odd"><td>Iterator addition</td>
+<td><cite>it + n</cite></td>
+<td>Same as for <cite>i += n</cite>.</td>
+<td>Equivalent to
+<cite>{ I itt = it; return itt += n;}</cite></td>
+<td>Result is dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Backward motion</td>
+<td><cite>it -= n</cite></td>
+<td>Including <cite>it</cite> itself, there
+must be <cite>n</cite> dereferenceable or
+past-the-end iterators preceding
+or following <cite>it</cite>, depending on
+whether <cite>n</cite> is positive or
+negative.</td>
+<td>Equivalent to <cite>it +=(-n)</cite>.</td>
+<td><dl class="first last docutils">
+<dt><cite>it</cite> is dereferenceable or</dt>
+<dd>past-the-end.</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td>Iterator subtraction</td>
+<td><cite>it - n</cite></td>
+<td>Same as for <cite>i -= n</cite>.</td>
+<td>Equivalent to
+<cite>{ I itt = it; return itt -= n;}</cite></td>
+<td>Result is dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Difference</td>
+<td><cite>it1 - it2</cite></td>
+<td>Either <cite>it1</cite> is reachable from
+<cite>it2</cite> or <cite>it2</cite> is reachable from
+<cite>it1</cite>, or both.</td>
+<td>Returns a number n such that
+<cite>it1 == it2 + n</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Element operator</td>
+<td><cite>it[n]</cite></td>
+<td><cite>it + n</cite> exists and is
+dereferenceable.</td>
+<td>Equivalent to <cite>*(it + n)</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Element assignment</td>
+<td><cite>i[n] = t</cite></td>
+<td>Same as for <cite>it[n]</cite>.</td>
+<td>Equivalent to <cite>*(it + n) = t</cite></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id67">
+<h4>Complexity guarantees</h4>
+<p>The complexity of operations on indexed random access iterators is guaranteed to be amortized constant time.</p>
+</div>
+<div class="section" id="id68">
+<h4>Invariants</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Symmetry of addition and subtraction:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it + n</cite> is well-defined, then <cite>it += n; it -= n;</cite> and <cite>(it + n) - n</cite> are null operations. Similarly, if <cite>it - n</cite> is well-defined, then <cite>it -= n; it += n;</cite> and <cite>(it - n) + n</cite> are null operations.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Relation between distance and addition:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">If <cite>it1 - it2</cite> is well-defined, then <cite>it1 == it2 + (it1 - it2)</cite>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Reachability and distance:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it1</cite> is reachable from <cite>it2</cite>, then <cite>it1 - it2 &gt;= 0</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id69">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>vector::iterator</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indexed-bidirectional-column-row-iterator">
+<h3>Indexed Bidirectional Column/Row Iterator</h3>
+<div class="section" id="id70">
+<h4>Description</h4>
+<p>An Indexed Bidirectional Column/Row Iterator is an iterator of a container that can be dereferenced, incremented, decremented and carries index information.</p>
+</div>
+<div class="section" id="id71">
+<h4>Refinement of</h4>
+<p>Assignable, Equality Comparable, Default Constructible.</p>
+</div>
+<div class="section" id="id72">
+<h4>Associated types</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Value type:</th><td class="field-body">The type of the value obtained by dereferencing a Indexed Bidirectional Column/Row Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Container type:</th><td class="field-body">The type of the container a Indexed Bidirectional Column/Row Iterator points into.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id73">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>I1</cite>:</th><td class="field-body">A type that is a model of Indexed Bidirectional Column/Row Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>I2</cite>:</th><td class="field-body">A type that is a model of Indexed Bidirectional Row/Column Iterator</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The value type of I1 and I2</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>C</cite>:</th><td class="field-body">The container type of I1 and I2</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><cite>it1</cite>, <cite>it1t</cite>, <cite>it11</cite>, <cite>it12</cite>:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Objects of type I1</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>it2</cite>, <cite>it2t</cite>:</th><td class="field-body">Objects of type I2</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of type T</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>c</cite>:</th><td class="field-body">Object of type C</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id74">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="id75">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined for Assignable, Equality Comparable and Default Constructible, the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="14%" />
+<col width="40%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default constructor</td>
+<td><cite>I1 it</cite></td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Dereference</td>
+<td><cite>*it</cite></td>
+<td>&#160;</td>
+<td>Convertible to <cite>T</cite>.</td>
+</tr>
+<tr class="row-even"><td>Dereference assignment</td>
+<td><cite>*it = t</cite></td>
+<td><cite>I1</cite> is mutable.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Member access</td>
+<td><cite>it-&gt;m</cite></td>
+<td><cite>T</cite> is a type for which <cite>t.m</cite> is defined.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Preincrement</td>
+<td><cite>++it</cite></td>
+<td>&#160;</td>
+<td><cite>I1 &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Postincrement</td>
+<td><cite>it++</cite></td>
+<td>&#160;</td>
+<td><cite>I1</cite></td>
+</tr>
+<tr class="row-even"><td>Predecrement</td>
+<td><cite>–it</cite></td>
+<td>&#160;</td>
+<td><cite>I1 &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Postdecrement</td>
+<td><cite>it–</cite></td>
+<td>&#160;</td>
+<td><cite>I1</cite></td>
+</tr>
+<tr class="row-even"><td>Row Index</td>
+<td><cite>it.index1()</cite></td>
+<td>&#160;</td>
+<td><cite>C::size_type</cite></td>
+</tr>
+<tr class="row-odd"><td>Column Index</td>
+<td><cite>it.index2()</cite></td>
+<td>&#160;</td>
+<td><cite>C::size_type</cite></td>
+</tr>
+<tr class="row-even"><td>Row/Column Begin</td>
+<td><cite>it.begin()</cite></td>
+<td>&#160;</td>
+<td><cite>I2</cite></td>
+</tr>
+<tr class="row-odd"><td>Row/Column End</td>
+<td><cite>it.end()</cite></td>
+<td>&#160;</td>
+<td><cite>I2</cite></td>
+</tr>
+<tr class="row-even"><td>Reverse Row/Column Begin</td>
+<td><cite>it.rbegin()</cite></td>
+<td>&#160;</td>
+<td><cite>reverse_iterator&lt;I2&gt;</cite></td>
+</tr>
+<tr class="row-odd"><td>Reverse Row/Column End</td>
+<td><cite>it.rend()</cite></td>
+<td>&#160;</td>
+<td><cite>reverse_iterator&lt;I2&gt;</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id76">
+<h4>Expression Semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in, Assignable, Equality Comparable and Default Constructible.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="10%" />
+<col width="21%" />
+<col width="27%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default constructor</td>
+<td><cite>I1 it</cite></td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td><cite>it</cite> is singular.</td>
+</tr>
+<tr class="row-odd"><td>Dereference</td>
+<td><cite>*it</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Dereference assignment</td>
+<td><cite>*it = t</cite></td>
+<td>Same as for <cite>*it</cite>.</td>
+<td>&#160;</td>
+<td><cite>*it</cite> is a copy of <cite>t</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Member access</td>
+<td><cite>it-&gt;m</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>Equivalent to <cite>(*it).m</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Preincrement</td>
+<td><cite>++it</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td><cite>it</cite> is modified to point to the
+next element of the column/row, i.e.
+for column iterators holds
+<cite>it.index1 () &lt; (++ it).index1 ()</cite>
+and
+<cite>it.index2 () == (++ it).index2 ()</cite>,
+for row iterators holds
+<cite>it.index1 () == (++ it).index1 ()</cite>
+and <cite>it.index2() &lt; (++it).index2()</cite>.</td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end. <cite>&amp;it == &amp;++it</cite>.
+If <cite>it1 == it2</cite>, then
+<cite>++it1 == ++it2</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Postincrement</td>
+<td><cite>it++</cite></td>
+<td>Same as for <cite>++it</cite>.</td>
+<td>Equivalent to
+<cite>{ I1 itt = it; ++it; return itt;}</cite></td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Predecrement</td>
+<td><cite>–it</cite></td>
+<td><cite>it</cite> is dereferenceable or
+past-the-end. There exists a
+dereferenceable iterator
+<cite>itt</cite> such that
+<cite>it == ++itt</cite>.</td>
+<td><cite>it</cite> is modified to point to the
+previous  element of the column/row,
+i.e. for column iterators holds
+<cite>it.index1() &gt; (–it).index1()</cite> and
+<cite>it.index2() == (–it).index2()</cite>,
+for row iterators holds
+<cite>it.index1() == (–it).index1()</cite> and
+<cite>it.index2() &gt; (–it).index2()</cite>.</td>
+<td><cite>it</cite> is dereferenceable.
+<cite>&amp;it = &amp;–it</cite>. If <cite>it1 == it2</cite>,
+then <cite>–it1 == –it2</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Postdecrement</td>
+<td><cite>it–</cite></td>
+<td>Same as for <cite>–it</cite>.</td>
+<td>Equivalent to
+<cite>{ I1 itt = it; –it; return itt;}</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+</tr>
+<tr class="row-even"><td>Row Index</td>
+<td><cite>it.index1()</cite></td>
+<td>If <cite>it</cite> is a Row iterator
+then <cite>it</cite> must be
+dereferenceable.</td>
+<td><dl class="first last docutils">
+<dt><cite>it.index1() &gt;= 0</cite> and</dt>
+<dd><cite>it.index1() &lt; it() .size1()</cite></dd>
+</dl>
+</td>
+<td>If <cite>it1 == it2</cite>, then
+<cite>it1.index1() == 12.index1()</cite>.
+If <cite>it1</cite>, <cite>it2</cite> are Row
+Iterators with <cite>it1 == it2</cite>,
+then
+<cite>it1.index1() &lt; (++it2).index1()</cite>.
+and
+<cite>it1.index1() &gt; (–it2).index1()</cite>.</td>
+</tr>
+<tr class="row-odd"><td>Column Index</td>
+<td><cite>it.index2()</cite></td>
+<td>If <cite>it</cite> is a Column iterator
+then it must be
+dereferenceable.</td>
+<td><cite>it.index2() &gt;= 0</cite> and
+<cite>it.index2() &lt; it() .size2()</cite></td>
+<td>If <cite>it1 == it2</cite>, then
+<cite>it1.index2() == it2.index2()</cite> .
+If <cite>it1</cite>, <cite>it2</cite> are Column
+Iterators with <cite>it1 == i12</cite>, then
+<cite>it1.index2() &lt; (++it2).index2()</cite>.
+end
+<cite>it1.index2() &gt; (–it2).index2()</cite>.</td>
+</tr>
+<tr class="row-even"><td>Row/Column Begin</td>
+<td><cite>it.begin()</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>If <cite>it</cite> is a Column Iterator, then
+<cite>it2 = it.begin()</cite> is a Row Iterator
+with <cite>it2.index1() == it.index1()</cite>.
+If <cite>it</cite> is a Row Iterator, then
+<cite>it2 = it.begin()</cite> is a Column
+Iterator with
+<cite>it2.index2() == it.index2()</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Row/Column End</td>
+<td><cite>it.end()</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>If <cite>it</cite> is a Column Iterator, then
+<cite>it2 = it.end()</cite> is a Row Iterator
+with <cite>it2.index1() == it.index1()</cite>.
+If <cite>it</cite> is a Row Iterator, then
+<cite>it2 = it.end()</cite> is a Column
+Iterator with
+<cite>it2.index2() == it.index2()</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Reverse Row/Column Begin</td>
+<td><cite>it.rbegin()</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>Equivalent to
+<cite>reverse_iterator&lt;I2&gt;(it.end())</cite>.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Reverse Row/Column End</td>
+<td><cite>it.rend()</cite></td>
+<td><cite>it</cite> is dereferenceable.</td>
+<td>Equivalent to
+<cite>reverse_iterator&lt;I2&gt;(it.begin())</cite>.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id77">
+<h4>Complexity guarantees</h4>
+<p>The complexity of operations on indexed bidirectional column/row iterators is guaranteed to be logarithmic depending on the size of the container. The complexity of one iterator (depending on the storage layout) can be lifted to be amortized constant time. The complexity of the other iterator (depending on the storage layout and the container) can be lifted to be amortized constant time for the first row/first column respectively.</p>
+</div>
+<div class="section" id="id78">
+<h4>Invariants</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Identity:</th><td class="field-body"><cite>it1 == it2</cite> if and only if <cite>&amp;*it1 == &amp;*it2</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Symmetry of increment and decrement:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">If <cite>it</cite> is dereferenceable, then <cite>++it; –it;</cite> is a null operation. Similarly, <cite>–it; ++it;</cite> is a null operation.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Relation between iterator index and container element operator:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it</cite> is dereferenceable, <cite>*it == it() (it.index1 (), it.index2 ())</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Relation between iterator column/row begin and iterator index:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">If <cite>it</cite> is a Column Iterator and <cite>it2 = it.begin ()</cite> then <cite>it2.index2 () &lt; it2t.index2 ()</cite> for all <cite>it2t</cite> with <cite>it2t () == it2 ()</cite> and <cite>it2t ().index1 () == it2 ().index1 ()</cite>.
+If <cite>it</cite> is a Row Iterator and <cite>it2 = it.begin ()</cite> then <cite>it2.index1 () &lt; it2t.index1 ()</cite> for all <cite>it2t</cite> with <cite>it2t () == it2 ()</cite> and <cite>it2t ().index2 () == it2 ().index2 ()</cite>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Relation between iterator column/row end and iterator index:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it</cite> is a Column Iterator and <cite>it2 = it.end ()</cite> then <cite>it2.index2 () &gt; it2t.index2 ()</cite> for all <cite>it2t</cite> with <cite>it2t () == it2 ()</cite> and <cite>it2t ().index1 () == it2 ().index1 ()</cite>.
+If <cite>it</cite> is a Row Iterator and <cite>it2 = it.end ()</cite> then <cite>it2.index1 () &gt; it2t.index1 ()</cite> for all <cite>it2t</cite> with <cite>it2t () == it2 ()</cite> and <cite>it2t ().index2 () == it2 ().index2 ()</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id79">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>sparse_matrix::iterator1</cite></li>
+<li><cite>sparse_matrix::iterator2</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indexed-random-access-column-row-iterator">
+<h3>Indexed Random Access Column/Row Iterator</h3>
+<div class="section" id="id80">
+<h4>Description</h4>
+<p>An Indexed Random Access Column/Row Iterator is an iterator of a container that can be dereferenced, incremented, decremented and carries index information.</p>
+</div>
+<div class="section" id="id81">
+<h4>Refinement of</h4>
+<p>Indexed Bidirectional Column/Row Iterator .</p>
+</div>
+<div class="section" id="id82">
+<h4>Associated types</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Value type:</th><td class="field-body">The type of the value obtained by dereferencing a Indexed Random Access Column/Row Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Container type:</th><td class="field-body">The type of the container a Indexed Random Access Column/Row Iterator points into.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id83">
+<h4>Notation</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>I</cite>:</th><td class="field-body">A type that is a model of Indexed Random Access Column/Row Iterator</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The value type of I</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>C</cite>:</th><td class="field-body">The container type of I</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><cite>it</cite>, <cite>itt</cite>, <cite>it1</cite>, <cite>it2</cite>:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Objects of type I</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>t</cite>:</th><td class="field-body">Object of type T</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>c</cite>:</th><td class="field-body">Object of type C</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id84">
+<h4>Definitions</h4>
+</div>
+<div class="section" id="id85">
+<h4>Valid expressions</h4>
+<p>In addition to the expressions defined for Indexed Bidirectional Column/Row Iterator , the following expressions must be valid.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="16%" />
+<col width="28%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Type requirements</th>
+<th class="head">Return type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Forward motion</td>
+<td><cite>it += n</cite></td>
+<td>&#160;</td>
+<td><cite>I &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Iterator addition</td>
+<td><cite>it + n</cite></td>
+<td>&#160;</td>
+<td><cite>I</cite></td>
+</tr>
+<tr class="row-even"><td>Backward motion</td>
+<td><cite>i -= n</cite></td>
+<td>&#160;</td>
+<td><cite>I &amp;</cite></td>
+</tr>
+<tr class="row-odd"><td>Iterator subtraction</td>
+<td><cite>it - n</cite></td>
+<td>&#160;</td>
+<td><cite>I</cite></td>
+</tr>
+<tr class="row-even"><td>Difference</td>
+<td><cite>it1 - it2</cite></td>
+<td>&#160;</td>
+<td><cite>C::difference_type</cite></td>
+</tr>
+<tr class="row-odd"><td>Element operator</td>
+<td><cite>it[n]</cite></td>
+<td>&#160;</td>
+<td>Convertible to <cite>T</cite>.</td>
+</tr>
+<tr class="row-even"><td>Element assignment</td>
+<td><cite>it[n] = t</cite></td>
+<td><cite>I</cite> is mutable</td>
+<td>Convertible to <cite>T</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id86">
+<h4>Expression Semantics</h4>
+<p>Semantics of an expression is defined only where it differs from, or is not defined in, Indexed Bidirectional Column/Row Iterator .</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="8%" />
+<col width="28%" />
+<col width="33%" />
+<col width="14%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Expression</th>
+<th class="head">Precondition</th>
+<th class="head">Semantics</th>
+<th class="head">Postcondition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Forward motion</td>
+<td><cite>it += n</cite></td>
+<td>Including <cite>it</cite> itself, there must be
+<cite>n</cite> dereferenceable or past-the-end
+iterators following or preceding <cite>it</cite>,
+depending on whether <cite>n</cite> is positive
+or negative.</td>
+<td>If <cite>n &gt; 0</cite>, equivalent to executing <cite>++it</cite>
+<cite>n</cite> times. If <cite>n &lt; 0</cite>, equivalent to
+executing <cite>–it</cite> <cite>n</cite> times. If <cite>n == 0</cite>,
+this is a null operation.</td>
+<td><cite>it</cite> is
+dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-odd"><td>Iterator addition</td>
+<td><cite>it + n</cite></td>
+<td>Same as for <cite>i += n</cite>.</td>
+<td>Equivalent to
+<cite>{ I itt = it; return itt += n;}</cite></td>
+<td>Result is
+dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Backward motion</td>
+<td><cite>it -= n</cite></td>
+<td>Including <cite>it</cite> itself, there must be
+<cite>n</cite> dereferenceable or past-the-end
+iterators preceding or following <cite>it</cite>,
+depending on whether <cite>n</cite> is positive
+or negative.</td>
+<td>Equivalent to <cite>it += (-n)</cite>.</td>
+<td><cite>it</cite> is
+dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-odd"><td>Iterator subtraction</td>
+<td><cite>it - n</cite></td>
+<td>Same as for <cite>i -= n</cite>.</td>
+<td>Equivalent to
+<cite>{ I itt = it; return itt -= n;}</cite></td>
+<td>Result is
+dereferenceable or
+past-the-end.</td>
+</tr>
+<tr class="row-even"><td>Difference</td>
+<td><cite>it1 - it2</cite></td>
+<td>Either <cite>it1</cite> is reachable from <cite>it2</cite>
+or <cite>it2</cite> is reachable from <cite>it1</cite>, or
+both.</td>
+<td>Returns a number <cite>n</cite> such that
+<cite>it1 == it2 + n</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Element operator</td>
+<td><cite>it[n]</cite></td>
+<td><cite>it + n</cite> exists and is
+dereferenceable.</td>
+<td>Equivalent to <cite>*(it + n)</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Element assignment</td>
+<td><cite>i[n] = t</cite></td>
+<td>Same as for <cite>it[n]</cite>.</td>
+<td>Equivalent to <cite>*(it + n) = t</cite></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id87">
+<h4>Complexity guarantees</h4>
+<p>The complexity of operations on indexed random access Column/Row iterators is guaranteed to be amortized constant time.</p>
+</div>
+<div class="section" id="id88">
+<h4>Invariants</h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Symmetry of addition and subtraction:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it + n</cite> is well-defined, then <cite>it += n; it -= n;</cite> and <cite>(it + n) - n</cite> are null operations. Similarly, if <cite>it - n</cite> is well-defined, then <cite>it -= n; it += n;</cite> and <cite>(it - n) + n</cite> are null operations.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Relation between distance and addition:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">If <cite>it1 - it2</cite> is well-defined, then <cite>it1 == it2 + (it1 - it2)</cite>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Reachability and distance:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If <cite>it1</cite> is reachable from <cite>it2</cite>, then <cite>it1 - it2 &gt;= 0</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id89">
+<h4>Models</h4>
+<ul class="simple">
+<li><cite>matrix::iterator1</cite></li>
+<li><cite>matrix::iterator2</cite></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Level 3 BLAS" href="blas.html"><img src="_static/prev.png" alt="prev"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

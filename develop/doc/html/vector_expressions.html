@@ -1,0 +1,1099 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Vector Expressions - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Matrix" href="matrix.html" />
+    <link rel="prev" title="Vector Proxies" href="vector_proxy.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Vector Proxies" href="vector_proxy.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Matrix" href="matrix.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="vector-expressions">
+<h1>Vector Expressions</h1>
+<div class="section" id="vector-expression">
+<h2>Vector Expression</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>The templated class vector_expression&lt;E&gt; is required to be a public base of all classes which model
+the Vector Expression concept.</p>
+</div>
+<div class="section" id="definition">
+<h3>Definition</h3>
+<p>Defined in the header expression_types.hpp.</p>
+</div>
+<div class="section" id="template-parameters">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E:</th><td class="field-body">The type of the vector expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-of">
+<h3>Model of</h3>
+<p>None. Not a Vector Expression!</p>
+</div>
+<div class="section" id="type-requirements">
+<h3>Type requirements</h3>
+<p>None.</p>
+</div>
+<div class="section" id="public-base-classes">
+<h3>Public base classes</h3>
+<p>None.</p>
+</div>
+<div class="section" id="members">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>const expression_type &amp;operator () () const</cite></td>
+<td>Returns a const reference of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>expression_type &amp;operator () ()</cite></td>
+<td>Returns a reference of the expression.</td>
+</tr>
+</tbody>
+</table>
+<p>Notes</p>
+<p>The range, slice and project functions have been removed. Use the free functions defined in vector proxy instead.</p>
+</div>
+</div>
+<div class="section" id="vector-container">
+<h2>Vector Container</h2>
+<div class="section" id="id1">
+<h3>Description</h3>
+<p>The templated class <cite>vector_container&lt;C&gt;</cite> is required to be a public base of all classes which model the
+Vector concept. This includes the class vector itself.</p>
+</div>
+<div class="section" id="id2">
+<h3>Definition</h3>
+<p>Defined in the header expression_types.hpp.</p>
+</div>
+<div class="section" id="id3">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">C:</th><td class="field-body">The type of the vector container.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h3>Model of</h3>
+<p>None. Not a Vector Expression OR Vector!</p>
+</div>
+<div class="section" id="id5">
+<h3>Type requirements</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id6">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;C&gt;</p>
+</div>
+<div class="section" id="id7">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>const container_type &amp;operator () () const</cite></td>
+<td>Returns a const reference of the container.</td>
+</tr>
+<tr class="row-odd"><td><cite>container_type &amp;operator () ()</cite></td>
+<td>Returns a reference of the container.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vector-references">
+<h2>Vector References</h2>
+<div class="section" id="reference">
+<h3>Reference</h3>
+</div>
+<div class="section" id="id8">
+<h3>Description</h3>
+<p>The templated class vector_reference&lt;E&gt; contains a reference to a vector expression.</p>
+</div>
+<div class="section" id="id9">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id10">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E:</th><td class="field-body">The type of the vector expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+</div>
+<div class="section" id="id12">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="id13">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;vector_reference&lt;E&gt; &gt;</p>
+</div>
+<div class="section" id="id14">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_reference (expression_type &amp;e)</cite></td>
+<td>Constructs a reference of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>void resize (size_type size)</cite></td>
+<td>Resizes the expression to hold at most size elements.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>reference operator () (size_type i)</cite></td>
+<td>Returns a reference of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator begin ()</cite></td>
+<td>Returns a iterator pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator end ()</cite></td>
+<td>Returns a iterator pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator rbegin ()</cite></td>
+<td>Returns a reverse_iterator pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator rend ()</cite></td>
+<td>Returns a reverse_iterator pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vector-operations">
+<h2>Vector Operations</h2>
+<div class="section" id="unary-operation-description">
+<h3>Unary Operation Description</h3>
+</div>
+<div class="section" id="id15">
+<h3>Description</h3>
+<p>The templated class vector_unary&lt;E, F&gt; describes a unary vector operation.</p>
+</div>
+<div class="section" id="id16">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id17">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E:</th><td class="field-body">The type of the vector expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">F:</th><td class="field-body">The type of the operation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+</div>
+<div class="section" id="id19">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="id20">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;vector_unary&lt;E, F&gt; &gt;</p>
+</div>
+<div class="section" id="id21">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>vector_unary (const expression_type &amp;e)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="unary-operations">
+<h2>Unary Operations</h2>
+<div class="section" id="prototypes">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_unary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">vector_unary</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (- v) [i] = - v [i]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_negate</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (conj v) [i] = conj (v [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_conj</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">conj</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (real v) [i] = real (v [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_real</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">real</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (imag v) [i] = imag (v [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_imag</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">imag</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (trans v) [i] = v [i]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_identity</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">trans</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (herm v) [i] = conj (v [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_conj</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">herm</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>Description</h3>
+<ul class="simple">
+<li><cite>operator -</cite> computes the additive inverse of a vector expression.</li>
+<li><cite>conj</cite> computes the complex conjugate of a vector expression.</li>
+<li><cite>real</cite> and <cite>imag</cite> compute the real and imaginary parts of a vector expression.</li>
+<li><cite>trans</cite> computes the transpose of a vector expression.</li>
+<li><cite>herm</cite> computes the hermitian, i.e. the complex conjugate of the transpose of a vector expression.</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id24">
+<h3>Type requirements</h3>
+<p>E is a model of Vector Expression .</p>
+</div>
+<div class="section" id="preconditions">
+<h3>Preconditions</h3>
+<p>None.</p>
+</div>
+<div class="section" id="complexity">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the vector expression.</p>
+</div>
+<div class="section" id="examples">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">v</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span> <span class="n">v</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">conj</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">real</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">imag</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">trans</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">herm</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="binary-operation-description">
+<h2>Binary Operation Description</h2>
+<div class="section" id="id25">
+<h3>Description</h3>
+<p>The templated class vector_binary&lt;E1, E2, F&gt; describes a binary vector operation.</p>
+</div>
+<div class="section" id="id26">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id27">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">The type of the first vector expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">The type of the second vector expression.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">F:</th><td class="field-body">The type of the operation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id28">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+</div>
+<div class="section" id="id29">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="id30">
+<h3>Public base classes</h3>
+<p><cite>vector_expression&lt;vector_binary&lt;E1, E2, F&gt; &gt;</cite></p>
+</div>
+<div class="section" id="id31">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_binary (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="binary-operations">
+<h2>Binary Operations</h2>
+<div class="section" id="id32">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_binary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">vector_binary</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                        <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (v1 + v2) [i] = v1 [i] + v2 [i]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_plus</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                              <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="c1">// (v1 - v2) [i] = v1 [i] - v2 [i]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_minus</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                   <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h3>Description</h3>
+<ul class="simple">
+<li><cite>operator +</cite> computes the sum of two vector expressions.</li>
+<li><cite>operator -</cite> computes the difference of two vector expressions.</li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id35">
+<h3>Type requirements</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id36">
+<h3>Preconditions</h3>
+<p><cite>e1 ().size () == e2 ().size ()</cite></p>
+</div>
+<div class="section" id="id37">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the vector expressions.</p>
+</div>
+<div class="section" id="id38">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v1</span> <span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">v2</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">v1</span><span class="p">.</span><span class="n">size</span> <span class="p">(),</span> <span class="n">v2</span><span class="p">.</span><span class="n">size</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">v1</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">v2</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="binary-outer-operation-description">
+<h2>Binary Outer Operation Description</h2>
+<div class="section" id="id39">
+<h3>Description</h3>
+<p>The templated class vector_matrix_binary&lt;E1, E2, F&gt; describes a binary outer vector operation.</p>
+</div>
+<div class="section" id="id40">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id41">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">The type of the first vector expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">The type of the second vector expression.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">F:</th><td class="field-body">The type of the operation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id42">
+<h3>Model of</h3>
+<p>Matrix Expression .</p>
+</div>
+<div class="section" id="id43">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix Expression .</p>
+</div>
+<div class="section" id="id44">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;vector_matrix_binary&lt;E1, E2, F&gt; &gt;</p>
+</div>
+<div class="section" id="id45">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_matrix_binary (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="binary-outer-operations">
+<h2>Binary Outer Operations</h2>
+<div class="section" id="id46">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_matrix_binary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">vector_matrix_binary</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                               <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (outer_prod (v1, v2)) [i] [j] = v1 [i] * v2 [j]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_matrix_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_multiplies</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">outer_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+            <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id47">
+<h3>Description</h3>
+<ul class="simple">
+<li><cite>outer_prod</cite> computes the outer product of two vector expressions.</li>
+</ul>
+</div>
+<div class="section" id="id48">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id49">
+<h3>Type requirements</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id50">
+<h3>Preconditions</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id51">
+<h3>Complexity</h3>
+<p>Quadratic depending from the size of the vector expressions.</p>
+</div>
+<div class="section" id="id52">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v1</span> <span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">v2</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">v1</span><span class="p">.</span><span class="n">size</span> <span class="p">(),</span> <span class="n">v2</span><span class="p">.</span><span class="n">size</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">v1</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">v2</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">outer_prod</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="scalar-vector-operation-description">
+<h2>Scalar Vector Operation Description</h2>
+<div class="section" id="id53">
+<h3>Description</h3>
+<p>The templated classes vector_binary_scalar1&lt;E1, E2, F&gt; and vector_binary_scalar2&lt;E1, E2, F&gt; describe
+binary operations between a scalar and a vector.</p>
+</div>
+<div class="section" id="id54">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id55">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E1/E2:</th><td class="field-body">The type of the scalar expression.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2/E1:</th><td class="field-body">The type of the vector expression.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">F:</th><td class="field-body">The type of the operation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id56">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+</div>
+<div class="section" id="id57">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="id58">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;vector_binary_scalar1&lt;E1, E2, F&gt; &gt; and vector_expression&lt;vector_binary_scalar2&lt;E1, E2, F&gt; &gt; resp.</p>
+</div>
+<div class="section" id="id59">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Member</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_binary_scalar1 (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>vector_binary_scalar2 (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="scalar-vector-operations">
+<h2>Scalar Vector Operations</h2>
+<div class="section" id="id60">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_binary_scalar1_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">vector_binary_scalar1</span><span class="o">&lt;</span><span class="n">scalar_const_reference</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="p">,</span>
+                                <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (t * v) [i] = t * v [i]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_binary_scalar1_traits</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_multiplies</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_binary_scalar2_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">vector_binary_scalar2</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                                <span class="n">scalar_const_reference</span><span class="o">&lt;</span><span class="n">T2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (v * t) [i] = v [i] * t</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_binary_scalar2_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">scalar_multiplies</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="c1">// (v / t) [i] = v [i] / t</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_binary_scalar2_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">scalar_divides</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">/</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id61">
+<h3>Description</h3>
+<ul class="simple">
+<li><cite>operator *</cite> computes the product of a scalar and a vector expression.</li>
+<li><cite>operator /</cite> multiplies the vector with the reciprocal of the scalar.</li>
+</ul>
+</div>
+<div class="section" id="id62">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id63">
+<h3>Type requirements</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">T1/T2:</th><td class="field-body">is a model of Scalar Expression .</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2/E1:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id64">
+<h3>Preconditions</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id65">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the vector expression.</p>
+</div>
+<div class="section" id="id66">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">v</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">v</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="vector-reductions">
+<h2>Vector Reductions</h2>
+</div>
+<div class="section" id="unary-reductions">
+<h2>Unary Reductions</h2>
+<div class="section" id="id67">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_scalar_unary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">F</span><span class="o">::</span><span class="n">result_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// sum v = sum (v [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">vector_sum</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">sum</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// norm_1 v = sum (abs (v [i]))</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">vector_norm_1</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">norm_1</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// norm_2 v = sqrt (sum (v [i] * v [i]))</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">vector_norm_2</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">norm_2</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// norm_2_square v = sum (v [i] * v [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">vector_norm_2_square</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">norm_2_square</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// norm_inf v = max (abs (v [i]))</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">vector_norm_inf</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">norm_inf</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// index_norm_inf v = min (i: abs (v [i]) == max (abs (v [i])))</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_unary_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">vector_index_norm_inf</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">index_norm_inf</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id68">
+<h3>Description</h3>
+<ul class="simple">
+<li><cite>sum</cite> computes the sum of the vector expression’s elements.</li>
+<li><cite>norm_1</cite>, <cite>norm_2</cite> and <cite>norm_inf</cite> compute the corresponding ||.||1, ||.||2 and ||.||inf vector norms.</li>
+<li><cite>index_norm_1</cite> computes the index of the vector expression’s first element having maximal absolute value.</li>
+</ul>
+</div>
+<div class="section" id="id69">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id70">
+<h3>Type requirements</h3>
+<p>E is a model of Vector Expression .</p>
+</div>
+<div class="section" id="id71">
+<h3>Preconditions</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id72">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the vector expression.</p>
+</div>
+<div class="section" id="id73">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">v</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">norm_1</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">norm_2</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">norm_inf</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">index_norm_inf</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="binary-reductions">
+<h2>Binary Reductions</h2>
+<div class="section" id="id74">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">vector_scalar_binary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">F</span><span class="o">::</span><span class="n">result_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// inner_prod (v1, v2) = sum (v1 [i] * v2 [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">vector_inner_prod</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                               <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                               <span class="k">typename</span> <span class="n">promote_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                               <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">promote_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">inner_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">vector_scalar_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">vector_inner_prod</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                               <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                               <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">promote_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                                                                             <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">promote_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_inner_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id75">
+<h3>Description</h3>
+<ul class="simple">
+<li><cite>inner_prod</cite> computes the inner product of the vector expressions.</li>
+<li><cite>prec_inner_prod</cite> computes the double precision inner product of the vector expressions.</li>
+</ul>
+</div>
+<div class="section" id="id76">
+<h3>Definition</h3>
+<p>Defined in the header vector_expression.hpp.</p>
+</div>
+<div class="section" id="id77">
+<h3>Type requirements</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of Vector Expression .</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id78">
+<h3>Preconditions</h3>
+<p><cite>e1 ().size () == e2 ().size ()</cite></p>
+</div>
+<div class="section" id="id79">
+<h3>Complexity</h3>
+<p>Linear depending from the size of the vector expressions.</p>
+</div>
+<div class="section" id="id80">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v1</span> <span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">v2</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">v1</span><span class="p">.</span><span class="n">size</span> <span class="p">(),</span> <span class="n">v2</span><span class="p">.</span><span class="n">size</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">v1</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">v2</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">inner_prod</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Vector Proxies" href="vector_proxy.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Matrix" href="matrix.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

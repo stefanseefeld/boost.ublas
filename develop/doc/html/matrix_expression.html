@@ -1,0 +1,1460 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Matrix Expressions - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Storage and special containers" href="storage.html" />
+    <link rel="prev" title="Matrix Proxies" href="matrix_proxy.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Matrix Proxies" href="matrix_proxy.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Storage and special containers" href="storage.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="matrix-expressions">
+<h1>Matrix Expressions</h1>
+<div class="section" id="matrix-expression">
+<h2>Matrix Expression</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>The templated class matrix_expression&lt;E&gt; is required to be a public base of all classes which model the Matrix Expression concept.</p>
+</div>
+<div class="section" id="definition">
+<h3>Definition</h3>
+<p>Defined in the header expression_types.hpp.</p>
+</div>
+<div class="section" id="template-parameters">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>The type of the matrix expression.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-of">
+<h3>Model of</h3>
+<p>None. Not a Matrix Expression!</p>
+</div>
+<div class="section" id="type-requirements">
+<h3>Type requirements</h3>
+<p>None.</p>
+</div>
+<div class="section" id="public-base-classes">
+<h3>Public base classes</h3>
+<p>None.</p>
+</div>
+<div class="section" id="members">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>const expression_type &amp;operator () () const</cite></td>
+<td>Returns a const reference of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>expression_type &amp;operator () ()</cite></td>
+<td>Returns a reference of the expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="notes">
+<h3>Notes</h3>
+<p>The operator[], row, column, range, slice and project functions have been removed. Use the free functions defined in matrix proxy instead.</p>
+</div>
+</div>
+<div class="section" id="matrix-container">
+<h2>Matrix Container</h2>
+<div class="section" id="id1">
+<h3>Description</h3>
+<p>The templated class matrix_container&lt;C&gt; is required to be a public base of all classes which model the Matrix concept. This includes the class matrix itself.</p>
+</div>
+<div class="section" id="id2">
+<h3>Definition</h3>
+<p>Defined in the header expression_types.hpp.</p>
+</div>
+<div class="section" id="id3">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>The type of the matrix expression.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h3>Model of</h3>
+<p>None. Not a Matrix Expression OR Matrix!</p>
+</div>
+<div class="section" id="id5">
+<h3>Type requirements</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id6">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;C&gt;</p>
+</div>
+<div class="section" id="id7">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>const container_type &amp;operator () () const</cite></td>
+<td>Returns a const reference of the container.</td>
+</tr>
+<tr class="row-odd"><td><cite>container_type &amp;operator () ()</cite></td>
+<td>Returns a reference of the container.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="matrix-references">
+<h2>Matrix References</h2>
+</div>
+<div class="section" id="reference">
+<h2>Reference</h2>
+<div class="section" id="id8">
+<h3>Description</h3>
+<p>The templated class matrix_reference&lt;E&gt; contains a reference to a matrix expression.</p>
+</div>
+<div class="section" id="id9">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id10">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>The type of the matrix expression.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h3>Model of</h3>
+<p>Matrix Expression .</p>
+</div>
+<div class="section" id="id12">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix Expression .</p>
+</div>
+<div class="section" id="id13">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;matrix_reference&lt;E&gt; &gt;</p>
+</div>
+<div class="section" id="id14">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_reference (expression_type &amp;e)</cite></td>
+<td>Constructs a constant reference of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>void resize (size_type size1, size2)</cite></td>
+<td>Resizes the expression to hold at most size1 rows of size2 elements.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>reference operator () (size_type i, size_type j)</cite></td>
+<td>Returns a reference of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator1 begin1 ()</cite></td>
+<td>Returns a iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator1 end1 ()</cite></td>
+<td>Returns a iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator2 begin2 ()</cite></td>
+<td>Returns a iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator2 end2 ()</cite></td>
+<td>Returns a iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator1 rbegin1 ()</cite></td>
+<td>Returns a reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator1 rend1 ()</cite></td>
+<td>Returns a reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator2 rbegin2 ()</cite></td>
+<td>Returns a reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator2 rend2 ()</cite></td>
+<td>Returns a reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="matrix-operations">
+<h2>Matrix Operations</h2>
+</div>
+<div class="section" id="unary-operation-description">
+<h2>Unary Operation Description</h2>
+<div class="section" id="id15">
+<h3>Description</h3>
+<p>The templated classes matrix_unary1&lt;E, F&gt; and matrix_unary2&lt;E, F&gt; describe unary matrix operations.</p>
+</div>
+<div class="section" id="id16">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id17">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>The type of the matrix expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>F</td>
+<td>The type of the operation.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h3>Model of</h3>
+<p>Matrix Expression .</p>
+</div>
+<div class="section" id="id19">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix Expression .</p>
+</div>
+<div class="section" id="id20">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;matrix_unary1&lt;E, F&gt; &gt; and matrix_expression&lt;matrix_unary2&lt;E, F&gt; &gt; resp.</p>
+</div>
+<div class="section" id="id21">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_unary1 (const expression_type &amp;e)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix_unary2 (const expression_type &amp;e)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="unary-operations">
+<h2>Unary Operations</h2>
+<div class="section" id="prototypes">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_unary1_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">matrix_unary1</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (- m) [i] [j] = - m [i] [j]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_unary1_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_negate</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (conj m) [i] [j] = conj (m [i] [j])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_unary1_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_conj</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">conj</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (real m) [i] [j] = real (m [i] [j])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_unary1_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_real</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">real</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (imag m) [i] [j] = imag (m [i] [j])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_unary1_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_imag</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">imag</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_unary2_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">matrix_unary2</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (trans m) [i] [j] = m [j] [i]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_unary2_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_identity</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">trans</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+
+<span class="c1">// (herm m) [i] [j] = conj (m [j] [i])</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_unary2_traits</span><span class="o">&lt;</span><span class="n">E</span><span class="p">,</span> <span class="n">scalar_conj</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">herm</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>Description</h3>
+<p><cite>operator -</cite> computes the additive inverse of a matrix expression. <cite>conj</cite> computes the complex conjugate of a matrix expression. <cite>real</cite> and <cite>imag</cite> compute the real and imaginary parts of a matrix expression. <cite>trans</cite> computes the transpose of a matrix expression. <cite>herm</cite> computes the hermitian, i.e. the complex conjugate of the transpose of a matrix expression.</p>
+</div>
+<div class="section" id="id23">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id24">
+<h3>Type requirements</h3>
+<p>E is a model of Matrix Expression .</p>
+</div>
+<div class="section" id="preconditions">
+<h3>Preconditions</h3>
+<p>None.</p>
+</div>
+<div class="section" id="complexity">
+<h3>Complexity</h3>
+<p>Quadratic depending from the size of the matrix expression.</p>
+</div>
+<div class="section" id="examples">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size1</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size2</span> <span class="p">();</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">conj</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">real</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">imag</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">trans</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">herm</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="binary-operation-description">
+<h2>Binary Operation Description</h2>
+<div class="section" id="id25">
+<h3>Description</h3>
+<p>The templated class matrix_binary&lt;E1, E2, F&gt; describes a binary matrix operation.</p>
+</div>
+<div class="section" id="id26">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id27">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td>E1</td>
+<td>The type of the first matrix expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>E2</td>
+<td>The type of the second matrix expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>F</td>
+<td>The type of the operation.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id28">
+<h3>Model of</h3>
+<p>Matrix Expression .</p>
+</div>
+<div class="section" id="id29">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix Expression .</p>
+</div>
+<div class="section" id="id30">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;matrix_binary&lt;E1, E2, F&gt; &gt;.</p>
+</div>
+<div class="section" id="id31">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_binary (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="binary-operations">
+<h2>Binary Operations</h2>
+<div class="section" id="id32">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_binary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">matrix_binary</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                        <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+                        <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (m1 + m2) [i] [j] = m1 [i] [j] + m2 [i] [j]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_plus</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                  <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+            <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="c1">// (m1 - m2) [i] [j] = m1 [i] [j] - m2 [i] [j]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_binary_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_minus</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span>
+                                                   <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+            <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id33">
+<h3>Description</h3>
+<p><cite>operator +</cite> computes the sum of two matrix expressions. <cite>operator -</cite> computes the difference of two matrix expressions.</p>
+</div>
+<div class="section" id="id34">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id35">
+<h3>Type requirements</h3>
+<ul class="simple">
+<li>E1 is a model of Matrix Expression .</li>
+<li>E2 is a model of Matrix Expression .</li>
+</ul>
+</div>
+<div class="section" id="id36">
+<h3>Preconditions</h3>
+<ul class="simple">
+<li>e1 ().size1 () == e2 ().size1 ()</li>
+<li>e1 ().size2 () == e2 ().size2 ()</li>
+</ul>
+</div>
+<div class="section" id="id37">
+<h3>Complexity</h3>
+<p>Quadratic depending from the size of the matrix expressions.</p>
+</div>
+<div class="section" id="id38">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m1</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">m2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">size1</span> <span class="p">(),</span> <span class="n">m2</span><span class="p">.</span><span class="n">size1</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">size2</span> <span class="p">(),</span> <span class="n">m2</span><span class="p">.</span><span class="n">size2</span> <span class="p">());</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m1</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">m2</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">m2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m1</span> <span class="o">-</span> <span class="n">m2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="scalar-matrix-operation-description">
+<h2>Scalar Matrix Operation Description</h2>
+<div class="section" id="id39">
+<h3>Description</h3>
+<p>The templated classes matrix_binary_scalar1&lt;E1, E2, F&gt; and matrix_binary_scalar2&lt;E1, E2, F&gt; describe binary operations between a scalar and a matrix.</p>
+</div>
+<div class="section" id="id40">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id41">
+<h3>Template parameters</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Description</td>
+<td>Default</td>
+</tr>
+<tr class="row-even"><td><cite>E1/E2</cite></td>
+<td>The type of the scalar expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><cite>E2/E1</cite></td>
+<td>The type of the matrix expression.</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>F</td>
+<td>The type of the operation.</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id42">
+<h3>Model of</h3>
+<p>Matrix Expression .</p>
+</div>
+<div class="section" id="id43">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix Expression .</p>
+</div>
+<div class="section" id="id44">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;matrix_binary_scalar1&lt;E1, E2, F&gt; &gt; and matrix_expression&lt;matrix_binary_scalar2&lt;E1, E2, F&gt; &gt; resp.</p>
+</div>
+<div class="section" id="id45">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_binary_scalar1 (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix_binary_scalar1 (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="scalar-matrix-operations">
+<h2>Scalar Matrix Operations</h2>
+<div class="section" id="id46">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_binary_scalar1_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">matrix_binary_scalar1</span><span class="o">&lt;</span><span class="n">scalar_const_reference</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="p">,</span>
+                                <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (t * m) [i] [j] = t * m [i] [j]</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_binary_scalar1_traits</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">scalar_multiplies</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">T1</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+            <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_binary_scalar2_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">matrix_binary_scalar2</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                                <span class="n">scalar_const_reference</span><span class="o">&lt;</span><span class="n">T2</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// (m * t) [i] [j] = m [i] [j] * t</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_binary_scalar2_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">scalar_multiplies</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="c1">// (m / t) [i] [j] = m [i] [j] / t</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_binary_scalar2_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">scalar_divides</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="k">operator</span> <span class="o">/</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id47">
+<h3>Description</h3>
+<p><cite>operator *</cite> computes the product of a scalar and a matrix expression. <cite>operator /</cite> multiplies the matrix with the reciprocal of the scalar.</p>
+</div>
+<div class="section" id="id48">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id49">
+<h3>Type requirements</h3>
+<ul class="simple">
+<li><cite>T1/T2</cite> is a model of Scalar Expression .</li>
+<li><cite>E2/E1</cite> is a model of Matrix Expression .</li>
+</ul>
+</div>
+<div class="section" id="id50">
+<h3>Preconditions</h3>
+<p>None.</p>
+</div>
+<div class="section" id="id51">
+<h3>Complexity</h3>
+<p>Quadratic depending from the size of the matrix expression.</p>
+</div>
+<div class="section" id="id52">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size1</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size2</span> <span class="p">();</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="matrix-vector-operations">
+<h2>Matrix Vector Operations</h2>
+</div>
+<div class="section" id="id53">
+<h2>Binary Operation Description</h2>
+<div class="section" id="id54">
+<h3>Description</h3>
+<p>The templated classes matrix_vector_binary1&lt;E1, E2, F&gt; and matrix_vector_binary2&lt;E1, E2, F&gt; describe binary matrix vector operations.</p>
+</div>
+<div class="section" id="id55">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id56">
+<h3>Template parameters</h3>
+<ul class="simple">
+<li><cite>E1</cite>: The type of the matrix or vector expression.</li>
+<li><cite>E2</cite>: The type of the vector or matrix expression.</li>
+<li>F:    The type of the operation.</li>
+</ul>
+</div>
+<div class="section" id="id57">
+<h3>Model of</h3>
+<p>Vector Expression .</p>
+</div>
+<div class="section" id="id58">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Vector Expression .</p>
+</div>
+<div class="section" id="id59">
+<h3>Public base classes</h3>
+<p>vector_expression&lt;matrix_vector_binary1&lt;E1, E2, F&gt; &gt; and vector_expression&lt;matrix_vector_binary2&lt;E1, E2, F&gt; &gt; resp.</p>
+</div>
+<div class="section" id="id60">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_vector_binary1 (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix_vector_binary2 (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size () const</cite></td>
+<td>Returns the size of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i) const</cite></td>
+<td>Returns the value of the i-th element.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator begin () const</cite></td>
+<td>Returns a const_iterator pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator end () const</cite></td>
+<td>Returns a const_iterator pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator rbegin () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator rend () const</cite></td>
+<td>Returns a const_reverse_iterator pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id61">
+<h2>Binary Operations</h2>
+<div class="section" id="id62">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_vector_binary1_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">row_major_tag</span> <span class="n">dispatch_category</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">promote_traits</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;::</span><span class="n">promote_type</span> <span class="n">promote_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">matrix_vector_binary1</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                                <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                                <span class="n">matrix_vector_prod1</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">promote_type</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary1_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span>
+      <span class="n">row_major_tag</span><span class="p">);</span>
+
+<span class="c1">// Dispatcher</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary1_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary1_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span>
+           <span class="n">row_major_tag</span><span class="p">);</span>
+
+<span class="c1">// Dispatcher</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary1_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="n">V</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="n">V</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_vector_binary2_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">column_major_tag</span> <span class="n">dispatch_category</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">promote_traits</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;::</span><span class="n">promote_type</span> <span class="n">promote_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">matrix_vector_binary2</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                                <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                                <span class="n">matrix_vector_prod2</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">promote_type</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary2_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span>
+      <span class="n">column_major_tag</span><span class="p">);</span>
+
+<span class="c1">// Dispatcher</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary2_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary2_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span>
+           <span class="n">column_major_tag</span><span class="p">);</span>
+
+<span class="c1">// Dispatcher</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_vector_binary2_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                      <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="n">V</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">V</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="n">V</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id63">
+<h3>Description</h3>
+<p><cite>prod</cite> computes the product of the matrix and the vector expression. <cite>prec_prod</cite> computes the double precision product of the matrix and the vector expression.</p>
+</div>
+<div class="section" id="id64">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id65">
+<h3>Type requirements</h3>
+<ul class="simple">
+<li><cite>E1</cite> is a model of Matrix Expression or Vector Expression .</li>
+<li><cite>E2</cite> is a model of Vector Expression or Matrix Expression .</li>
+</ul>
+</div>
+<div class="section" id="id66">
+<h3>Preconditions</h3>
+<ul class="simple">
+<li>e1 ().size2 () == e2 ().size ()</li>
+<li>e1 ().size () == e2 ().size1 ()</li>
+</ul>
+</div>
+<div class="section" id="id67">
+<h3>Complexity</h3>
+<p>Quadratic depending from the size of the matrix expression.</p>
+</div>
+<div class="section" id="id68">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">size1</span> <span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size2</span> <span class="p">();</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+    <span class="n">v</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">prod</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">prod</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="triangular-solver">
+<h2>Triangular Solver</h2>
+<div class="section" id="id69">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>template&lt;class E1, class E2&gt;
+struct matrix_vector_solve_traits
+{
+  typedef typename promote_traits&lt;typename E1::value_type, typename E2::value_type&gt;::promote_type promote_type;
+  typedef vector&lt;promote_type&gt; result_type;
+};
+
+template&lt;class E1, class E2&gt;
+void inplace_solve (const matrix_expression&lt;E1&gt; &amp;e1, E2 &amp;e2, lower_tag, vector_tag);
+template&lt;class E1, class E2&gt;
+void inplace_solve (const matrix_expression&lt;E1&gt; &amp;e1, E2 &amp;e2, upper_tag,  vector_tag);
+template&lt;class E1, class E2&gt;
+void inplace_solve (const matrix_expression&lt;E1&gt; &amp;e1, E2 &amp;e2, unit_lower_tag, vector_tag);
+template&lt;class E1, class E2&gt;
+void inplace_solve (const matrix_expression&lt;E1&gt; &amp;e1, E2 &amp;e2, unit_upper_tag, vector_tag);
+
+template&lt;class E1, class E2, class C&gt;
+typename matrix_vector_solve_traits&lt;E1, E2&gt;::result_type
+solve (const matrix_expression&lt;E1&gt; &amp;e1, const vector_expression&lt;E2&gt; &amp;e2,  C);
+
+template&lt;class E1, class E2&gt;
+void inplace_solve (E1 &amp;e1, const matrix_expression&lt;E2&gt; &amp;e2, vector_tag, lower_tag);
+template&lt;class E1, class E2&gt;
+void inplace_solve (E1 &amp;e1, const matrix_expression&lt;E2&gt; &amp;e2, vector_tag, upper_tag);
+template&lt;class E1, class E2&gt;
+void inplace_solve (E1 &amp;e1, const matrix_expression&lt;E2&gt; &amp;e2, vector_tag, unit_lower_tag);
+template&lt;class E1, class E2&gt;
+void inplace_solve (E1 &amp;e1, const matrix_expression&lt;E2&gt; &amp;e2, vector_tag, unit_upper_tag);
+
+template&lt;class E1, class E2, class C&gt;
+typename matrix_vector_solve_traits&lt;E1, E2&gt;::result_type
+solve (const vector_expression&lt;E1&gt; &amp;e1, const matrix_expression&lt;E2&gt; &amp;e2, C);
+</pre></div>
+</div>
+</div>
+<div class="section" id="id70">
+<h3>Description</h3>
+<p>solve solves a linear equation for lower or upper (unit) triangular matrices.</p>
+</div>
+<div class="section" id="id71">
+<h3>Definition</h3>
+<p>Defined in the header triangular.hpp.</p>
+</div>
+<div class="section" id="id72">
+<h3>Type requirements</h3>
+<ul class="simple">
+<li>E1 is a model of Matrix Expression or Vector Expression .</li>
+<li>E2 is a model of Vector Expression or Matrix Expression .</li>
+</ul>
+</div>
+<div class="section" id="id73">
+<h3>Preconditions</h3>
+<ul class="simple">
+<li>e1 ().size1 () == e1 ().size2 ()</li>
+<li>e1 ().size2 () == e2 ().size ()</li>
+<li>e1 ().size () == e2 ().size1 ()</li>
+<li>e2 ().size1 () == e2 ().size2 ()</li>
+</ul>
+</div>
+<div class="section" id="id74">
+<h3>Complexity</h3>
+<p>Quadratic depending from the size of the matrix expression.</p>
+</div>
+<div class="section" id="id75">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/triangular.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">size1</span> <span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">v</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+ <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">lower_tag</span> <span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+ <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">lower_tag</span> <span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="matrix-matrix-operations">
+<h2>Matrix Matrix Operations</h2>
+</div>
+<div class="section" id="id76">
+<h2>Binary Operation Description</h2>
+<div class="section" id="id77">
+<h3>Description</h3>
+<p>The templated class matrix_matrix_binary&lt;E1, E2, F&gt; describes a binary matrix operation.</p>
+</div>
+<div class="section" id="id78">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id79">
+<h3>Template parameters</h3>
+<ul class="simple">
+<li>E1    The type of the first matrix expression.</li>
+<li>E2    The type of the second matrix expression.</li>
+<li>F     The type of the operation.</li>
+</ul>
+</div>
+<div class="section" id="id80">
+<h3>Model of</h3>
+<p>Matrix Expression .</p>
+</div>
+<div class="section" id="id81">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix Expression .</p>
+</div>
+<div class="section" id="id82">
+<h3>Public base classes</h3>
+<p>matrix_expression&lt;matrix_matrix_binary&lt;E1, E2, F&gt; &gt; .</p>
+</div>
+<div class="section" id="id83">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_matrix_binary (const expression1_type &amp;e1, const expression2_type &amp;e2)</cite></td>
+<td>Constructs a description of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed expression.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the reversed expression.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed expression.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id84">
+<h2>Binary Operations</h2>
+<div class="section" id="id85">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_matrix_binary_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">unknown_orientation_tag</span> <span class="n">dispatch_category</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">promote_traits</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="o">&gt;::</span><span class="n">promote_type</span> <span class="n">promote_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">matrix_matrix_binary</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                               <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">const_closure_type</span><span class="p">,</span>
+                               <span class="n">matrix_matrix_prod</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">promote_type</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">expression_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">expression_type</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_matrix_binary_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                     <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span>
+      <span class="n">unknown_orientation_tag</span><span class="p">);</span>
+
+<span class="c1">// Dispatcher</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_matrix_binary_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                     <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_matrix_binary_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                     <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span>
+           <span class="n">unknown_orientation_tag</span><span class="p">);</span>
+
+<span class="c1">// Dispatcher</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_matrix_binary_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E1</span><span class="p">,</span>
+                                     <span class="k">typename</span> <span class="n">type_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">precision_type</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="n">M</span>
+<span class="n">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+      <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">M</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="n">M</span>
+<span class="n">prec_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+           <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id86">
+<h3>Description</h3>
+<p>prod computes the product of the matrix expressions. prec_prod computes the double precision product of the matrix expressions.</p>
+</div>
+<div class="section" id="id87">
+<h3>Definition</h3>
+<p>Defined in the header matrix_expression.hpp.</p>
+</div>
+<div class="section" id="id88">
+<h3>Type requirements</h3>
+<ul class="simple">
+<li>E1 is a model of Matrix Expression .</li>
+<li>E2 is a model of Matrix Expression .</li>
+</ul>
+</div>
+<div class="section" id="id89">
+<h3>Preconditions</h3>
+<p>e1 ().size2 () == e2 ().size1 ()</p>
+</div>
+<div class="section" id="id90">
+<h3>Complexity</h3>
+<p>Cubic depending from the size of the matrix expression.</p>
+</div>
+<div class="section" id="id91">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m1</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">m2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">size1</span> <span class="p">(),</span> <span class="n">m2</span><span class="p">.</span><span class="n">size1</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">size2</span> <span class="p">(),</span> <span class="n">m2</span><span class="p">.</span><span class="n">size2</span> <span class="p">());</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m1</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">m2</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">prod</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="triangular-solvers">
+<h2>Triangular Solvers</h2>
+<div class="section" id="id92">
+<h3>Prototypes</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">matrix_matrix_solve_traits</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">promote_traits</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">E1</span><span class="o">::</span><span class="n">value_type</span><span class="p">,</span> <span class="k">typename</span> <span class="n">E2</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;::</span><span class="n">promote_type</span> <span class="n">promote_type</span><span class="p">;</span>
+  <span class="k">typedef</span> <span class="n">matrix</span><span class="o">&lt;</span><span class="n">promote_type</span><span class="o">&gt;</span> <span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">inplace_solve</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="n">E2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">lower_tag</span><span class="p">,</span> <span class="n">matrix_tag</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">inplace_solve</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="n">E2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">upper_tag</span><span class="p">,</span> <span class="n">matrix_tag</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">inplace_solve</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="n">E2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">unit_lower_tag</span><span class="p">,</span> <span class="n">matrix_tag</span><span class="p">);</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">inplace_solve</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="n">E2</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">unit_upper_tag</span><span class="p">,</span> <span class="n">matrix_tag</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">C</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">matrix_matrix_solve_traits</span><span class="o">&lt;</span><span class="n">E1</span><span class="p">,</span> <span class="n">E2</span><span class="o">&gt;::</span><span class="n">result_type</span>
+<span class="n">solve</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E1</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span><span class="o">&lt;</span><span class="n">E2</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">,</span> <span class="n">C</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id93">
+<h3>Description</h3>
+<p>solve solves a linear equation for lower or upper (unit) triangular matrices.</p>
+</div>
+<div class="section" id="id94">
+<h3>Definition</h3>
+<p>Defined in the header triangular.hpp.</p>
+</div>
+<div class="section" id="id95">
+<h3>Type requirements</h3>
+<ul class="simple">
+<li>E1 is a model of Matrix Expression .</li>
+<li>E2 is a model of Matrix Expression .</li>
+</ul>
+</div>
+<div class="section" id="id96">
+<h3>Preconditions</h3>
+<ul class="simple">
+<li>e1 ().size1 () == e1 ().size2 ()</li>
+<li>e1 ().size2 () == e2 ().size1 ()</li>
+</ul>
+</div>
+<div class="section" id="id97">
+<h3>Complexity</h3>
+<p>Cubic depending from the size of the matrix expressions.</p>
+</div>
+<div class="section" id="id98">
+<h3>Examples</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/triangular.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m1</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">m2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span> <span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">size1</span> <span class="p">(),</span> <span class="n">m2</span><span class="p">.</span><span class="n">size1</span> <span class="p">());</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m1</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">m2</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">solve</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">lower_tag</span> <span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Matrix Proxies" href="matrix_proxy.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Storage and special containers" href="storage.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

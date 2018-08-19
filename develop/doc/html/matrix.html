@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Matrix - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Triangular Matrix" href="triangular.html" />
+    <link rel="prev" title="Vector Expressions" href="vector_expressions.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Vector Expressions" href="vector_expressions.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Triangular Matrix" href="triangular.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="matrix">
+<h1>Matrix</h1>
+<div class="section" id="id1">
+<h2>Matrix</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>The templated class <cite>matrix&lt;T, F, A&gt;</cite> is the base container adaptor for dense
+matrices. For a (m x n)-dimensional matrix and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> every
+element <cite>mi, j</cite> is mapped to the (i x n + j)-th element of the container for
+row major orientation or the (i + j x m)-th element of the container for
+column major orientation.</p>
+</div>
+<div class="section" id="example">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size1</span> <span class="p">();</span> <span class="o">++</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size2</span> <span class="p">();</span> <span class="o">++</span> <span class="n">j</span><span class="p">)</span>
+      <span class="n">m</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="definition">
+<h3>Definition</h3>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix.hpp</span></code>.</p>
+</div>
+<div class="section" id="template-parameters">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">F:</th><td class="field-body">Functor describing the storage organization. [1]        row_major</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">A:</th><td class="field-body">The type of the Storage array. [2]      unbounded_array&lt;T&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-of">
+<h3>Model of</h3>
+<p>Matrix .</p>
+</div>
+<div class="section" id="type-requirements">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix .</p>
+</div>
+<div class="section" id="public-base-classes">
+<h3>Public base classes</h3>
+<p>matrix_container&lt;matrix&lt;T, F, A&gt; &gt;</p>
+</div>
+<div class="section" id="members">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>matrix()</cite></td>
+<td>Allocates an uninitialized matrix that holds zero rows of zero elements.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix(size_type size1, size_type size2)</cite></td>
+<td>Allocates an uninitialized matrix that holds size1 rows of size2 elements.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix (const matrix &amp;m)</cite></td>
+<td>The copy constructor.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; matrix (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>The extended copy constructor.</td>
+</tr>
+<tr class="row-even"><td><cite>void resize (size_type size1, size_type size2, bool preserve = true)</cite></td>
+<td>Reallocates a matrix to hold size1 rows of size2 elements. The existing
+elements of the matrix are preseved when specified.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-odd"><td><cite>const array_type&amp; data () const</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><cite>array_type&amp; data ()</cite></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns a const reference of the j -th element in the i-th row.</td>
+</tr>
+<tr class="row-even"><td><cite>reference operator () (size_type i, size_type j)</cite></td>
+<td>Returns a reference of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix &amp;operator = (const matrix &amp;m)</cite></td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix &amp;assign_temporary (matrix &amp;m)</cite></td>
+<td>Assigns a temporary. May change the matrix m.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; matrix &amp;operator = (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>The extended assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; matrix &amp;assign (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Assigns a matrix expression to the matrix. Left and right hand side of the
+assignment should be independent.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; matrix &amp;operator += (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>A computed assignment operator. Adds the matrix expression to the matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; matrix &amp;plus_assign (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Adds a matrix expression to the matrix. Left and right hand side of the
+assignment should be independent.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AE&gt; matrix &amp;operator -= (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>A computed assignment operator. Subtracts the matrix expression
+from the matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AE&gt; matrix &amp;minus_assign (const matrix_expression&lt;AE&gt; &amp;ae)</cite></td>
+<td>Subtracts a matrix expression from the matrix. Left and right hand side
+of the assignment should be independent.</td>
+</tr>
+<tr class="row-odd"><td><cite>template&lt;class AT&gt; matrix &amp;operator *= (const AT &amp;at)</cite></td>
+<td>A computed assignment operator. Multiplies the matrix with a scalar.</td>
+</tr>
+<tr class="row-even"><td><cite>template&lt;class AT&gt; matrix &amp;operator /= (const AT &amp;at)</cite></td>
+<td>A computed assignment operator. Divides the matrix through a scalar.</td>
+</tr>
+<tr class="row-odd"><td><cite>void swap (matrix &amp;m)</cite></td>
+<td>Swaps the contents of the matrices.</td>
+</tr>
+<tr class="row-even"><td><cite>void insert_element (size_type i, size_type j, const_reference t)</cite></td>
+<td>Inserts the value t at the j-th element of the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>void erase_element (size_type i, size_type j)</cite></td>
+<td>Erases the value at the j-th element of the i-th row.</td>
+</tr>
+<tr class="row-even"><td><cite>void clear ()</cite></td>
+<td>Clears the matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator1 begin1 ()</cite></td>
+<td>Returns a iterator1 pointing to the beginning of the matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator1 end1 ()</cite></td>
+<td>Returns a iterator1 pointing to the end of the matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>iterator2 begin2 ()</cite></td>
+<td>Returns a iterator2 pointing to the beginning of the matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>iterator2 end2 ()</cite></td>
+<td>Returns a iterator2 pointing to the end of the matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of
+the reversed matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the
+reversed matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator1 rbegin1 ()</cite></td>
+<td>Returns a reverse_iterator1 pointing to the beginning of the
+reversed matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator1 rend1 ()</cite></td>
+<td>Returns a reverse_iterator1 pointing to the end of the reversed matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning
+of the reversed matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the
+reversed matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>reverse_iterator2 rbegin2 ()</cite></td>
+<td>Returns a reverse_iterator2 pointing to the beginning of the
+reversed matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>reverse_iterator2 rend2 ()</cite></td>
+<td>Returns a reverse_iterator2 pointing to the end of the reversed matrix.</td>
+</tr>
+</tbody>
+</table>
+<p>Notes
+[1] Supported parameters for the storage organization are row_major and column_major.</p>
+<p>[2] Common parameters for the storage array are unbounded_array&lt;T&gt; , bounded_array&lt;T&gt; and std::vector&lt;T&gt; .</p>
+</div>
+</div>
+<div class="section" id="identity-matrix">
+<h2>Identity Matrix</h2>
+<div class="section" id="id2">
+<h3>Description</h3>
+<p>The templated class <cite>identity_matrix&lt;T, ALLOC&gt;</cite> represents identity matrices.
+For a (m x n)-dimensional identity matrix and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> holds
+<cite>idi, j = 0</cite>, if <cite>i &lt;&gt; j</cite>, and <cite>idi</cite>, <cite>i= 1</cite>.</p>
+</div>
+<div class="section" id="id3">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">identity_matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Definition</h3>
+<p>Defined in the header matrix.hpp.</p>
+</div>
+<div class="section" id="id5">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.        int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for size_type and difference_type.     std::allocator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h3>Model of</h3>
+<p>Matrix .</p>
+</div>
+<div class="section" id="id7">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix .</p>
+</div>
+<div class="section" id="id8">
+<h3>Public base classes</h3>
+<p>matrix_container&lt;identity_matrix&lt;T&gt; &gt;</p>
+</div>
+<div class="section" id="id9">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>identity_matrix ()</cite></td>
+<td>Constructs an identity_matrix that holds zero rows of zero elements.</td>
+</tr>
+<tr class="row-odd"><td><cite>identity_matrix (size_type size)</cite></td>
+<td>Constructs an identity_matrix that holds size rows of size elements.</td>
+</tr>
+<tr class="row-even"><td><cite>identity_matrix (const identity_matrix &amp;m)</cite></td>
+<td>The copy constructor.</td>
+</tr>
+<tr class="row-odd"><td><cite>void resize (size_type size, bool preserve = true)</cite></td>
+<td>Resizes a identity_matrix to hold size rows of size elements.
+Therefore the existing elements of the itendity_matrix are always preseved.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>identity_matrix &amp;operator = (const identity_matrix &amp;m)</cite></td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>identity_matrix &amp;assign_temporary (identity_matrix &amp;m)</cite></td>
+<td>Assigns a temporary. May change the identity matrix m .</td>
+</tr>
+<tr class="row-odd"><td><cite>void swap (identity_matrix &amp;m)</cite></td>
+<td>Swaps the contents of the identity matrices.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the identity_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the identity_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the identity_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the identity_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the
+reversed identity_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed
+identity_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of
+the reversed identity_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the
+reversed identity_matrix.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="zero-matrix">
+<h2>Zero Matrix</h2>
+<div class="section" id="id10">
+<h3>Description</h3>
+<p>The templated class <cite>zero_matrix&lt;T, ALLOC&gt;</cite> represents zero matrices.
+For a (m x n)-dimensional zero matrix and <cite>0 &lt;= i &lt; m</cite>, <cite>0 &lt;= j &lt; n</cite> holds <cite>zi</cite>,
+<cite>j = 0</cite>.</p>
+</div>
+<div class="section" id="id11">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">zero_matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Definition</h3>
+<p>Defined in the header matrix.hpp.</p>
+</div>
+<div class="section" id="id13">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.        int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for size_type and difference_type.     std::allocator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id14">
+<h3>Model of</h3>
+<p>Matrix .</p>
+</div>
+<div class="section" id="id15">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix .</p>
+</div>
+<div class="section" id="id16">
+<h3>Public base classes</h3>
+<p>matrix_container&lt;zero_matrix&lt;T&gt; &gt;</p>
+</div>
+<div class="section" id="id17">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>zero_matrix ()</cite></td>
+<td>Constructs a zero_matrix that holds zero rows of zero elements.</td>
+</tr>
+<tr class="row-odd"><td><cite>zero_matrix (size_type size1, size_type size2)</cite></td>
+<td>Constructs a zero_matrix that holds size1 rows of size2 elements.</td>
+</tr>
+<tr class="row-even"><td><cite>zero_matrix (const zero_matrix &amp;m)</cite></td>
+<td>The copy constructor.</td>
+</tr>
+<tr class="row-odd"><td><cite>void resize (size_type size1, size_type size2, bool preserve = true)</cite></td>
+<td>Resizes a zero_matrix to hold size1 rows of size2 elements.
+Therefore the existing elements of the zero_matrix are always preseved.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>zero_matrix &amp;operator = (const zero_matrix &amp;m)</cite></td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>zero_matrix &amp;assign_temporary (zero_matrix &amp;m)</cite></td>
+<td>Assigns a temporary. May change the zero matrix m .</td>
+</tr>
+<tr class="row-odd"><td><cite>void swap (zero_matrix &amp;m)</cite></td>
+<td>Swaps the contents of the zero matrices.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the zero_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the zero_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the zero_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the zero_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the
+reversed zero_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the reversed
+zero_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of the
+reversed zero_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the reversed
+zero_matrix.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="scalar-matrix">
+<h2>Scalar Matrix</h2>
+<div class="section" id="id18">
+<h3>Description</h3>
+<p>The templated class <cite>scalar_matrix&lt;T, ALLOC&gt;</cite> represents scalar matrices.
+For a (m x n)-dimensional scalar matrix and <cite>0 &lt;= i &lt; m</cite>, <cite>0 &lt;= j &lt; n</cite> holds <cite>zi</cite>,
+<cite>j = s</cite>.</p>
+</div>
+<div class="section" id="id19">
+<h3>Example</h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">numeric</span><span class="o">::</span><span class="n">ublas</span><span class="p">;</span>
+  <span class="n">scalar_matrix</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">m</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>Definition</h3>
+<p>Defined in the header matrix.hpp.</p>
+</div>
+<div class="section" id="id21">
+<h3>Template parameters</h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.        int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for size_type and difference_type.     std::allocator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id22">
+<h3>Model of</h3>
+<p>Matrix .</p>
+</div>
+<div class="section" id="id23">
+<h3>Type requirements</h3>
+<p>None, except for those imposed by the requirements of Matrix .</p>
+</div>
+<div class="section" id="id24">
+<h3>Public base classes</h3>
+<p>matrix_container&lt;scalar_matrix&lt;T&gt; &gt;</p>
+</div>
+<div class="section" id="id25">
+<h3>Members</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Member</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td><cite>scalar_matrix ()</cite></td>
+<td>Constructs a scalar_matrix that holds scalar rows of zero elements.</td>
+</tr>
+<tr class="row-odd"><td><cite>scalar_matrix (size_type size1, size_type size2, const value_type &amp;value)</cite></td>
+<td>Constructs a scalar_matrix that holds size1 rows of size2 elements each
+of the specified value.</td>
+</tr>
+<tr class="row-even"><td><cite>scalar_matrix (const scalar_matrix &amp;m)</cite></td>
+<td>The copy constructor.</td>
+</tr>
+<tr class="row-odd"><td><cite>void resize (size_type size1, size_type size2, bool preserve = true)</cite></td>
+<td>Resizes a scalar_matrix to hold size1 rows of size2 elements.
+Therefore the existing elements of the scalar_matrix are always preseved.</td>
+</tr>
+<tr class="row-even"><td><cite>size_type size1 () const</cite></td>
+<td>Returns the number of rows.</td>
+</tr>
+<tr class="row-odd"><td><cite>size_type size2 () const</cite></td>
+<td>Returns the number of columns.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reference operator () (size_type i, size_type j) const</cite></td>
+<td>Returns the value of the j-th element in the i-th row.</td>
+</tr>
+<tr class="row-odd"><td><cite>scalar_matrix &amp;operator = (const scalar_matrix &amp;m)</cite></td>
+<td>The assignment operator.</td>
+</tr>
+<tr class="row-even"><td><cite>scalar_matrix &amp;assign_temporary (scalar_matrix &amp;m)</cite></td>
+<td>Assigns a temporary. May change the scalar matrix m .</td>
+</tr>
+<tr class="row-odd"><td><cite>void swap (scalar_matrix &amp;m)</cite></td>
+<td>Swaps the contents of the scalar matrices.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator1 begin1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the beginning of the scalar_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator1 end1 () const</cite></td>
+<td>Returns a const_iterator1 pointing to the end of the scalar_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_iterator2 begin2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the beginning of the scalar_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_iterator2 end2 () const</cite></td>
+<td>Returns a const_iterator2 pointing to the end of the scalar_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator1 rbegin1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the beginning of the
+reversed scalar_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator1 rend1 () const</cite></td>
+<td>Returns a const_reverse_iterator1 pointing to the end of the
+reversed scalar_matrix.</td>
+</tr>
+<tr class="row-even"><td><cite>const_reverse_iterator2 rbegin2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the beginning of
+the reversed scalar_matrix.</td>
+</tr>
+<tr class="row-odd"><td><cite>const_reverse_iterator2 rend2 () const</cite></td>
+<td>Returns a const_reverse_iterator2 pointing to the end of the
+reversed scalar_matrix.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Vector Expressions" href="vector_expressions.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Triangular Matrix" href="triangular.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

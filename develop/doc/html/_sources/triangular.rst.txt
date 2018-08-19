@@ -1,0 +1,321 @@
+Triangular Matrix
+=================
+
+Triangular Matrix
+-----------------
+
+Description
+~~~~~~~~~~~
+The templated class `triangular_matrix<T, F1, F2, A>` is the base container
+adaptor for triangular matrices. For a (n x n )-dimensional lower triangular
+matrix and `0 <= i < n,0 <= j < n` holds `ti`, `j = 0` , if `i > j`.
+If furthermore holds `ti`, `i= 1` the matrix is called unit lower triangular.
+For a (n x n )-dimensional lower triangular matrix and 0 <= i < n,0 <= j < n
+holds ti, j = 0 , if i < j. If furthermore holds ti, i= 1 the matrix is called
+unit lower triangular. The storage of triangular matrices is packed.
+
+Example
+~~~~~~~
+::
+   
+   #include <boost/numeric/ublas/triangular.hpp>
+   #include <boost/numeric/ublas/io.hpp>
+
+   int main ()
+   {
+     using namespace boost::numeric::ublas;
+     triangular_matrix<double, lower> ml (3, 3);
+     for (unsigned i = 0; i < ml.size1 (); ++ i)
+       for (unsigned j = 0; j <= i; ++ j)
+         ml (i, j) = 3 * i + j;
+     std::cout << ml << std::endl;
+     triangular_matrix<double, upper> mu (3, 3);
+     for (unsigned i = 0; i < mu.size1 (); ++ i)
+       for (unsigned j = i; j < mu.size2 (); ++ j)
+         mu (i, j) = 3 * i + j;
+     std::cout << mu << std::endl;
+   }
+
+Please read the full triangular example for more details.
+
+Definition
+~~~~~~~~~~
+Defined in the header triangular.hpp.
+
+Template parameters
+~~~~~~~~~~~~~~~~~~~
+:T:	The type of object stored in the matrix.	
+:F1:	Functor describing the type of the triangular matrix. [1]	lower
+:F2:	Functor describing the storage organization. [2]	row_major
+:A:	The type of the adapted array. [3]	unbounded_array<T>
+
+Model of
+~~~~~~~~
+Matrix .
+
+Type requirements
+~~~~~~~~~~~~~~~~~
+None, except for those imposed by the requirements of Matrix .
+
+Public base classes
+~~~~~~~~~~~~~~~~~~~
+matrix_container<triangular_matrix<T, F1, F2, A> >
+
+Members
+~~~~~~~
+
+.. list-table::
+
+   * - Member
+     - Description
+   * - `triangular_matrix ()`
+     - Allocates an uninitialized triangular_matrix that holds zero rows
+       of zero elements.
+   * - `triangular_matrix (size_type size1, size_type size2)`
+     - Allocates an uninitialized triangular_matrix that holds size1 rows
+       of size2 elements.
+   * - `triangular_matrix (const triangular_matrix &m)`
+     - The copy constructor.
+   * - `template<class AE> triangular_matrix (const matrix_expression<AE> &ae)`
+     - The extended copy constructor.
+   * - `void resize (size_type size1, size_type size2, bool preserve = true)`
+     - Reallocates a triangular_matrix to hold size1 rows of size2 elements.
+       The existing elements of the triangular_matrix are preseved when specified.
+   * - `size_type size1 () const`
+     - Returns the number of rows.
+   * - `size_type size2 () const`
+     - Returns the number of columns.
+   * - `const_reference operator () (size_type i, size_type j) const`
+     - Returns a const reference of the j -th element in the i-th row.
+   * - `reference operator () (size_type i, size_type j)`
+     - Returns a reference of the j-th element in the i-th row.
+   * - `triangular_matrix &operator = (const triangular_matrix &m)`
+     - The assignment operator.
+   * - `triangular_matrix &assign_temporary (triangular_matrix &m)`
+     - Assigns a temporary. May change the triangular matrix m.
+   * - `template<class AE> triangular_matrix &operator = (const matrix_expression<AE> &ae)`
+     - The extended assignment operator.
+   * - `template<class AE> triangular_matrix &assign (const matrix_expression<AE> &ae)`
+     - Assigns a matrix expression to the triangular matrix. Left and right hand
+       side of the assignment should be independent.
+   * - `template<class AE> triangular_matrix &operator += (const matrix_expression<AE> &ae)`
+     - A computed assignment operator. Adds the matrix expression to the
+       triangular matrix.
+   * - `template<class AE> triangular_matrix &plus_assign (const matrix_expression<AE> &ae)`
+     - Adds a matrix expression to the triangular matrix. Left and right hand
+       side of the assignment should be independent.
+   * - `template<class AE> triangular_matrix &operator -= (const matrix_expression<AE> &ae)`
+     - A computed assignment operator. Subtracts the matrix expression from the triangular matrix.
+   * - `template<class AE> triangular_matrix &minus_assign (const matrix_expression<AE> &ae)`
+     - Subtracts a matrix expression from the triangular matrix. Left and
+       right hand side of the assignment should be independent.
+   * - `template<class AT> triangular_matrix &operator *= (const AT &at)`
+     - A computed assignment operator. Multiplies the triangular matrix with a scalar.
+   * - `template<class AT> triangular_matrix &operator /= (const AT &at)`
+     - A computed assignment operator. Divides the triangular matrix through
+       a scalar.
+   * - `void swap (triangular_matrix &m)`
+     - Swaps the contents of the triangular matrices.
+   * - `void insert (size_type i, size_type j, const_reference t)`
+     - Inserts the value t at the j-th element of the i-th row.
+   * - `void erase (size_type i, size_type j)`
+     - Erases the value at the j-th elemenst of the i-th row.
+   * - `void clear ()`
+     - Clears the matrix.
+   * - `const_iterator1 begin1 () const`
+     - Returns a const_iterator1 pointing to the beginning of the
+       triangular_matrix.
+   * - `const_iterator1 end1 () const`
+     - Returns a const_iterator1 pointing to the end of the triangular_matrix.
+   * - `iterator1 begin1 ()`
+     - Returns a iterator1 pointing to the beginning of the triangular_matrix.
+   * - `iterator1 end1 ()`
+     - Returns a iterator1 pointing to the end of the triangular_matrix.
+   * - `const_iterator2 begin2 () const`
+     - Returns a const_iterator2 pointing to the beginning of the
+       triangular_matrix.
+   * - `const_iterator2 end2 () const`
+     - Returns a const_iterator2 pointing to the end of the triangular_matrix.
+   * - `iterator2 begin2 ()`
+     - Returns a iterator2 pointing to the beginning of the triangular_matrix.
+   * - `iterator2 end2 ()`
+     - Returns a iterator2 pointing to the end of the triangular_matrix.
+   * - `const_reverse_iterator1 rbegin1 () const`
+     - Returns a const_reverse_iterator1 pointing to the beginning of the
+       reversed triangular_matrix.
+   * - `const_reverse_iterator1 rend1 () const`
+     - Returns a const_reverse_iterator1 pointing to the end of the reversed
+       triangular_matrix.
+   * - `reverse_iterator1 rbegin1 ()`
+     - Returns a reverse_iterator1 pointing to the beginning of the reversed
+       triangular_matrix.
+   * - `reverse_iterator1 rend1 ()`
+     - Returns a reverse_iterator1 pointing to the end of the reversed
+       triangular_matrix.
+   * - `const_reverse_iterator2 rbegin2 () const`
+     - Returns a const_reverse_iterator2 pointing to the beginning of the
+       reversed triangular_matrix.
+   * - `const_reverse_iterator2 rend2 () const`
+     - Returns a const_reverse_iterator2 pointing to the end of the reversed
+       triangular_matrix.
+   * - `reverse_iterator2 rbegin2 ()`
+     - Returns a reverse_iterator2 pointing to the beginning of the reversed
+       triangular_matrix.
+   * - `reverse_iterator2 rend2 ()`
+     - Returns a reverse_iterator2 pointing to the end of the reversed
+       triangular_matrix.
+
+Notes
+[1] Supported parameters for the type of the triangular matrix are lower , unit_lower, upper and unit_upper .
+
+[2] Supported parameters for the storage organization are row_major and column_major.
+
+[3] Supported parameters for the adapted array are unbounded_array<T> , bounded_array<T> and std::vector<T> .
+
+Triangular Adaptor
+------------------
+Description
+~~~~~~~~~~~
+The templated class triangular_adaptor<M, F> is a triangular matrix adaptor for other matrices.
+
+Example
+~~~~~~~
+::
+   
+   #include <boost/numeric/ublas/triangular.hpp>
+   #include <boost/numeric/ublas/io.hpp>
+
+   int main ()
+   {
+     using namespace boost::numeric::ublas;
+     matrix<double> m (3, 3);
+     triangular_adaptor<matrix<double>, lower> tal (m);
+     for (unsigned i = 0; i < tal.size1 (); ++ i)
+       for (unsigned j = 0; j <= i; ++ j)
+         tal (i, j) = 3 * i + j;
+     std::cout << tal << std::endl;
+     triangular_adaptor<matrix<double>, upper> tau (m);
+     for (unsigned i = 0; i < tau.size1 (); ++ i)
+       for (unsigned j = i; j < tau.size2 (); ++ j)
+         tau (i, j) = 3 * i + j;
+     std::cout << tau << std::endl;
+   }
+
+Please read the full triangular example for more details.
+
+Definition
+~~~~~~~~~~
+Defined in the header triangular.hpp.
+
+Template parameters
+~~~~~~~~~~~~~~~~~~~
+:M:	The type of the adapted matrix.	
+:F:	Functor describing the type of the triangular adaptor. [1]	lower
+
+Model of
+~~~~~~~~
+Matrix Expression .
+
+Type requirements
+~~~~~~~~~~~~~~~~~
+None, except for those imposed by the requirements of Matrix Expression .
+
+Public base classes
+~~~~~~~~~~~~~~~~~~~
+matrix_expression<triangular_adaptor<M, F> >
+
+Members
+~~~~~~~
+
+.. list-table::
+   
+   * - Member
+     - Description
+   * - `triangular_adaptor (matrix_type &data)`
+     - Constructs a triangular_adaptor of a matrix.
+   * - `triangular_adaptor (const triangular_adaptor &m)`
+     - The copy constructor.
+   * - `template<class AE> triangular_adaptor (const matrix_expression<AE> &ae)`
+     - The extended copy constructor.
+   * - `size_type size1 () const`
+     - Returns the number of rows.
+   * - `size_type size2 () const`
+     - Returns the number of columns.
+   * - `const_reference operator () (size_type i, size_type j) const`
+     - Returns a const reference of the j -th element in the i-th row.
+   * - `reference operator () (size_type i, size_type j)`
+     - Returns a reference of the j-th element in the i-th row.
+   * - `triangular_adaptor &operator = (const triangular_adaptor &m)`
+     - The assignment operator.
+   * - `triangular_adaptor &assign_temporary (triangular_adaptor &m)`
+     - Assigns a temporary. May change the triangular adaptor m.
+   * - `template<class AE> triangular_adaptor &operator = (const matrix_expression<AE> &ae)`
+     - The extended assignment operator.
+   * - `template<class AE> triangular_adaptor &assign (const matrix_expression<AE> &ae)`
+     - Assigns a matrix expression to the triangular adaptor.
+       Left and right hand side of the assignment should be independent.
+   * - `template<class AE> triangular_adaptor &operator += (const matrix_expression<AE> &ae)`
+     - A computed assignment operator. Adds the matrix expression to the
+       triangular adaptor.
+   * - `template<class AE> triangular_adaptor &plus_assign (const matrix_expression<AE> &ae)`
+     - Adds a matrix expression to the triangular adaptor. Left and right
+       hand side of the assignment should be independent.
+   * - `template<class AE> triangular_adaptor &operator -= (const matrix_expression<AE> &ae)`
+     - A computed assignment operator. Subtracts the matrix expression from
+       the triangular adaptor.
+   * - `template<class AE> triangular_adaptor &minus_assign (const matrix_expression<AE> &ae)`
+     - Subtracts a matrix expression from the triangular adaptor.
+       Left and right hand side of the assignment should be independent.
+   * - `template<class AT> triangular_adaptor &operator *= (const AT &at)`
+     - A computed assignment operator. Multiplies the triangular adaptor
+       with a scalar.
+   * - `template<class AT> triangular_adaptor &operator /= (const AT &at)`
+     - A computed assignment operator. Divides the triangular adaptor through
+       a scalar.
+   * - `void swap (triangular_adaptor &m)`
+     - Swaps the contents of the triangular adaptors.
+   * - `const_iterator1 begin1 () const`
+     - Returns a const_iterator1 pointing to the beginning of the
+       triangular_adaptor.
+   * - `const_iterator1 end1 () const`
+     - Returns a const_iterator1 pointing to the end of the triangular_adaptor.
+   * - `iterator1 begin1 ()`
+     - Returns a iterator1 pointing to the beginning of the triangular_adaptor.
+   * - `iterator1 end1 ()`
+     - Returns a iterator1 pointing to the end of the triangular_adaptor.
+   * - `const_iterator2 begin2 () const`
+     - Returns a const_iterator2 pointing to the beginning of the
+       triangular_adaptor.
+   * - `const_iterator2 end2 () const`
+     - Returns a const_iterator2 pointing to the end of the triangular_adaptor.
+   * - `iterator2 begin2 ()`
+     - Returns a iterator2 pointing to the beginning of the triangular_adaptor.
+   * - `iterator2 end2 ()`
+     - Returns a iterator2 pointing to the end of the triangular_adaptor.
+   * - `const_reverse_iterator1 rbegin1 () const`
+     - Returns a const_reverse_iterator1 pointing to the beginning of the
+       reversed triangular_adaptor.
+   * - `const_reverse_iterator1 rend1 () const`
+     - Returns a const_reverse_iterator1 pointing to the end of the
+       reversed triangular_adaptor.
+   * - `reverse_iterator1 rbegin1 ()`
+     - Returns a reverse_iterator1 pointing to the beginning of the
+       reversed triangular_adaptor.
+   * - `reverse_iterator1 rend1 ()`
+     - Returns a reverse_iterator1 pointing to the end of the reversed
+       triangular_adaptor.
+   * - `const_reverse_iterator2 rbegin2 () const`
+     - Returns a const_reverse_iterator2 pointing to the beginning of the
+       reversed triangular_adaptor.
+   * - `const_reverse_iterator2 rend2 () const`
+     - Returns a const_reverse_iterator2 pointing to the end of the
+       reversed triangular_adaptor.
+   * - `reverse_iterator2 rbegin2 ()`
+     - Returns a reverse_iterator2 pointing to the beginning of the
+       reversed triangular_adaptor.
+   * - `reverse_iterator2 rend2 ()`
+     - Returns a reverse_iterator2 pointing to the end of the reversed
+       triangular_adaptor.
+
+Notes
+[1] Supported parameters for the type of the triangular adaptor are lower , unit_lower, upper and unit_upper .

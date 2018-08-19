@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview of Matrix- and Vector-Types - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Overview of Matrix and Vector Operations" href="operations.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Overview" href="overview.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Overview of Matrix and Vector Operations" href="operations.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="overview-of-matrix-and-vector-types">
+<h1>Overview of Matrix- and Vector-Types</h1>
+<div class="section" id="notation">
+<h2>Notation</h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">is the data type. For general linear algebra operations this will be a real type e.g. <cite>double</cite>, …</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>F</cite>:</th><td class="field-body">is the orientation type (functor), either <cite>row_major</cite> or <cite>column_major</cite></td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>A</cite>, <cite>IA</cite>, <cite>TA</cite>:</th><td class="field-body">is an array storage type, e.g. <cite>std::vector</cite>, <cite>bounded_array</cite>, <cite>unbounded_array</cite>, …</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>TRI</cite>:</th><td class="field-body">is a triangular functor: <cite>lower</cite>, <cite>unit_lower</cite>, <cite>strict_lower</cite>, <cite>upper</cite>, <cite>unit_upper</cite>, <cite>strict_upper</cite></td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>M</cite>, <cite>N</cite>:</th><td class="field-body">are unsigned integer sizes (<cite>std::size_t</cite>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>IB</cite>:</th><td class="field-body">is an index base (<cite>std::size_t</cite>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>VEC</cite>:</th><td class="field-body">is any vector type</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><cite>MAT</cite>:</th><td class="field-body">is any matrix type</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><cite>[…]</cite>:</th><td class="field-body">denote optional arguments - for more details look at the section “storage layout”.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="vectors">
+<h2>Vectors</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Definition</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector&lt;T [, A]&gt; v(size);</cite></td>
+<td>a dense vector of values of type <cite>T</cite> of variable size.
+A storage type <cite>A</cite> can be specified which defaults to <cite>unbounded_array</cite>.
+Elements are constructed by <cite>A</cite>, which need not initialise their value.</td>
+</tr>
+<tr class="row-odd"><td><cite>bounded_vector&lt;T, N&gt; v;</cite></td>
+<td>a dense vector of values of type <cite>T</cite> of variable size but with maximum <cite>N</cite>.
+The default constructor creates <cite>v</cite> with size <cite>N</cite>. Elements are constructed
+by the storage type <cite>bounded_array</cite>, which need not initialise their value.</td>
+</tr>
+<tr class="row-even"><td><cite>c_vector&lt;T, M&gt; v(size);</cite></td>
+<td>a dense vector of values of type <cite>T</cite> with the given size. The data is stored
+as an ordinary C++ array <cite>T data_[M]</cite></td>
+</tr>
+<tr class="row-odd"><td><cite>zero_vector&lt;T&gt; v(size);</cite></td>
+<td>the zero vector of type <cite>T</cite> with the given <cite>size</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>unit_vector&lt;T&gt; v(size, index);</cite></td>
+<td>the unit vector of type <cite>T</cite> with the given <cite>size</cite>. The vector is zero other
+then a single specified element. <cite>index</cite> should be less than size.</td>
+</tr>
+<tr class="row-odd"><td><cite>mapped_vector&lt;T [, S]&gt; v(size);</cite></td>
+<td>a sparse vector of values of type <cite>T</cite> of variable size. The sparse storage type
+<cite>S</cite> can be <cite>std::map&lt;size_t, T&gt;</cite> or <cite>map_array&lt;size_t, T&gt;</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>compressed_vector&lt;T [,IB, IA, TA]&gt; v(size);</cite></td>
+<td>a sparse vector of values of type <cite>T</cite> of variable size. The non zero values
+are stored as two seperate arrays - an index array and a value array.
+The index array is always sorted and there is at most one entry for each index.</td>
+</tr>
+<tr class="row-odd"><td><cite>coordinate_vector&lt;T [,IB, IA, TA]&gt; v(size);</cite></td>
+<td>a sparse vector of values of type <cite>T</cite> of variable size. The non zero values are
+stored as two seperate arrays - an index array and a value array. The arrays may
+be out of order with multiple entries for each vector element. If there are
+multiple values for the same index the sum of these values is the real value.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the default types are defined in <code class="file docutils literal notranslate"><span class="pre">boost/numeric/ublas/fwd.hpp</span></code>.</p>
+</div>
+</div>
+<div class="section" id="vector-proxies">
+<h2>Vector Proxies</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Definition</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector_range&lt;VEC&gt; vr(v, range);</cite></td>
+<td>a vector referencing a continuous subvector of elements of vector <cite>v</cite> containing all elements specified by <cite>range</cite>.</td>
+</tr>
+<tr class="row-odd"><td><cite>vector_slice&lt;VEC&gt; vs(v, slice);</cite></td>
+<td>a vector referencing a non continuous subvector of elements of vector <cite>v</cite>
+containing all elements specified by <cite>slice</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_row&lt;MAT&gt; vr(m, index);</cite></td>
+<td>a vector referencing the <cite>index</cite> -th row of matrix <cite>m</cite></td>
+</tr>
+<tr class="row-odd"><td><cite>matrix_column&lt;MAT&gt; vc(m, index);</cite></td>
+<td>a vector referencing the <cite>index</cite> -th column of matrix <cite>m</cite></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="matrices">
+<h2>Matrices</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Definition</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>matrix&lt;T [, F, A]&gt; m(size1, size2);</cite></td>
+<td>a dense matrix of values of type <cite>T</cite> of variable size.
+A storage type <cite>A</cite> can be specified which defaults to <cite>unbounded_array</cite>.
+The orientation functor <cite>F</cite> defaults to <cite>row_major</cite>. Elements are constructed
+by <cite>A</cite>, which need not initialise their value.</td>
+</tr>
+<tr class="row-odd"><td><cite>bounded_matrix&lt;T, M, N [, F]&gt; m;</cite></td>
+<td>a dense matrix of type <cite>T</cite> with variable size with maximum <cite>M-by-N</cite>. The orientation
+functor <cite>F</cite> defaults to <cite>row_major</cite>. The default constructor creates <cite>m</cite> with size <cite>M-by-N</cite>.
+Elements are constructed by the storage type <cite>bounded_array</cite>, which need not initialise their value.</td>
+</tr>
+<tr class="row-even"><td><cite>c_matrix&lt;T, M, N&gt; m(size1, size2);</cite></td>
+<td>a dense matrix of values of type <cite>T</cite> with the given size. The data is stored as an ordinary
+C++ array <cite>T data_[N][M]</cite></td>
+</tr>
+<tr class="row-odd"><td><cite>vector_of_vector&lt;T [, F, A]&gt; m(size1, size2);</cite></td>
+<td>a dense matrix of values of type <cite>T</cite> with the given size. The data is stored as a vector of vectors.
+The orientation <cite>F</cite> defaults to <cite>row_major</cite>. The storage type <cite>S</cite> defaults to
+<cite>unbounded_array&lt;unbounded_array&lt;T&gt; &gt;</cite></td>
+</tr>
+<tr class="row-even"><td><cite>zero_matrix&lt;T&gt; m(size1, size2);</cite></td>
+<td>a zero matrix of type <cite>T</cite> with the given size.</td>
+</tr>
+<tr class="row-odd"><td><cite>identity_matrix&lt;T&gt; m(size1, size2);</cite></td>
+<td>an identity matrix of type <cite>T</cite> with the given size. The values are <cite>v(i,j) = (i==j)?T(1):T()</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>scalar_matrix&lt;T&gt; m(size1, size2, value);</cite></td>
+<td>a matrix of type <cite>T</cite> with the given size that has the value value everywhere.</td>
+</tr>
+<tr class="row-odd"><td><cite>triangular_matrix&lt;T [, TRI, F, A]&gt; m(size);</cite></td>
+<td>a triangular matrix of values of type <cite>T</cite> of variable size. Only the nonzero elements are stored in
+the given order <cite>F</cite>. (“triangular packed storage”) The triangular type <cite>TRI</cite> defaults to <cite>lower</cite>,
+the orientation type <cite>F</cite> defaults to <cite>row_major</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>banded_matrix&lt;T [, F, A]&gt; m(size1, size2, n_lower, n_upper);</cite></td>
+<td>a banded matrix of values of type <cite>T</cite> of variable size with <cite>n_lower</cite> sub diagonals
+and <cite>n_upper</cite> super diagonals. Only the nonzero elements are stored in the given order <cite>F</cite>.
+(“packed storage”)</td>
+</tr>
+<tr class="row-odd"><td><cite>symmetric_matrix&lt;T [, TRI, F, A]&gt; m(size);</cite></td>
+<td>a symmetric matrix of values of type <cite>T</cite> of variable size. Only the given triangular matrix is
+stored in the given order <cite>F</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>hermitian_matrix&lt;T [, TRI, F, A]&gt; m(size);</cite></td>
+<td>a hermitian matrix of values of type <cite>T</cite> of variable size. Only the given triangular matrix is
+stored using the order <cite>F</cite>.</td>
+</tr>
+<tr class="row-odd"><td><cite>mapped_matrix&lt;T, [F, S]&gt; m(size1, size2 [, non_zeros]);</cite></td>
+<td>a sparse matrix of values of type <cite>T</cite> of variable size. The sparse storage type <cite>S</cite> can be
+either <cite>std::map&lt;size_t, std::map&lt;size_t, T&gt;&gt;</cite> or <cite>map_array&lt;size_t, map_array&lt;size_t, T&gt;&gt;</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>sparse_vector_of_sparse_vector&lt;T, [F, C]&gt; m(size1, size2 [, non_zeros]);</cite></td>
+<td>a sparse matrix of values of type <cite>T</cite> of variable size.</td>
+</tr>
+<tr class="row-odd"><td><cite>compressed_matrix&lt;T, [F, IB, IA, TA]&gt; m(size1, size2 [, non_zeros]);</cite></td>
+<td>a sparse matrix of values of type <cite>T</cite> of variable size. The values are stored in compressed row/column storage.</td>
+</tr>
+<tr class="row-even"><td><cite>coordinate_matrix&lt;T, [F, IB, IA, TA]&gt; m(size1, size2 [, non_zeros]);</cite></td>
+<td>a sparse matrix of values of type <cite>T</cite> of variable size. The values are stored in 3 parallel
+array as triples <cite>(i, j, value)</cite>. More than one value for each pair of indices is possible,
+the real value is the sum of all.</td>
+</tr>
+<tr class="row-odd"><td><cite>generalized_vector_of_vector&lt;T, F, A&gt; m(size1, size2 [, non_zeros]);</cite></td>
+<td>a sparse matrix of values of type <cite>T</cite> of variable size. The values are stored as a vector of
+sparse vectors, e.g. <cite>generalized_vector_of_vector&lt;double, row_major, unbounded_array&lt;coordinate_vector&lt;double&gt;&gt;&gt;</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the default types are defined in <code class="file docutils literal notranslate"><span class="pre">boost/numeric/ublas/fwd.hpp</span></code>.</p>
+</div>
+</div>
+<div class="section" id="matrix-proxies">
+<h2>Matrix Proxies</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Definition</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>triangular_adaptor&lt;MAT, TRI&gt; ta(m);</cite></td>
+<td>a triangular matrix referencing a selection of elements of the matrix <cite>m</cite>.</td>
+</tr>
+<tr class="row-odd"><td><cite>symmetric_adaptor&lt;MAT, TRI&gt; sa(m);</cite></td>
+<td>a symmetric matrix referencing a selection of elements of the matrix <cite>m</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>hermitian_adaptor&lt;MAT, TRI&gt; ha(m);</cite></td>
+<td>a hermitian matrix referencing a selection of elements of the matrix <cite>m</cite>.</td>
+</tr>
+<tr class="row-odd"><td><cite>banded_adaptor&lt;MAT&gt; ba(m, n_lower, n_upper);</cite></td>
+<td>a banded matrix referencing a selection of elements of the matrix <cite>m</cite>.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix_range&lt;MAT, TRI&gt; mr(m, range1, range2);</cite></td>
+<td>a matrix referencing a submatrix of elements in the matrix <cite>m</cite>.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix_slice&lt;MAT, TRI&gt; ms(m, slice1, slice2);</cite></td>
+<td>a matrix referencing a non continues submatrix of elements in the matrix <cite>m</cite>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="special-storage-layouts">
+<h2>Special Storage Layouts</h2>
+<p>The library supports conventional dense, packed and basic sparse vector and matrix storage layouts.
+The description of the most common constructions of vectors and matrices comes next.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Construction</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><cite>vector&lt;T, std::vector&lt;T&gt;&gt; v(size)</cite></td>
+<td>a dense vector, storage is provided by a standard vector.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>vector&lt;T, unbounded_array&lt;T&gt;&gt; v(size)</cite></td>
+<td>a dense vector, storage is provided by a heap-based array.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-even"><td><cite>vector&lt;T, bounded_array&lt;T, N&gt;&gt; v(size)</cite></td>
+<td>a dense vector, storage is provided by a stack-based array.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>mapped_vector&lt;T, std::map&lt;std::size_t, T&gt;&gt; v(size, non_zeros)</cite></td>
+<td>a sparse vector, storage is provided by a standard map.</td>
+</tr>
+<tr class="row-even"><td><cite>mapped_vector&lt;T, map_array&lt;std::size_t, T&gt;&gt; v (size, non_zeros)</cite></td>
+<td>a sparse vector, storage is provided by a map array.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix&lt;T, row_major, std::vector&lt;T&gt;&gt; m(size1, size2)</cite></td>
+<td>a dense matrix, orientation is row major, storage is provided by a standard vector.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix&lt;T, column_major, std::vector&lt;T&gt;&gt; m(size1, size2)</cite></td>
+<td>a dense matrix, orientation is column major, storage is provided by a standard vector.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix&lt;T, row_major, unbounded_array&lt;T&gt;&gt; m(size1, size2)</cite></td>
+<td>a dense matrix, orientation is row major, storage is provided by a heap-based array.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix&lt;T, column_major, unbounded_array&lt;T&gt;&gt; m(size1, size2)</cite></td>
+<td>a dense matrix, orientation is column major, storage is provided by a heap-based array.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>matrix&lt;T, row_major, bounded_array&lt;T, N1 * N2&gt;&gt; m(size1, size2)</cite></td>
+<td>a dense matrix, orientation is row major, storage is provided by a stack-based array.</td>
+</tr>
+<tr class="row-even"><td><cite>matrix&lt;T, column_major, bounded_array&lt;T, N1 * N2&gt;&gt; m(size1, size2)</cite></td>
+<td>a dense matrix, orientation is column major, storage is provided by a stack-based array.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>triangular_matrix&lt;T, row_major, F, A&gt; m(size)</cite></td>
+<td>a packed triangular matrix, orientation is row major.</td>
+</tr>
+<tr class="row-even"><td><cite>triangular_matrix&lt;T, column_major, F, A&gt; m(size)</cite></td>
+<td>a packed triangular matrix, orientation is column major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>banded_matrix&lt;T, row_major, A&gt; m(size1, size2, lower, upper)</cite></td>
+<td>a packed banded matrix, orientation is row major.</td>
+</tr>
+<tr class="row-even"><td><cite>banded_matrix&lt;T, column_major, A&gt; m(size1, size2, lower, upper)</cite></td>
+<td>a packed banded matrix, orientation is column major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>symmetric_matrix&lt;T, row_major, F, A&gt; m(size)</cite></td>
+<td>a packed symmetric matrix, orientation is row major.</td>
+</tr>
+<tr class="row-even"><td><cite>symmetric_matrix&lt;T, column_major, F, A&gt; m(size)</cite></td>
+<td>a packed symmetric matrix, orientation is column major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>hermitian_matrix&lt;T, row_major, F, A&gt; m(size)</cite></td>
+<td>a packed hermitian matrix, orientation is row major.</td>
+</tr>
+<tr class="row-even"><td><cite>hermitian_matrix&lt;T, column_major, F, A&gt; m(size)</cite></td>
+<td>a packed hermitian matrix, orientation is column major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>mapped_matrix&lt;T, row_major, std::map&lt;std::size_t, T&gt;&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a sparse matrix, orientation is row major, storage is provided by a standard map.</td>
+</tr>
+<tr class="row-even"><td><cite>mapped_matrix&lt;T, column_major, std::map&lt;std::size_t, T&gt;&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a sparse matrix, orientation is column major, storage is provided by a standard map.</td>
+</tr>
+<tr class="row-odd"><td><cite>mapped_matrix&lt;T, row_major, map_array&lt;std::size_t, T&gt;&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a sparse matrix, orientation is row major, storage is provided by a map array.</td>
+</tr>
+<tr class="row-even"><td><cite>mapped_matrix&lt;T, column_major, map_array&lt;std::size_t, T&gt;&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a sparse matrix, orientation is column major, storage is provided by a map array.</td>
+</tr>
+<tr class="row-odd"><td><cite>compressed_matrix&lt;T, row_major&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a compressed matrix, orientation is row major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-even"><td><cite>compressed_matrix&lt;T, column_major&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a compressed matrix, orientation is column major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-odd"><td><cite>coordinate_matrix&lt;T, row_major&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a coordinate matrix, orientation is row major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+<tr class="row-even"><td><cite>coordinate_matrix&lt;T, column_major&gt; m(size1, size2, non_zeros)</cite></td>
+<td>a coordinate matrix, orientation is column major.
+The storage layout usually is BLAS compliant.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Overview" href="overview.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Overview of Matrix and Vector Operations" href="operations.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>

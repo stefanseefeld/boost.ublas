@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Overview - Boost.GIL 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    './',
+          VERSION:     '1.0',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="next" title="Overview of Matrix- and Vector-Types" href="types.html" />
+    <link rel="prev" title="Boost Basic Linear Algebra Library" href="index.html" /> 
+  </head>
+  <body>
+    <div class="header">
+    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+    "header">
+      <tr>
+        <td valign="top" width="300">
+          <h3><a href="index.html"><img 
+          alt="C++ Boost" src="_static/ublas.png" border="0"></a></h3>
+        </td>
+
+        <td >
+          <h1 align="center"><a href="index.html"></a></h1>
+        </td>
+	<td>
+      <div id="searchbox" style="display: none">
+        <form class="search" action="search.html" method="get">
+          <input type="text" name="q" size="18" />
+          <input type="submit" value="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+      </div>
+      <script type="text/javascript">$('#searchbox').show(0);</script>
+	</td>
+      </tr>
+    </table>
+    </div>
+    <hr/>
+    <div class="content">
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Boost Basic Linear Algebra Library" href="index.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Overview of Matrix- and Vector-Types" href="types.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+      
+  <div class="section" id="overview">
+<h1>Overview</h1>
+<div class="section" id="rationale">
+<h2>Rationale</h2>
+<p>It would be nice if every kind of numeric software could be written in C++ without loss of efficiency, but unless
+something can be found that achieves this without compromising the C++ type system it may be preferable to rely
+on Fortran, assembler or architecture-specific extensions (Bjarne Stroustrup).</p>
+<p>This C++ library is directed towards scientific computing on the level of basic linear algebra constructions with
+matrices and vectors and their corresponding abstract operations. The primary design goals were:</p>
+<ul class="simple">
+<li>mathematical notation</li>
+<li>efficiency</li>
+<li>functionality</li>
+<li>compatibility</li>
+</ul>
+<p>Another intention was to evaluate, if the abstraction penalty resulting from the use of such matrix and vector
+classes is acceptable.</p>
+</div>
+<div class="section" id="resources">
+<h2>Resources</h2>
+<p>The development of this library was guided by a couple of similar efforts:</p>
+<ul class="simple">
+<li>BLAS by Jack Dongarra et al.</li>
+<li>Blitz++ by Todd Veldhuizen</li>
+<li>POOMA by Scott Haney et al.</li>
+<li>MTL by Jeremy Siek et al.</li>
+</ul>
+<p>BLAS seems to be the most widely used library for basic linear algebra constructions, so it could be called a de-
+facto standard. Its interface is procedural, the individual functions are somewhat abstracted from simple linear
+algebra operations. Due to the fact that is has been implemented using Fortran and its optimizations, it also
+seems to be one of the fastest libraries available. As we decided to design and implement our library in an
+object-oriented way, the technical approaches are distinct. However anyone should be able to express BLAS
+abstractions in terms of our library operators and to compare the efficiency of the implementations.</p>
+<p>Blitz++ is an impressive library implemented in C++. Its main design seems to be oriented towards multidimensional
+arrays and their associated operators including tensors. The author of Blitz++ states, that the library achieves
+performance on par or better than corresponding Fortran code due to his implementation technique using expression
+templates and template metaprograms. However we see some reasons, to develop an own design and implementation
+approach. We do not know whether anybody tries to implement traditional linear algebra and other numerical
+algorithms using Blitz++. We also presume that even today Blitz++ needs the most advanced C++ compiler technology
+due to its implementation idioms. On the other hand, Blitz++ convinced us, that the use of expression templates
+is mandatory to reduce the abstraction penalty to an acceptable limit.</p>
+<p>POOMA’s design goals seem to parallel Blitz++’s in many parts . It extends Blitz++’s concepts with classes from
+the domains of partial differential equations and theoretical physics. The implementation supports even parallel
+architectures.</p>
+<p>MTL is another approach supporting basic linear algebra operations in C++. Its design mainly seems to be influenced
+by BLAS and the C++ Standard Template Library. We share the insight that a linear algebra library has to provide
+functionality comparable to BLAS. On the other hand we think, that the concepts of the C++ standard library have
+not yet been proven to support numerical computations as needed. As another difference MTL currently does not seem
+to use expression templates. This may result in one of two consequences: a possible loss of expressiveness or a
+possible loss of performance.</p>
+</div>
+<div class="section" id="concepts">
+<h2>Concepts</h2>
+<div class="section" id="mathematical-notation">
+<h3>Mathematical Notation</h3>
+<p>The usage of mathematical notation may ease the development of scientific algorithms. So a C++ library implementing
+basic linear algebra concepts carefully should overload selected C++ operators on matrix and vector classes.</p>
+<p>We decided to use operator overloading for the following primitives:</p>
+<p>Indexing of vectors and matrices:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">::</span><span class="k">operator</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">j</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Assignment of vectors and matrices:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">-=</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">*=</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">-=</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">*=</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Unary operations on vectors and matrices:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">op</span><span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Binary operations on vectors and matrices:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Multiplication of vectors and matrices with a scalar:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We decided to use functions for the following other primitives:</p>
+<p>Left multiplication of vectors with a matrix:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">vector_type</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="nf">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Right multiplication of vectors with a matrix:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">vector_type</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="nf">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Multiplication of matrices:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">matrix_type</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="nf">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Inner product of vectors:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">scalar_expression</span> <span class="nf">inner_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Outer product of vectors:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="nf">outer_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Transpose of a matrix:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="nf">trans</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="efficiency">
+<h2>Efficiency</h2>
+<p>To achieve the goal of efficiency for numerical computing, one has to overcome two difficulties in formulating
+abstractions with C++, namely temporaries and virtual function calls. Expression templates solve these problems,
+but tend to slow down compilation times.</p>
+<div class="section" id="eliminating-temporaries">
+<h3>Eliminating Temporaries</h3>
+<p>Abstract formulas on vectors and matrices normally compose a couple of unary and binary operations. The
+conventional way of evaluating such a formula is first to evaluate every leaf operation of a composition into a
+temporary and next to evaluate the composite resulting in another temporary. This method is expensive in terms of
+time especially for small and space especially for large vectors and matrices. The approach to solve this problem
+is to use lazy evaluation as known from modern functional programming languages. The principle of this approach is
+to evaluate a complex expression element wise and to assign it directly to the target.</p>
+<p>Two interesting and dangerous facts result:</p>
+</div>
+<div class="section" id="aliases">
+<h3>Aliases</h3>
+<p>One may get serious side effects using element wise evaluation on vectors or matrices. Consider the matrix vector
+product x = A x. Evaluation of A1x and assignment to x1 changes the right hand side, so that the evaluation of A2x
+returns a wrong result. In this case there are aliases of the elements xn on both the left and right hand side of
+the assignment.</p>
+<p>Our solution for this problem is to evaluate the right hand side of an assignment into a temporary and then to
+assign this temporary to the left hand side. To allow further optimizations, we provide a corresponding member
+function for every assignment operator and also a noalias syntax. By using this syntax a programmer can confirm,
+that the left and right hand sides of an assignment are independent, so that element wise evaluation and direct
+assignment to the target is safe.</p>
+</div>
+<div class="section" id="complexity">
+<h3>Complexity</h3>
+<p>The computational complexity may be unexpectedly large under certain cirumstances. Consider the chained matrix
+vector product A (B x). Conventional evaluation of A (B x) is quadratic. Deferred evaluation of B xi is linear.
+As every element B xi is needed linearly depending of the size, a completely deferred evaluation of the chained
+matrix vector product A (B x) is cubic. In such cases one needs to reintroduce temporaries in the expression.</p>
+</div>
+<div class="section" id="eliminating-virtual-function-calls">
+<h3>Eliminating Virtual Function Calls</h3>
+<p>Lazy expression evaluation normally leads to the definition of a class hierarchy of terms. This results in the
+usage of dynamic polymorphism to access single elements of vectors and matrices, which is also known to be
+expensive in terms of time. A solution was found a couple of years ago independently by David Vandervoorde and
+Todd Veldhuizen and is commonly called expression templates. Expression templates contain lazy evaluation and
+replace dynamic polymorphism with static, i.e. compile time polymorphism. Expression templates heavily depend on
+the famous Barton-Nackman trick, also coined ‘curiously defined recursive templates’ by Jim Coplien.</p>
+<p>Expression templates form the base of our implementation.</p>
+</div>
+<div class="section" id="compilation-times">
+<h3>Compilation times</h3>
+<p>It is also a well known fact, that expression templates challenge currently available compilers. We were able to
+significantly reduce the amount of needed expression templates using the Barton-Nackman trick consequently.</p>
+<p>We also decided to support a dual conventional implementation (i.e. not using expression templates) with extensive
+bounds and type checking of vector and matrix operations to support the development cycle. Switching from debug
+mode to release mode is controlled by the NDEBUG preprocessor symbol of &lt;cassert&gt;.</p>
+</div>
+</div>
+<div class="section" id="functionality">
+<h2>Functionality</h2>
+<p>Every C++ library supporting linear algebra will be measured against the long-standing Fortran package BLAS. We
+now describe how BLAS calls may be mapped onto our classes.</p>
+<p>The page Overview of Matrix and Vector Operations gives a short summary of the most used operations on vectors and
+matrices.</p>
+<div class="section" id="blas-level-1">
+<h3>Blas Level 1</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="27%" />
+<col width="31%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">BLAS Call</th>
+<th class="head">Mapped Library Expression</th>
+<th class="head">Mathematical Description</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>sasum OR dasum</td>
+<td><cite>norm_1(x)</cite></td>
+<td><span class="math notranslate nohighlight">\(\sum |x_i|\)</span></td>
+<td>Computes the l1 (sum) norm of
+a real vector.</td>
+</tr>
+<tr class="row-odd"><td>scasum OR dzasum</td>
+<td><cite>real(sum(v)) + imag(sum(v))</cite></td>
+<td><span class="math notranslate nohighlight">\(\sum Re(x_i) + \sum Im(x_i)\)</span></td>
+<td>Computes the sum of elements
+of a complex vector.</td>
+</tr>
+<tr class="row-even"><td>_nrm2</td>
+<td><cite>norm_2(x)</cite></td>
+<td><span class="math notranslate nohighlight">\(\sqrt (\sum x_i^2 )\)</span></td>
+<td>Computes the l2 (euclidean)
+norm of a vector.</td>
+</tr>
+<tr class="row-odd"><td>i_amax</td>
+<td><div class="first last line-block">
+<div class="line"><cite>norm_inf(x)</cite></div>
+<div class="line"><cite>index_norm_inf(x)</cite></div>
+</div>
+</td>
+<td><span class="math notranslate nohighlight">\(max |x_i|\)</span></td>
+<td>Computes the linf (maximum)
+norm of a vector.
+BLAS computes the index of the
+first element having this
+value.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_dot</div>
+<div class="line">_dotu</div>
+<div class="line">_dotc</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>inner_prod(x, y)</cite></div>
+<div class="line"><cite>inner_prod(conj(x), y)</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(x^T y\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x^H y\)</span></div>
+</div>
+</td>
+<td>Computes the inner product of
+two vectors.</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">dsdot</div>
+<div class="line">sdsdot</div>
+</div>
+</td>
+<td><cite>a + prec_inner_prod(x, y)</cite></td>
+<td><span class="math notranslate nohighlight">\(a + x^T y\)</span></td>
+<td>Computes the inner product in
+double precision.</td>
+</tr>
+<tr class="row-even"><td>_copy</td>
+<td><div class="first last line-block">
+<div class="line"><cite>x = y</cite></div>
+<div class="line"><cite>y.assign(x)</cite></div>
+</div>
+</td>
+<td><span class="math notranslate nohighlight">\(x \leftarrow y\)</span></td>
+<td>Copies one vector to another.</td>
+</tr>
+<tr class="row-odd"><td>_swap</td>
+<td><cite>swap(x, y)</cite></td>
+<td><span class="math notranslate nohighlight">\(x \leftrightarrow y\)</span></td>
+<td>Swaps two vectors.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_scal</div>
+<div class="line">csscal</div>
+<div class="line">zdscal</div>
+</div>
+</td>
+<td><cite>x *= a</cite></td>
+<td><span class="math notranslate nohighlight">\(x \leftarrow a x\)</span></td>
+<td>Scales a vector.</td>
+</tr>
+<tr class="row-odd"><td>_axpy</td>
+<td><cite>y += a * x</cite></td>
+<td><span class="math notranslate nohighlight">\(y \leftarrow a x + y\)</span></td>
+<td>Adds a scaled vector.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_rot</div>
+<div class="line">zdrot</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>t.assign(a * x + b * y)</cite></div>
+</div>
+</td>
+<td><span class="math notranslate nohighlight">\((x,y) \leftarrow
+(a x + b y, -b x + a y)\)</span></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">_rotg</div>
+<div class="line">_rotmg</div>
+</div>
+</td>
+<td>&#160;</td>
+<td><span class="math notranslate nohighlight">\((a,b) \leftarrow
+(a / \sqrt(a2 + b2),
+b / \sqrt(a2 + b2))\)</span> or
+<span class="math notranslate nohighlight">\((1, 0) \leftarrow (0, 0)\)</span></td>
+<td>Constructs a plane rotation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="blas-level-2">
+<h3>Blas Level 2</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="45%" />
+<col width="28%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">BLAS Call</th>
+<th class="head">Mapped Library Expression</th>
+<th class="head">Mathematical Description</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>_t_mv</td>
+<td><div class="first last line-block">
+<div class="line"><cite>x = prod(A, x)</cite></div>
+<div class="line"><cite>x = prod(trans(A), x)</cite></div>
+<div class="line"><cite>x = prod(herm(A), x)</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^T x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^H x\)</span></div>
+</div>
+</td>
+<td>Computes the product of a
+matrix with a vector.</td>
+</tr>
+<tr class="row-odd"><td>_t_sv</td>
+<td><div class="first last line-block">
+<div class="line"><cite>y = solve(A, x, tag)</cite></div>
+<div class="line"><cite>inplace_solve(A, x, tag)</cite></div>
+<div class="line"><cite>y = solve(trans(A), x, tag)</cite></div>
+<div class="line"><cite>inplace_solve(trans(A), x, tag)</cite></div>
+<div class="line"><cite>y = solve(herm(A), x, tag)</cite></div>
+<div class="line"><cite>inplace_solve(herm(A), x, tag)</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^-1 x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^-1 x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^T-1 x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^T-1 x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^H-1 x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^H-1 x\)</span></div>
+</div>
+</td>
+<td>Solves a system of linear
+equations with triangular
+form, i.e. A is triangular
+.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_g_mv</div>
+<div class="line">_s_mv</div>
+<div class="line">_h_mv</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>y = a * prod(A, x) + b * y</cite></div>
+<div class="line"><cite>y = a * prod(trans(A), x) + b*y</cite></div>
+<div class="line"><cite>y = a * prod(herm(A), x) + b * y</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow a A x + b y\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow a A^T x + b y\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow a A^H x + b y\)</span></div>
+</div>
+</td>
+<td>Adds the scaled product of
+a matrix with a vector.</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">_g_r</div>
+<div class="line">_g_ru</div>
+<div class="line">_g_rc</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>A += a * outer_prod(x, y)</cite></div>
+<div class="line"><cite>A += a * outer_prod(x, conj(y))</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(A \leftarrow a x y^T + A\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(A \leftarrow a x y^H + A\)</span></div>
+</div>
+</td>
+<td>Performs a rank 1 update.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_s_r</div>
+<div class="line">_h_r</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>A += a * outer_prod(x, x)</cite></div>
+<div class="line"><cite>A += a * outer_prod(x, conj(x))</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(A \leftarrow a x x^T + A\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(A \leftarrow a x x^H + A\)</span></div>
+</div>
+</td>
+<td><dl class="first last docutils">
+<dt>Performs a symmetric or</dt>
+<dd>hermitian rank 1 update.</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">_s_r2</div>
+<div class="line">_h_r2</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>A += a * outer_prod(x, y) + a * outer_prod(y, x))</cite></div>
+<div class="line"><cite>A += a * outer_prod(x, conj(y)) + conj(a) * outer_prod(y, conj(x)))</cite></div>
+</div>
+</td>
+<td><span class="math notranslate nohighlight">\(A \leftarrow a x y^T + a y xT + A\)</span> or
+<span class="math notranslate nohighlight">\(A \leftarrow a x y^H + a- y x^H + A\)</span></td>
+<td>Performs a symmetric
+or hermitian rank 2 update</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="blas-level-3">
+<h3>Blas Level 3</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="43%" />
+<col width="30%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">BLAS Call</th>
+<th class="head">Mapped Library Expression</th>
+<th class="head">Mathematical Description</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>_t_mm</td>
+<td><div class="first last line-block">
+<div class="line"><cite>B = a * prod(A, B)</cite></div>
+<div class="line"><cite>B = a * prod(trans(A), B)</cite></div>
+<div class="line"><cite>B = a * prod(A, trans(B))</cite></div>
+<div class="line"><cite>B = a * prod(trans(A), trans(B))</cite></div>
+<div class="line"><cite>B = a * prod(herm(A), B)</cite></div>
+<div class="line"><cite>B = a * prod(A, herm(B))</cite></div>
+<div class="line"><cite>B = a * prod(herm(A), trans(B))</cite></div>
+<div class="line"><cite>B = a * prod(trans(A), herm(B))</cite></div>
+<div class="line"><cite>B = a * prod(herm(A), herm(B))</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow a op(A) op(B)\)</span></div>
+<div class="line">with</div>
+<div class="line"><span class="math notranslate nohighlight">\(op(X) = X\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(op(X) = X^T\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(op(X) = X^H\)</span></div>
+</div>
+</td>
+<td>Computes the scaled
+product of two matrices.</td>
+</tr>
+<tr class="row-odd"><td>_t_sm</td>
+<td><div class="first last line-block">
+<div class="line"><cite>C = solve(A, B, tag)</cite></div>
+<div class="line"><cite>inplace_solve(A, B, tag)</cite></div>
+<div class="line"><cite>C = solve (trans (A), B, tag)</cite></div>
+<div class="line"><cite>inplace_solve (trans (A), B, tag)</cite></div>
+<div class="line"><cite>C = solve (herm(A), B, tag)</cite></div>
+<div class="line"><cite>inplace_solve(herm(A), B, tag)</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^-1 B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^-1 B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^T-1 B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^-1 B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^H-1 B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^H-1 B\)</span></div>
+</div>
+</td>
+<td>Solves a system of
+linear equations with
+triangular form, i.e.
+A is triangular.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_g_mm</div>
+<div class="line">_s_mm</div>
+<div class="line">_h_mm</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>C = a * prod(A, B) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(trans(A), B) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(A, trans(B)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(trans(A), trans(B)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(herm(A), B) + b * C</cite></div>
+<div class="line"><cite>C = a * prod (A, herm(B)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(herm(A), trans(B)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(trans(A), herm(B)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(herm(A), herm(B)) + b * C</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow a op(A) op(B) + b C\)</span></div>
+<div class="line">with</div>
+<div class="line"><span class="math notranslate nohighlight">\(op (X) = X\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(op (X) = X^T\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(op (X) = X^H\)</span></div>
+</div>
+</td>
+<td>Adds the scaled product of
+two matrices.</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">_s_rk</div>
+<div class="line">_h_rk</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>B = a * prod(A, trans(A)) + b * B</cite></div>
+<div class="line"><cite>B = a * prod(trans(A), A) + b * B</cite></div>
+<div class="line"><cite>B = a * prod(A, herm(A)) + b * B</cite></div>
+<div class="line"><cite>B = a * prod(herm(A), A) + b * B</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow a A A^T + b B\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow a A^T A + b B\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow a A A^H + b B\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow a A^H A + b B\)</span></div>
+</div>
+</td>
+<td>Performs a symmetric or
+hermitian rank k update.</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">_s_r2k</div>
+<div class="line">_h_r2k</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><cite>C = a * prod(A, trans(B)) + a * prod(B, trans(A)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(trans(A), B) + a * prod(trans(B), A) + b * C</cite></div>
+<div class="line"><cite>C = a * prod (A, herm (B)) + conj(a) *prod(B, herm(A)) + b * C</cite></div>
+<div class="line"><cite>C = a * prod(herm (A), B) + conj(a) * prod(herm(B), A) + b * C</cite></div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow a A B^T + a B A^T + b C\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow a A^T B + a B^T A + b C\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow a A B^H + a-B A^H + b C\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow a A^H B + a-B^H A + b C\)</span></div>
+</div>
+</td>
+<td>Performs a symmetric or
+hermitian rank 2 k update.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="storage-layout">
+<h2>Storage Layout</h2>
+<p>uBLAS supports many different storage layouts. The full details can be found at the Overview of Types. Most types
+like vector&lt;double&gt; and matrix&lt;double&gt; are by default compatible to C arrays, but can also be configured to
+contain FORTAN compatible data.</p>
+</div>
+<div class="section" id="compatibility">
+<h2>Compatibility</h2>
+<p>For compatibility reasons we provide array like indexing for vectors and matrices. For some types (hermitian,
+sparse etc) this can be expensive for matrices due to the needed temporary proxy objects.</p>
+<p>uBLAS uses STL compatible allocators for the allocation of the storage required for it’s containers.</p>
+</div>
+</div>
+
+
+    <div class="navbar" style="text-align:right;">
+      
+      
+      <a class="prev" title="Boost Basic Linear Algebra Library" href="index.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="next" title="Overview of Matrix- and Vector-Types" href="types.html"><img src="_static/next.png" alt="next"/></a>
+      
+    </div>
+    </div>
+  </body>
+</html>
