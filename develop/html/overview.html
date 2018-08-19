@@ -66,11 +66,22 @@
       
   <div class="section" id="overview">
 <h1>Overview</h1>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Configuration</a></li>
+</ul>
+</div>
 <div class="section" id="rationale">
 <h2>Rationale</h2>
-<p>It would be nice if every kind of numeric software could be written in C++ without loss of efficiency, but unless
+<blockquote class="epigraph">
+<div><p>It would be nice if every kind of numeric software could be written in C++ without loss of efficiency, but unless
 something can be found that achieves this without compromising the C++ type system it may be preferable to rely
-on Fortran, assembler or architecture-specific extensions (Bjarne Stroustrup).</p>
+on Fortran, assembler or architecture-specific extensions</p>
+<p class="attribution">&mdash;Bjarne Stroustrup</p>
+</div></blockquote>
 <p>This C++ library is directed towards scientific computing on the level of basic linear algebra constructions with
 matrices and vectors and their corresponding abstract operations. The primary design goals were:</p>
 <ul class="simple">
@@ -128,61 +139,61 @@ basic linear algebra concepts carefully should overload selected C++ operators o
 </pre></div>
 </div>
 <p>Assignment of vectors and matrices:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">-=</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">*=</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">-=</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">*=</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">=</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">-=</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">::</span><span class="k">operator</span> <span class="o">*=</span> <span class="p">(</span><span class="n">scalar_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">=</span> <span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">-=</span> <span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix</span><span class="o">::</span><span class="k">operator</span> <span class="o">*=</span> <span class="p">(</span><span class="n">scalar_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Unary operations on vectors and matrices:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">op</span><span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">op</span><span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Binary operations on vectors and matrices:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Multiplication of vectors and matrices with a scalar:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">scalar_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="n">scalar_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">scalar_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="n">scalar_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">scalar_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>We decided to use functions for the following other primitives:</p>
 <p>Left multiplication of vectors with a matrix:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">vector_type</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector_expression</span> <span class="nf">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">vector_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="nf">prod</span><span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Right multiplication of vectors with a matrix:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">vector_type</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">vector_expression</span> <span class="nf">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">vector_type</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">vector_expression</span> <span class="nf">prod</span><span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Multiplication of matrices:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">matrix_type</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
-<span class="n">matrix_expression</span> <span class="nf">prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">matrix_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">matrix_expression</span> <span class="nf">prod</span><span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Inner product of vectors:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">scalar_expression</span> <span class="nf">inner_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">scalar_expression</span> <span class="nf">inner_prod</span><span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Outer product of vectors:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="nf">outer_prod</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="nf">outer_prod</span><span class="p">(</span><span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">vector_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Transpose of a matrix:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="nf">trans</span> <span class="p">(</span><span class="k">const</span> <span class="n">matrix_expression</span> <span class="o">&amp;</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_expression</span> <span class="nf">trans</span><span class="p">(</span><span class="n">matrix_expression</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -252,8 +263,7 @@ mode to release mode is controlled by the NDEBUG preprocessor symbol of &lt;cass
 <h2>Functionality</h2>
 <p>Every C++ library supporting linear algebra will be measured against the long-standing Fortran package BLAS. We
 now describe how BLAS calls may be mapped onto our classes.</p>
-<p>The page Overview of Matrix and Vector Operations gives a short summary of the most used operations on vectors and
-matrices.</p>
+<p>The page <a class="reference internal" href="operations.html"><span class="doc">Overview of Matrix and Vector Operations</span></a> gives a short summary of the most used operations on vectors and matrices.</p>
 <div class="section" id="blas-level-1">
 <h3>Blas Level 1</h3>
 <table border="1" class="docutils">
@@ -380,8 +390,8 @@ double precision.</td>
 </td>
 <td>&#160;</td>
 <td><span class="math notranslate nohighlight">\((a,b) \leftarrow
-(a / \sqrt(a2 + b2),
-b / \sqrt(a2 + b2))\)</span> or
+(a / \sqrt(a^2 + b^2),
+b / \sqrt(a^2 + b^2))\)</span> or
 <span class="math notranslate nohighlight">\((1, 0) \leftarrow (0, 0)\)</span></td>
 <td>Constructs a plane rotation.</td>
 </tr>
@@ -432,12 +442,12 @@ matrix with a vector.</td>
 </div>
 </td>
 <td><div class="first last line-block">
-<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^-1 x\)</span></div>
-<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^-1 x\)</span></div>
-<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^T-1 x\)</span></div>
-<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^T-1 x\)</span></div>
-<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^H-1 x\)</span></div>
-<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^H-1 x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow A^{-1} x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow A^{-1} x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow {A^T}^{-1} x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow {A^T}^{-1} x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y \leftarrow {A^H}^{-1} x\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(x \leftarrow {A^H}^{-1} x\)</span></div>
 </div>
 </td>
 <td>Solves a system of linear
@@ -499,11 +509,8 @@ a matrix with a vector.</td>
 <div class="line"><span class="math notranslate nohighlight">\(A \leftarrow a x x^H + A\)</span></div>
 </div>
 </td>
-<td><dl class="first last docutils">
-<dt>Performs a symmetric or</dt>
-<dd>hermitian rank 1 update.</dd>
-</dl>
-</td>
+<td>Performs a symmetric or
+hermitian rank 1 update.</td>
 </tr>
 <tr class="row-odd"><td><div class="first last line-block">
 <div class="line">_s_r2</div>
@@ -575,12 +582,12 @@ product of two matrices.</td>
 </div>
 </td>
 <td><div class="first last line-block">
-<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^-1 B\)</span> or</div>
-<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^-1 B\)</span> or</div>
-<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^T-1 B\)</span> or</div>
-<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^-1 B\)</span> or</div>
-<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^H-1 B\)</span> or</div>
-<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^H-1 B\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow A^{-1} B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^{-1} B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow {A^T}^{-1} B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow A^{-1} B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(C \leftarrow {A^H}^{-1} B\)</span> or</div>
+<div class="line"><span class="math notranslate nohighlight">\(B \leftarrow {A^H}^{-1} B\)</span></div>
 </div>
 </td>
 <td>Solves a system of
@@ -667,15 +674,15 @@ hermitian rank 2 k update.</td>
 </div>
 <div class="section" id="storage-layout">
 <h2>Storage Layout</h2>
-<p>uBLAS supports many different storage layouts. The full details can be found at the Overview of Types. Most types
-like vector&lt;double&gt; and matrix&lt;double&gt; are by default compatible to C arrays, but can also be configured to
-contain FORTAN compatible data.</p>
+<p>uBLAS supports many different storage layouts. The full details can be found in <a class="reference internal" href="types.html"><span class="doc">Overview of Matrix- and Vector-Types</span></a>. Most types
+like <cite>vector&lt;double&gt;</cite> and <cite>matrix&lt;double&gt;</cite> are by default compatible to C arrays, but can also be configured to
+contain FORTRAN-compatible data.</p>
 </div>
 <div class="section" id="compatibility">
 <h2>Compatibility</h2>
-<p>For compatibility reasons we provide array like indexing for vectors and matrices. For some types (hermitian,
-sparse etc) this can be expensive for matrices due to the needed temporary proxy objects.</p>
-<p>uBLAS uses STL compatible allocators for the allocation of the storage required for it’s containers.</p>
+<p>For compatibility reasons we provide array-like indexing for vectors and matrices. For some types (hermitian,
+sparse, etc.) this can be expensive for matrices due to the needed temporary proxy objects.</p>
+<p>uBLAS uses STL-compatible allocators for the allocation of the storage required for its containers.</p>
 </div>
 </div>
 

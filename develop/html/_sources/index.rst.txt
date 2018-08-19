@@ -17,12 +17,9 @@ The glue between containers, views and expression templated operations is a most
 interface.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    overview
-   types
-   operations
-   options
    vector
    vector_sparse
    vector_proxy

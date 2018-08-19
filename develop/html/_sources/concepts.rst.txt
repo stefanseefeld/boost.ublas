@@ -4,6 +4,8 @@ Concepts
 Container Concepts
 ------------------
 
+.. _vector-concept:
+
 Vector
 ~~~~~~
 
@@ -358,7 +360,9 @@ Models
 ++++++
 * `vector_scalar_unary`
 * `vector_scalar_binary`
-  
+
+.. _vector-expression-concept:
+
 Vector Expression
 ~~~~~~~~~~~~~~~~~
 Description

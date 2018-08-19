@@ -1,16 +1,20 @@
-Vector
-======
+Vectors
+=======
 
 .. contents :: Table of Contents
+   :depth: 2
+
+Vector
+------
 
 Description
------------
+~~~~~~~~~~~
 
 The templated class `vector<T, A>` is the base container adaptor for dense vectors. For a n-dimensional vector
 and `0 <= i < n` every element `vi` is mapped to the i-th element of the container.
 
 Example
--------
+~~~~~~~
 
 :: 
 
@@ -27,35 +31,35 @@ Example
     }
 
 Definition
-----------
+~~~~~~~~~~
 
 Defined in the header :file:`vector.hpp`.
 
 Template parameters
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 :T: 	The type of object stored in the vector. 	
 :A: 	The type of the Storage array. Defaults to `unbounded_array<T>`
 
 Model of
---------
+~~~~~~~~
 
 * Vector
 * RandomAccessContainer
 
 
 Type requirements
------------------
+~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector and RandomAccessContainer.
 
 Public base classes
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 `vector_container<vector<T, A> >`
 
 
 Members
--------
+~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -64,40 +68,40 @@ Members
      - Where defined
      - Description
    * - `value_type`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `reference`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `const_reference`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `size_type`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `difference_type`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `const_iterator`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `iterator`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `const_reverse_iterator`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `reverse_iterator`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      -
    * - `array_type`
-     - `Vector`
+     - :ref:`vector-concept`
      -
    * - `vector()`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Allocates an uninitialized vector that holds zero elements.
    * - `vector(size_type size)`
-     - `Vector`
+     - :ref:`vector-concept`
      - Allocates an uninitialized vector that holds size elements.
    * - `vector(const vector &v)`
      -
@@ -106,10 +110,10 @@ Members
      -
      - The extended copy constructor.
    * - `void resize(size_type size, bool preserve = true)`
-     - `Vector`
+     - :ref:`vector-concept`
      - Reallocates a vector to hold size elements. The existing elements of the vector are preseved when specified.
    * - `size_type size() const`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns the size of the vector.
    * - `size_type max_size() const`
      - `RandomAccessContainer`
@@ -118,89 +122,89 @@ Members
      - `RandomAccessContainer`
      - Equivilent to `size () == 0`.
    * - `const array_type &data() const`
-     - `Vector`
+     - :ref:`vector-concept`
      -
    * - `array_type &data()`
-     - `Vector`
+     - :ref:`vector-concept`
      -
    * - `const_reference operator() (size_type i) const`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a const reference of the i -th element.
    * - `reference operator () (size_type i)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a reference of the i-th element.
    * - `const_reference operator [] (size_type i) const`
-     - `Vector`
+     - :ref:`vector-concept`
      - Returns a const reference of the i -th element.
    * - `reference operator [] (size_type i)`
-     - `Vector`
+     - :ref:`vector-concept`
      - Returns a reference of the i-th element.
    * - `vector &operator = (const vector &v)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - The assignment operator.
    * - `vector &assign_temporary (vector &v)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Assigns a temporary. May change the vector `v`.
    * - `template<class AE> vector &operator = (const vector_expression<AE> &ae)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - The extended assignment operator.
    * - `template<class AE> vector &assign (const vector_expression<AE> &ae)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Assigns a vector expression to the vector. Left and right hand side of the assignment should be independent.
    * - `template<class AE> vector &operator += (const vector_expression<AE> &ae)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - A computed assignment operator. Adds the vector expression to the vector.
    * - `template<class AE> vector &plus_assign (const vector_expression<AE> &ae)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Adds a vector expression to the vector. Left and right hand side of the assignment should be independent.
    * - `template<class AE> vector &operator -= (const vector_expression<AE> &ae)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - A computed assignment operator. Subtracts the vector expression from the vector.
    * - `template<class AE> vector &minus_assign (const vector_expression<AE> &ae)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Subtracts a vector expression from the vector. Left and right hand side of the assignment should be
        independent.
    * - `template<class AT> vector &operator *= (const AT &at)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - A computed assignment operator. Multiplies the vector with a scalar.
    * - `template<class AT> vector &operator /= (const AT &at)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - A computed assignment operator. Divides the vector through a scalar.
    * - `void swap (vector &v)`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Swaps the contents of the vectors.
    * - `void insert_element (size_type i, const_reference t)`
-     - `Vector`
+     - :ref:`vector-concept`
      - Inserts the value t at the i-th element.
    * - `void erase_element (size_type i)`
-     - `Vector`
+     - :ref:`vector-concept`
      - Erases the value at the i-th element.
    * - `void clear ()`
-     - `Vector`
+     - :ref:`vector-concept`
      - Clears the vector.
    * - `const_iterator begin () const`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a const_iterator pointing to the beginning of the vector.
    * - `const_iterator end () const`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a const_iterator pointing to the end of the vector.
    * - `iterator begin ()`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a iterator pointing to the beginning of the vector.
    * - `iterator end ()`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a iterator pointing to the end of the vector.
    * - `const_reverse_iterator rbegin () const`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a const_reverse_iterator pointing to the beginning of the reversed vector.
    * - `const_reverse_iterator rend () const`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a const_reverse_iterator pointing to the end of the reversed vector.
    * - `reverse_iterator rbegin ()`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a reverse_iterator pointing to the beginning of the reversed vector.
    * - `reverse_iterator rend ()`
-     - `VectorExpression`
+     - :ref:`vector-expression-concept`
      - Returns a reverse_iterator pointing to the end of the reversed vector.
 
 Notes:
@@ -211,12 +215,12 @@ Unit Vector
 -----------
 
 Description
------------
+~~~~~~~~~~~
 
 The templated class `unit_vector<T, ALLOC>` represents canonical unit vectors. For the k-th n-dimensional canonical unit vector and `0 <= i < n` holds `uki = 0`, `if i <> k`, and `uki = 1`.
 
 Example
--------
+~~~~~~~
 
 ::
 
@@ -234,32 +238,32 @@ Example
    }
 
 Definition
-----------
+~~~~~~~~~~
 
 Defined in the header :file:`vector.hpp`.
 
 Template parameters
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 :T: 	The type of object stored in the vector. Defaults to `int`
 :ALLOC: An STL Allocator for size_type and difference_type. Defaults to `std::allocator`
 
 Model of
---------
+~~~~~~~~
 Vector .
 
 Type requirements
------------------
+~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector .
 
 Public base classes
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 `vector_container<unit_vector<T> >`
 
 
 Members
--------
+~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -301,12 +305,12 @@ Members
 Zero Vector
 -----------
 Description
------------
+~~~~~~~~~~~
 
 The templated class `zero_vector<T, ALLOC>` represents zero vectors. For a n-dimensional zero vector and `0 <= i < n` holds `zi = 0`.
 
 Example
--------
+~~~~~~~
 
 ::
 
@@ -321,18 +325,18 @@ Example
    }
 
 Definition
-----------
+~~~~~~~~~~
 
 Defined in the header :file:`vector.hpp`.
 
 Template parameters
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 :T: The type of object stored in the vector. Defaults to `int`
 :ALLOC: An STL Allocator for size_type and difference_type. Defaults to `std::allocator`
 
 Model of
---------
+~~~~~~~~
 
 Vector .
 
@@ -344,7 +348,7 @@ Public base classes
 vector_container<zero_vector<T> >
 
 Members
--------
+~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -385,11 +389,11 @@ Members
 Scalar Vector
 -------------
 Description
------------
+~~~~~~~~~~~
 The templated class scalar_vector<T, ALLOC> represents scalar vectors. For a n-dimensional scalar vector and 0 <= i < n holds zi = s.
 
 Example
--------
+~~~~~~~
 
 ::
 
@@ -404,27 +408,27 @@ Example
    }
 
 Definition
-----------
+~~~~~~~~~~
 
 Defined in the header :file:`vector.hpp`.
 
 Template parameters
--------------------
+~~~~~~~~~~~~~~~~~~~
 :T: The type of object stored in the vector. Defaults to `int`
 :ALLOC: An STL Allocator for size_type and difference_type. Defaults to `std::allocator`
 
 Model of
-
+~~~~~~~~
 Vector .
 Type requirements
-
+~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector .
 Public base classes
 
 vector_container<scalar_vector<T> >
 
 Members
--------
+~~~~~~~
 
 .. list-table::
    :header-rows: 1

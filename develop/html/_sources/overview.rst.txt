@@ -1,12 +1,25 @@
 Overview
 ========
 
+.. toctree::
+   :maxdepth: 1
+
+   self
+   Types <types>
+   Operations <operations>
+   Configuration <options>
+
+
 Rationale
 ---------
 
-It would be nice if every kind of numeric software could be written in C++ without loss of efficiency, but unless
-something can be found that achieves this without compromising the C++ type system it may be preferable to rely
-on Fortran, assembler or architecture-specific extensions (Bjarne Stroustrup).
+.. epigraph::
+   
+   It would be nice if every kind of numeric software could be written in C++ without loss of efficiency, but unless
+   something can be found that achieves this without compromising the C++ type system it may be preferable to rely
+   on Fortran, assembler or architecture-specific extensions
+
+   -- Bjarne Stroustrup
 
 This C++ library is directed towards scientific computing on the level of basic linear algebra constructions with
 matrices and vectors and their corresponding abstract operations. The primary design goals were:
@@ -74,62 +87,62 @@ Indexing of vectors and matrices::
 
 Assignment of vectors and matrices::
 
-  vector::operator = (const vector_expression &);
-  vector::operator += (const vector_expression &);
-  vector::operator -= (const vector_expression &);
-  vector::operator *= (const scalar_expression &);
-  matrix::operator = (const matrix_expression &);
-  matrix::operator += (const matrix_expression &);
-  matrix::operator -= (const matrix_expression &);
-  matrix::operator *= (const scalar_expression &);
+  vector::operator = (vector_expression const &);
+  vector::operator += (vector_expression const &);
+  vector::operator -= (vector_expression const &);
+  vector::operator *= (scalar_expression const &);
+  matrix::operator = (matrix_expression const &);
+  matrix::operator += (matrix_expression const &);
+  matrix::operator -= (matrix_expression const &);
+  matrix::operator *= (scalar_expression const &);
 
 Unary operations on vectors and matrices::
 
-  op(const vector_expression &);
-  op(const matrix_expression &);
+  op(vector_expression const &);
+  op(matrix_expression const &);
 
 Binary operations on vectors and matrices::
 
-  vector_expression operator + (const vector_expression &, const vector_expression &);
-  vector_expression operator - (const vector_expression &, const vector_expression &);
-  matrix_expression operator + (const matrix_expression &, const matrix_expression &);
-  matrix_expression operator - (const matrix_expression &, const matrix_expression &);
+  vector_expression operator + (vector_expression const &, vector_expression const &);
+  vector_expression operator - (vector_expression const &, vector_expression const &);
+  matrix_expression operator + (matrix_expression const &, matrix_expression const &);
+  matrix_expression operator - (matrix_expression const &, matrix_expression const &);
 
 Multiplication of vectors and matrices with a scalar::
 
-  vector_expression operator * (const scalar_expression &, const vector_expression &);
-  vector_expression operator * (const vector_expression &, const scalar_expression &);
-  matrix_expression operator * (const scalar_expression &, const matrix_expression &);
-  matrix_expression operator * (const matrix_expression &, const scalar_expression &);
+  vector_expression operator * (scalar_expression const &, vector_expression const &);
+  vector_expression operator * (vector_expression const &, scalar_expression const &);
+  matrix_expression operator * (scalar_expression const &, matrix_expression const &);
+  matrix_expression operator * (matrix_expression const &, scalar_expression const &);
 
 We decided to use functions for the following other primitives:
 
 Left multiplication of vectors with a matrix::
 
-  vector_expression prod<vector_type > (const matrix_expression &, const vector_expression &);
-  vector_expression prod (const matrix_expression &, const vector_expression &);
+  vector_expression prod<vector_type>(matrix_expression const &, vector_expression const &);
+  vector_expression prod(matrix_expression const &, vector_expression const &);
 
 Right multiplication of vectors with a matrix::
 
-  vector_expression prod<vector_type > (const vector_expression &, const matrix_expression &);
-  vector_expression prod (const vector_expression &, const matrix_expression &);
+  vector_expression prod<vector_type> (vector_expression const &, matrix_expression const &);
+  vector_expression prod(vector_expression const &, matrix_expression const &);
 
 Multiplication of matrices::
 
-  matrix_expression prod<matrix_type > (const matrix_expression &, const matrix_expression &);
-  matrix_expression prod (const matrix_expression &, const matrix_expression &);
+  matrix_expression prod<matrix_type>(matrix_expression const &, matrix_expression const &);
+  matrix_expression prod(matrix_expression const &, matrix_expression const &);
 
 Inner product of vectors::
 
-  scalar_expression inner_prod (const vector_expression &, const vector_expression &);
+  scalar_expression inner_prod(vector_expression const &, vector_expression const &);
 
 Outer product of vectors::
 
-  matrix_expression outer_prod (const vector_expression &, const vector_expression &);
+  matrix_expression outer_prod(vector_expression const &, vector_expression const &);
 
 Transpose of a matrix::
 
-    matrix_expression trans (const matrix_expression &);
+    matrix_expression trans(matrix_expression const &);
 
 Efficiency
 ----------
@@ -198,8 +211,7 @@ Functionality
 Every C++ library supporting linear algebra will be measured against the long-standing Fortran package BLAS. We
 now describe how BLAS calls may be mapped onto our classes.
 
-The page Overview of Matrix and Vector Operations gives a short summary of the most used operations on vectors and
-matrices.
+The page :doc:`operations` gives a short summary of the most used operations on vectors and matrices.
 
 Blas Level 1
 ~~~~~~~~~~~~
@@ -243,9 +255,9 @@ Blas Level 1
 | | _rot         | | `t.assign(a * x + b * y)`   | :math:`(x,y) \leftarrow           |                               |
 | | zdrot        |                               | (a x + b y, -b x + a y)`          |                               |
 +----------------+-------------------------------+-----------------------------------+-------------------------------+
-| | _rotg        |                               | :math:`(a,b) \leftarrow           |                               |
-| | _rotmg 	 |                               | (a / \sqrt(a2 + b2),              | Constructs a plane rotation.  |
-|                |                               | b / \sqrt(a2 + b2))` or           |                               |
+| | _rotg        |                               | :math:`(a,b) \leftarrow           | Constructs a plane rotation.  |
+| | _rotmg 	 |                               | (a / \sqrt(a^2 + b^2),            |                               |
+|                |                               | b / \sqrt(a^2 + b^2))` or         |                               |
 |                |                               | :math:`(1, 0) \leftarrow (0, 0)`  |                               |
 +----------------+-------------------------------+-----------------------------------+-------------------------------+
 
@@ -259,12 +271,12 @@ Blas Level 2
 |                | | `x = prod(trans(A), x)`                                               | | :math:`x \leftarrow A^T x`                 | matrix with a vector.     |
 |                | | `x = prod(herm(A), x)`                                                | | :math:`x \leftarrow A^H x`                 |                           |
 +----------------+-------------------------------------------------------------------------+----------------------------------------------+---------------------------+
-|_t_sv 	         | | `y = solve(A, x, tag)`                                                | | :math:`y \leftarrow A^-1 x`                | Solves a system of linear |
-|                | | `inplace_solve(A, x, tag)`                                            | | :math:`x \leftarrow A^-1 x`                | equations with triangular |
-|                | | `y = solve(trans(A), x, tag)`                                         | | :math:`y \leftarrow A^T-1 x`               | form, i.e. A is triangular|
-|                | | `inplace_solve(trans(A), x, tag)`                                     | | :math:`x \leftarrow A^T-1 x`               | .                         |
-|                | | `y = solve(herm(A), x, tag)`                                          | | :math:`y \leftarrow A^H-1 x`               |                           |
-|                | | `inplace_solve(herm(A), x, tag)`                                      | | :math:`x \leftarrow A^H-1 x`               |                           |
+|_t_sv 	         | | `y = solve(A, x, tag)`                                                | | :math:`y \leftarrow A^{-1} x`              | Solves a system of linear |
+|                | | `inplace_solve(A, x, tag)`                                            | | :math:`x \leftarrow A^{-1} x`              | equations with triangular |
+|                | | `y = solve(trans(A), x, tag)`                                         | | :math:`y \leftarrow {A^T}^{-1} x`          | form, i.e. A is triangular|
+|                | | `inplace_solve(trans(A), x, tag)`                                     | | :math:`x \leftarrow {A^T}^{-1} x`          | .                         |
+|                | | `y = solve(herm(A), x, tag)`                                          | | :math:`y \leftarrow {A^H}^{-1} x`          |                           |
+|                | | `inplace_solve(herm(A), x, tag)`                                      | | :math:`x \leftarrow {A^H}^{-1} x`          |                           |
 +----------------+-------------------------------------------------------------------------+----------------------------------------------+---------------------------+
 | | _g_mv        | | `y = a * prod(A, x) + b * y`                                          | | :math:`y \leftarrow a A x + b y`           | Adds the scaled product of|
 | | _s_mv        | | `y = a * prod(trans(A), x) + b*y`                                     | | :math:`y \leftarrow a A^T x + b y`         | a matrix with a vector.   |
@@ -275,7 +287,7 @@ Blas Level 2
 | | _g_rc        |                                                                         |                                              |                           |
 +----------------+-------------------------------------------------------------------------+----------------------------------------------+---------------------------+
 | | _s_r         | | `A += a * outer_prod(x, x)`                                           | | :math:`A \leftarrow a x x^T + A`           | Performs a symmetric or   |
-| | _h_r         | | `A += a * outer_prod(x, conj(x))`                                     | | :math:`A \leftarrow a x x^H + A`           |  hermitian rank 1 update. |
+| | _h_r         | | `A += a * outer_prod(x, conj(x))`                                     | | :math:`A \leftarrow a x x^H + A`           | hermitian rank 1 update.  |
 +----------------+-------------------------------------------------------------------------+----------------------------------------------+---------------------------+
 | | _s_r2        | | `A += a * outer_prod(x, y) + a * outer_prod(y, x))`                   | :math:`A \leftarrow a x y^T + a y xT + A` or | Performs a symmetric      |
 | | _h_r2 	 | | `A += a * outer_prod(x, conj(y)) + conj(a) * outer_prod(y, conj(x)))` | :math:`A \leftarrow a x y^H + a- y x^H + A`  | or hermitian rank 2 update|
@@ -298,12 +310,12 @@ Blas Level 3
 |                | | `B = a * prod(trans(A), herm(B))`                                 |                                                |                           |
 |                | | `B = a * prod(herm(A), herm(B))`                                  |                                                |                           |
 +----------------+---------------------------------------------------------------------+------------------------------------------------+---------------------------+
-|_t_sm           | | `C = solve(A, B, tag)`                                            | | :math:`C \leftarrow A^-1 B` or               | Solves a system of        |
-|                | | `inplace_solve(A, B, tag)`                                        | | :math:`B \leftarrow A^-1 B` or               | linear equations with     |
-|                | | `C = solve (trans (A), B, tag)`                                   | | :math:`C \leftarrow A^T-1 B` or              | triangular form, i.e.     |
-|                | | `inplace_solve (trans (A), B, tag)`                               | | :math:`B \leftarrow A^-1 B` or               | A is triangular.          |
-|                | | `C = solve (herm(A), B, tag)`                                     | | :math:`C \leftarrow A^H-1 B` or              |                           |
-|                | | `inplace_solve(herm(A), B, tag)`                                  | | :math:`B \leftarrow A^H-1 B`                 |                           |
+|_t_sm           | | `C = solve(A, B, tag)`                                            | | :math:`C \leftarrow A^{-1} B` or             | Solves a system of        |
+|                | | `inplace_solve(A, B, tag)`                                        | | :math:`B \leftarrow A^{-1} B` or             | linear equations with     |
+|                | | `C = solve (trans (A), B, tag)`                                   | | :math:`C \leftarrow {A^T}^{-1} B` or         | triangular form, i.e.     |
+|                | | `inplace_solve (trans (A), B, tag)`                               | | :math:`B \leftarrow A^{-1} B` or             | A is triangular.          |
+|                | | `C = solve (herm(A), B, tag)`                                     | | :math:`C \leftarrow {A^H}^{-1} B` or         |                           |
+|                | | `inplace_solve(herm(A), B, tag)`                                  | | :math:`B \leftarrow {A^H}^{-1} B`            |                           |
 +----------------+---------------------------------------------------------------------+------------------------------------------------+---------------------------+
 | | _g_mm        | | `C = a * prod(A, B) + b * C`                                      | | :math:`C \leftarrow a op(A) op(B) + b C`     | Adds the scaled product of|
 | | _s_mm        | | `C = a * prod(trans(A), B) + b * C`                               | | with                                         | two matrices.             |
@@ -331,14 +343,14 @@ Blas Level 3
 Storage Layout
 --------------
 
-uBLAS supports many different storage layouts. The full details can be found at the Overview of Types. Most types
-like vector<double> and matrix<double> are by default compatible to C arrays, but can also be configured to
-contain FORTAN compatible data.
+uBLAS supports many different storage layouts. The full details can be found in :doc:`types`. Most types
+like `vector<double>` and `matrix<double>` are by default compatible to C arrays, but can also be configured to
+contain FORTRAN-compatible data.
 
 Compatibility
 -------------
 
-For compatibility reasons we provide array like indexing for vectors and matrices. For some types (hermitian,
-sparse etc) this can be expensive for matrices due to the needed temporary proxy objects.
+For compatibility reasons we provide array-like indexing for vectors and matrices. For some types (hermitian,
+sparse, etc.) this can be expensive for matrices due to the needed temporary proxy objects.
 
-uBLAS uses STL compatible allocators for the allocation of the storage required for it's containers.
+uBLAS uses STL-compatible allocators for the allocation of the storage required for its containers.

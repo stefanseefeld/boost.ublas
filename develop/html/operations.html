@@ -24,6 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="Boost.GIL 1.0 documentation" href="index.html" />
+    <link rel="up" title="Overview" href="overview.html" />
     <link rel="next" title="Configuration options" href="options.html" />
     <link rel="prev" title="Overview of Matrix- and Vector-Types" href="types.html" /> 
   </head>
@@ -60,6 +61,7 @@
       
       
       <a class="prev" title="Overview of Matrix- and Vector-Types" href="types.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="up" title="Overview" href="overview.html"><img src="_static/up.png" alt="up"/></a>
       <a class="next" title="Configuration options" href="options.html"><img src="_static/next.png" alt="next"/></a>
       
     </div>
@@ -178,9 +180,9 @@
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The last argument (bool init) of axpy_prod is optional. Currently it defaults to true, but this may change in the future.
-Setting the init to true is equivalent to calling w.clear() before axpy_prod. There are some specialisation for products
-of compressed matrices that give a large speed up compared to prod.</p>
+<p class="last">The last argument (<cite>bool init</cite>) of <cite>axpy_prod</cite> is optional. Currently it defaults to <cite>true</cite>, but this may change in the future.
+Setting <cite>init</cite> to <cite>true</cite> is equivalent to calling <cite>w.clear()</cite> before <cite>axpy_prod</cite>. There are some specialisation for products
+of compressed matrices that give a large speed up compared to <cite>prod</cite>.</p>
 </div>
 <ul class="simple">
 <li><cite>w = block_prod&lt;matrix_type, 64&gt; (A, u); // w = A * u</cite></li>
@@ -190,7 +192,7 @@ of compressed matrices that give a large speed up compared to prod.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The blocksize can be any integer. However, the actual speed depends very significantly on the combination of blocksize,
-CPU and compiler. The function block_prod is designed for large dense matrices.</p>
+CPU and compiler. The function <cite>block_prod</cite> is designed for large dense matrices.</p>
 </div>
 </div>
 <div class="section" id="rank-k-updates">
@@ -201,8 +203,8 @@ CPU and compiler. The function block_prod is designed for large dense matrices.<
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The last argument (bool init) of opb_prod is optional. Currently it defaults to true, but this may change in the future.
-This function may give a speedup if A has less columns than rows, because the product is computed as a sum of outer products.</p>
+<p class="last">The last argument (<cite>bool init</cite>) of <cite>opb_prod</cite> is optional. Currently it defaults to <cite>true</cite>, but this may change in the future.
+This function may give a speedup if <cite>A</cite> has less columns than rows, because the product is computed as a sum of outer products.</p>
 </div>
 </div>
 </div>
@@ -301,7 +303,7 @@ For the more daring ‘sparse element proxies’ can be completely turned off in
 <span class="n">prod</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prod</span><span class="o">&lt;</span><span class="n">temp_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>The ‘temp_type’ is important. Given A,B,C are all of the same type. Say matrix&lt;float&gt;, the choice is easy. However if the value_type is mixed (int with float or double) or the matrix type is mixed (sparse with symmetric) the best solution is not so obvious. It is up to you! It depends on numerical properties of A and the result of the prod(B,C).</p>
+<p>The <cite>temp_type</cite> is important. Given <cite>A</cite>,`B`,`C` are all of the same type. Say <cite>matrix&lt;float&gt;</cite>, the choice is easy. However if the value-type is mixed (<cite>int</cite> with <cite>float</cite> or <cite>double</cite>) or the matrix type is mixed (sparse with symmetric) the best solution is not so obvious. It is up to you! It depends on numerical properties of <cite>A</cite> and the result of the <cite>prod(B,C)</cite>.</p>
 </div>
 </div>
 
@@ -310,6 +312,7 @@ For the more daring ‘sparse element proxies’ can be completely turned off in
       
       
       <a class="prev" title="Overview of Matrix- and Vector-Types" href="types.html"><img src="_static/prev.png" alt="prev"/></a>
+      <a class="up" title="Overview" href="overview.html"><img src="_static/up.png" alt="up"/></a>
       <a class="next" title="Configuration options" href="options.html"><img src="_static/next.png" alt="next"/></a>
       
     </div>
