@@ -94,39 +94,28 @@ or <cite>i &lt; j - u</cite>. The storage of banded matrices is packed.</p>
 </div>
 <div class="section" id="definition">
 <h3>Definition</h3>
-<p>Defined in the header banded.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">banded.hpp</span></code>.</p>
 </div>
 <div class="section" id="template-parameters">
 <h3>Template parameters</h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td>Parameter</td>
-<td>Description</td>
-<td>Default</td>
+<tr class="field-odd field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The type of object stored in the matrix.</td>
 </tr>
-<tr class="row-even"><td>T</td>
-<td>The type of object stored in the matrix.</td>
-<td>&#160;</td>
+<tr class="field-even field"><th class="field-name"><cite>F</cite>:</th><td class="field-body">Functor describing the storage organization. <a class="footnote-reference" href="#f1" id="id2">[1]</a> Defaults to <cite>row_major</cite></td>
 </tr>
-<tr class="row-odd"><td>F</td>
-<td>Functor describing the storage organization.</td>
-<td>[1]      <cite>row_major</cite></td>
-</tr>
-<tr class="row-even"><td>A</td>
-<td>The type of the adapted array.</td>
-<td>[2]      <cite>unbounded_array&lt;T&gt;</cite></td>
+<tr class="field-odd field"><th class="field-name"><cite>A</cite>:</th><td class="field-body">The type of the adapted array. <a class="footnote-reference" href="#f2" id="id3">[2]</a> Defaults to <cite>unbounded_array&lt;T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="model-of">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></li>
+</ul>
 </div>
 <div class="section" id="type-requirements">
 <h3>Type requirements</h3>
@@ -278,18 +267,15 @@ Left and right hand side of the assignment should be independent.</td>
 </tr>
 </tbody>
 </table>
-<p>Notes
-[1] Supported parameters for the storage organization are row_major and column_major.</p>
-<p>[2] Supported parameters for the adapted array are unbounded_array&lt;T&gt; , bounded_array&lt;T&gt; and std::vector&lt;T&gt; .</p>
 </div>
 </div>
 <div class="section" id="banded-adaptor">
 <h2>Banded Adaptor</h2>
-<div class="section" id="id2">
+<div class="section" id="id4">
 <h3>Description</h3>
 <p>The templated class <cite>banded_adaptor&lt;M&gt;</cite> is a banded matrix adaptor for other matrices.</p>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id5">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/banded.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -307,11 +293,11 @@ Left and right hand side of the assignment should be independent.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id6">
 <h3>Definition</h3>
-<p>Defined in the header banded.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">banded.hpp</span></code>.</p>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id7">
 <h3>Template parameters</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -331,19 +317,21 @@ Left and right hand side of the assignment should be independent.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id8">
 <h3>Model of</h3>
-<p>Matrix Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-expression-concept"><span class="std std-ref">Matrix Expression</span></a></li>
+</ul>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id9">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix Expression .</p>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id10">
 <h3>Public base classes</h3>
-<p>matrix_expression&lt;banded_adaptor&lt;M&gt; &gt;</p>
+<p><cite>matrix_expression&lt;banded_adaptor&lt;M&gt; &gt;</cite></p>
 </div>
-<div class="section" id="id9">
+<div class="section" id="id11">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -462,6 +450,19 @@ Left and right hand side of the assignment should be independent.</td>
 <tr class="row-odd"><td><cite>reverse_iterator2 rend2 ()</cite></td>
 <td>Returns a reverse_iterator2 pointing to the end of the reversed banded_adaptor.</td>
 </tr>
+</tbody>
+</table>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Supported parameters for the storage organization are <cite>row_major</cite> and <cite>column_major</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Supported parameters for the adapted array are <cite>unbounded_array&lt;T&gt;</cite>, <cite>bounded_array&lt;T&gt;</cite>, and <cite>std::vector&lt;T&gt;</cite>.</td></tr>
 </tbody>
 </table>
 </div>

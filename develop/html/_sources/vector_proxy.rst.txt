@@ -6,8 +6,7 @@ Vector Range
 
 Description
 ~~~~~~~~~~~
-The templated class vector_range<V> allows addressing a sub-range of a vector's element.
-
+The templated class `vector_range<V>` allows addressing a sub-range of a vector's element.
 
 Example
 -------
@@ -31,7 +30,7 @@ Example
 Definition
 ~~~~~~~~~~
 
-Defined in the header vector_proxy.hpp.
+Defined in the header :file:`vector_proxy.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -40,9 +39,9 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector Expression .
+* :ref:`vector-expression-concept`
 
-If the specified range falls outside that of the index range of the vector, then the vector_range is not a well
+If the specified range falls outside that of the index range of the vector, then the `vector_range` is not a well
 formed Vector Expression. That is, access to an element which is outside of index range of the vector is undefined.
 
 Type requirements
@@ -51,7 +50,7 @@ None, except for those imposed by the requirements of Vector Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-vector_expression<vector_range<V> >
+`vector_expression<vector_range<V>>`
 
 Members
 ~~~~~~~
@@ -162,11 +161,11 @@ Prototypes
 Definition
 ~~~~~~~~~~
 
-Defined in the header vector_proxy.hpp.
+Defined in the header :file:`vector_proxy.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-    V is a model of Vector Expression .
+    `V` is a model of :ref:`vector-expression-concept`
 
 Complexity
 ~~~~~~~~~~
@@ -195,7 +194,7 @@ Vector Slice
 
 Description
 ~~~~~~~~~~~
-The templated class vector_slice<V> allows addressing a slice of a vector.
+The templated class `vector_slice<V>` allows addressing a slice of a vector.
 
 Example
 ~~~~~~~
@@ -219,7 +218,7 @@ Example
 Definition
 ~~~~~~~~~~
 
-Defined in the header vector_proxy.hpp.
+Defined in the header :file:`vector_proxy.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -227,7 +226,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector Expression .
+* :ref:`vector-expression-concept`
 
 If the specified slice falls outside that of the index range of the vector, then the vector_slice is not a well
 formed Vector Expression. That is, access to an element which is outside of index range of the vector is undefined.
@@ -238,7 +237,7 @@ None, except for those imposed by the requirements of Vector Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-vector_expression<vector_slice<V> >
+`vector_expression<vector_slice<V>>`
 
 
 Members
@@ -346,11 +345,11 @@ Prototypes
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_proxy.hpp.
+Defined in the header :file:`vector_proxy.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-    V is a model of Vector Expression .
+:`V`: is a model of :ref:`vector-expression-concept`
 
 Complexity
 ~~~~~~~~~~
@@ -373,5 +372,3 @@ Examples
        project (v, slice (0, 1, 3)) (i) = i;
      std::cout << project (v, slice (0, 1, 3)) << std::endl;
    }
-
-

@@ -105,16 +105,18 @@ column major orientation.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">F:</th><td class="field-body">Functor describing the storage organization. [1]        row_major</td>
+<tr class="field-even field"><th class="field-name">F:</th><td class="field-body">Functor describing the storage organization. <a class="footnote-reference" href="#f1" id="id2">[1]</a> Defaults to <cite>row_major</cite></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">A:</th><td class="field-body">The type of the Storage array. [2]      unbounded_array&lt;T&gt;</td>
+<tr class="field-odd field"><th class="field-name">A:</th><td class="field-body">The type of the Storage array. <a class="footnote-reference" href="#f2" id="id3">[2]</a> Defaults to <cite>unbounded_array&lt;T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="model-of">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></li>
+</ul>
 </div>
 <div class="section" id="type-requirements">
 <h3>Type requirements</h3>
@@ -122,7 +124,7 @@ column major orientation.</p>
 </div>
 <div class="section" id="public-base-classes">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;matrix&lt;T, F, A&gt; &gt;</p>
+<p><cite>matrix_container&lt;matrix&lt;T, F, A&gt;&gt;</cite></p>
 </div>
 <div class="section" id="members">
 <h3>Members</h3>
@@ -271,20 +273,17 @@ reversed matrix.</td>
 </tr>
 </tbody>
 </table>
-<p>Notes
-[1] Supported parameters for the storage organization are row_major and column_major.</p>
-<p>[2] Common parameters for the storage array are unbounded_array&lt;T&gt; , bounded_array&lt;T&gt; and std::vector&lt;T&gt; .</p>
 </div>
 </div>
 <div class="section" id="identity-matrix">
 <h2>Identity Matrix</h2>
-<div class="section" id="id2">
+<div class="section" id="id4">
 <h3>Description</h3>
 <p>The templated class <cite>identity_matrix&lt;T, ALLOC&gt;</cite> represents identity matrices.
 For a (m x n)-dimensional identity matrix and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> holds
 <cite>idi, j = 0</cite>, if <cite>i &lt;&gt; j</cite>, and <cite>idi</cite>, <cite>i= 1</cite>.</p>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id5">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -298,36 +297,36 @@ For a (m x n)-dimensional identity matrix and <cite>0 &lt;= i &lt; m, 0 &lt;= j 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id6">
 <h3>Definition</h3>
-<p>Defined in the header matrix.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix.hpp</span></code>.</p>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id7">
 <h3>Template parameters</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.        int</td>
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix. Defaults to <cite>int</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for size_type and difference_type.     std::allocator</td>
+<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for <cite>size_type</cite> and <cite>difference_type</cite>. Defaults to <cite>std::allocator</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id8">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<p><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></p>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id9">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix .</p>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id10">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;identity_matrix&lt;T&gt; &gt;</p>
+<p><cite>matrix_container&lt;identity_matrix&lt;T&gt;&gt;</cite></p>
 </div>
-<div class="section" id="id9">
+<div class="section" id="id11">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -403,13 +402,13 @@ reversed identity_matrix.</td>
 </div>
 <div class="section" id="zero-matrix">
 <h2>Zero Matrix</h2>
-<div class="section" id="id10">
+<div class="section" id="id12">
 <h3>Description</h3>
 <p>The templated class <cite>zero_matrix&lt;T, ALLOC&gt;</cite> represents zero matrices.
 For a (m x n)-dimensional zero matrix and <cite>0 &lt;= i &lt; m</cite>, <cite>0 &lt;= j &lt; n</cite> holds <cite>zi</cite>,
 <cite>j = 0</cite>.</p>
 </div>
-<div class="section" id="id11">
+<div class="section" id="id13">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -423,36 +422,36 @@ For a (m x n)-dimensional zero matrix and <cite>0 &lt;= i &lt; m</cite>, <cite>0
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
+<div class="section" id="id14">
 <h3>Definition</h3>
-<p>Defined in the header matrix.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix.hpp</span></code>.</p>
 </div>
-<div class="section" id="id13">
+<div class="section" id="id15">
 <h3>Template parameters</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.        int</td>
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix. Defaults to <cite>int</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for size_type and difference_type.     std::allocator</td>
+<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for <cite>size_type</cite> and <cite>difference_type</cite>. Defaults to <cite>std::allocator</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id14">
+<div class="section" id="id16">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<p><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></p>
 </div>
-<div class="section" id="id15">
+<div class="section" id="id17">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix .</p>
 </div>
-<div class="section" id="id16">
+<div class="section" id="id18">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;zero_matrix&lt;T&gt; &gt;</p>
+<p><cite>matrix_container&lt;zero_matrix&lt;T&gt;&gt;</cite></p>
 </div>
-<div class="section" id="id17">
+<div class="section" id="id19">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -528,13 +527,13 @@ zero_matrix.</td>
 </div>
 <div class="section" id="scalar-matrix">
 <h2>Scalar Matrix</h2>
-<div class="section" id="id18">
+<div class="section" id="id20">
 <h3>Description</h3>
 <p>The templated class <cite>scalar_matrix&lt;T, ALLOC&gt;</cite> represents scalar matrices.
 For a (m x n)-dimensional scalar matrix and <cite>0 &lt;= i &lt; m</cite>, <cite>0 &lt;= j &lt; n</cite> holds <cite>zi</cite>,
 <cite>j = s</cite>.</p>
 </div>
-<div class="section" id="id19">
+<div class="section" id="id21">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -548,36 +547,36 @@ For a (m x n)-dimensional scalar matrix and <cite>0 &lt;= i &lt; m</cite>, <cite
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
+<div class="section" id="id22">
 <h3>Definition</h3>
-<p>Defined in the header matrix.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix.hpp</span></code>.</p>
 </div>
-<div class="section" id="id21">
+<div class="section" id="id23">
 <h3>Template parameters</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.        int</td>
+<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix. Defaults to <cite>int</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for size_type and difference_type.     std::allocator</td>
+<tr class="field-even field"><th class="field-name">ALLOC:</th><td class="field-body">An STL Allocator for <cite>size_type</cite> and <cite>difference_type</cite>. Defaults to <cite>std::allocator</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id22">
+<div class="section" id="id24">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<p><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></p>
 </div>
-<div class="section" id="id23">
+<div class="section" id="id25">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix .</p>
 </div>
-<div class="section" id="id24">
+<div class="section" id="id26">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;scalar_matrix&lt;T&gt; &gt;</p>
+<p><cite>matrix_container&lt;scalar_matrix&lt;T&gt;&gt;</cite></p>
 </div>
-<div class="section" id="id25">
+<div class="section" id="id27">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -648,6 +647,19 @@ the reversed scalar_matrix.</td>
 <td>Returns a const_reverse_iterator2 pointing to the end of the
 reversed scalar_matrix.</td>
 </tr>
+</tbody>
+</table>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Supported parameters for the storage organization are <cite>row_major</cite> and <cite>column_major</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Common parameters for the storage array are <cite>unbounded_array&lt;T&gt;</cite>, <cite>bounded_array&lt;T&gt;</cite>, and <cite>std::vector&lt;T&gt;</cite>.</td></tr>
 </tbody>
 </table>
 </div>

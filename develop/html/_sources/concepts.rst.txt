@@ -149,6 +149,8 @@ Notes
 
 [2] The operator[] is added purely for convenience and compatibility with the std::vector. In uBLAS however, generally operator() is used for indexing because this can be used for both vectors and matrices.
 
+.. _matrix-concept:
+
 Matrix
 ~~~~~~
 Description
@@ -287,6 +289,8 @@ Notes
 
 Expression Concepts
 -------------------
+
+.. _scalar-expression-concept:
 
 Scalar Expression
 ~~~~~~~~~~~~~~~~~
@@ -559,7 +563,9 @@ Models
 * `matrix_vector_unary2`
 * `matrix_vector_binary1`
 * `matrix_vector_binary2`
-  
+
+.. _matrix-expression-concept:
+
 Matrix Expression
 ~~~~~~~~~~~~~~~~~
 Description
@@ -791,6 +797,8 @@ Models
 * `matrix_binary_scalar2`
 * `matrix_matrix_binary`
 
+.. _storage-concept:
+  
 Storage concept
 ---------------
 Description

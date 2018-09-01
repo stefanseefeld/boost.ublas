@@ -29,29 +29,18 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix_sparse.hpp.
+Defined in the header :file:`matrix_sparse.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-.. list-table::
-
-   * - Parameter
-     - Description
-     - Default
-   * - `T`
-     - The type of object stored in the mapped matrix.
-     -
-   * - `F`
-     - Functor describing the storage organization.
-     - [1]	row_major
-   * - `A`
-     - The type of the adapted array.
-     - [2]	map_std<std::size_t, T>
+:`T`: The type of object stored in the mapped matrix.
+:`F`: Functor describing the storage organization. [#f1]_ Defaults to `row_major`
+:`A`: The type of the adapted array. [#f2]_ Defaults to `map_std<std::size_t, T>`
 
 Model of
 ~~~~~~~~
-Matrix .
+* :ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -59,7 +48,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<mapped_matrix<T, F, A> >
+`matrix_container<mapped_matrix<T, F, A> >`
 
 Members
 ~~~~~~~
@@ -147,11 +136,6 @@ Members
    * - `reverse_iterator2 rend2 ()`
      - Returns a reverse_iterator2 pointing to the end of the reversed mapped_matrix.
 
-Notes
-[1] Supported parameters for the storage organization are row_major and column_major.
-
-[2] Supported parameters for the adapted array are map_array<std::size_t, T> and map_std<std::size_t, T>. The latter is equivalent to std::map<std::size_t, T>.
-
 Compressed Matrix
 -----------------
 Description
@@ -177,35 +161,20 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix_sparse.hpp.
+Defined in the header :file:`matrix_sparse.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-.. list-table::
-   
-   * - Parameter
-     - Description
-     - Default
-   * - `T`
-     - The type of object stored in the compressed matrix.
-     -
-   * - `F`
-     - Functor describing the storage organization.
-     - [1]	row_major
-   * - `IB`
-     - The index base of the compressed vector.
-     - [2]	0
-   * - `IA`
-     - The type of the adapted array for indices.
-     - [3]	unbounded_array<std::size_t>
-   * - `TA`
-     - The type of the adapted array for values.
-     - [3]	unbounded_array<T>
+:`T`: The type of object stored in the compressed matrix.
+:`F`: Functor describing the storage organization. [#f3]_ Defaults to `row_major`
+:`IB`: The index base of the compressed vector. [#f4]_ Defaults to `0`
+:`IA`: The type of the adapted array for indices. [#f5]_ Defaults to `unbounded_array<std::size_t>`
+:`TA`: The type of the adapted array for values. [#f6]_ Defaults to `unbounded_array<T>`
 
 Model of
 ~~~~~~~~
-Matrix .
+* :ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -213,7 +182,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<compressed_matrix<T, F, IB, IA, TA> >
+`matrix_container<compressed_matrix<T, F, IB, IA, TA> >`
 
 Members
 ~~~~~~~
@@ -301,18 +270,11 @@ Members
    * - `reverse_iterator2 rend2 ()`
      - Returns a reverse_iterator2 pointing to the end of the reversed compressed_matrix.
 
-Notes
-[1] Supported parameters for the storage organization are row_major and column_major.
-
-[2] Supported parameters for the index base are 0 and 1 at least.
-
-[3] Supported parameters for the adapted array are unbounded_array<> , bounded_array<> and std::vector<> .
-
 Coordinate Matrix
 -----------------
 Description
 ~~~~~~~~~~~
-The templated class coordinate_matrix<T, F, IB, IA, TA> is the base container adaptor for compressed matrices. For a (m x n )-dimensional sorted coordinate matrix and 0 <= i < m, 0 <= j < n the non-zero elements mi, j are mapped via (i x n + j) for row major orientation or via (i + j x m) for column major orientation to consecutive elements of the index and value containers, i.e. for elements k = mi1 ,j1and k + 1 = mi2 ,j2of the container holds i1 < i2 or (i1 = i2 and j1 < j2) with row major orientation or j1 < j2 or (j1 = j2 and i1 < i2) with column major orientation.
+The templated class `coordinate_matrix<T, F, IB, IA, TA>` is the base container adaptor for compressed matrices. For a (m x n )-dimensional sorted coordinate matrix and `0 <= i < m`, `0 <= j < n` the non-zero elements mi, j are mapped via (i x n + j) for row major orientation or via (i + j x m) for column major orientation to consecutive elements of the index and value containers, i.e. for elements `k = mi1` ,`j1` and `k + 1 = mi2`, `j2` of the container holds `i1 < i2` or `(i1 = i2` and `j1 < j2`) with row major orientation or `j1 < j2` or (`j1 = j2` and `i1 < i2`) with column major orientation.
 
 Example
 ~~~~~~~
@@ -333,7 +295,7 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix_sparse.hpp.
+Defined in the header :file:`matrix_sparse.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -465,3 +427,16 @@ Notes
 [2] Supported parameters for the index base are 0 and 1 at least.
 
 [3] Supported parameters for the adapted array are unbounded_array<> , bounded_array<> and std::vector<> .
+
+.. rubric:: Footnotes
+
+.. [#f1] Supported parameters for the storage organization are `row_major` and `column_major`.
+
+.. [#f2] Supported parameters for the adapted array are `map_array<std::size_t, T>` and `map_std<std::size_t, T>`. The latter is equivalent to `std::map<std::size_t, T>`.
+
+.. [#f3] Supported parameters for the storage organization are row_major and column_major.
+
+.. [#f4] Supported parameters for the index base are 0 and 1 at least.
+
+.. [#f5] Supported parameters for the adapted array are unbounded_array<> , bounded_array<> and std::vector<> .
+

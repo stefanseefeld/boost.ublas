@@ -35,20 +35,21 @@ Defined in the header :file:`vector_sparse.hpp`.
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-:T: The type of object stored in the mapped vector. 	
-:A: The type of the adapted array. [1] 	map_std<std::size_t, T>
+:`T`: The type of object stored in the mapped vector.
+:`A`: The type of the adapted array. [#f1]_ Defaults to `map_std<std::size_t, T>`
 
 Model of
 ~~~~~~~~
 
-Vector .
+* :ref:`vector-concept`
 
 Type requirements
+~~~~~~~~~~~~~~~~~
 
 None, except for those imposed by the requirements of Vector .
 Public base classes
 
-vector_container<mapped_vector<T, A> >
+`vector_container<mapped_vector<T, A>>`
 
 Members
 ~~~~~~~
@@ -127,10 +128,6 @@ Members
    * - `reverse_iterator rend ()`
      - Returns a reverse_iterator pointing to the end of the reversed mapped_vector.
 
-Notes
-
-[1] Supported parameters for the adapted array are map_array<std::size_t, T> and map_std<std::size_t, T>. The latter is equivalent to std::map<std::size_t, T>.
-
 Compressed Vector
 -----------------
 
@@ -166,22 +163,23 @@ Defined in the header :file:`vector_sparse.hpp`.
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-:T: 	The type of object stored in the compressed vector. 	
-:IB: 	The index base of the compressed vector. [1] 	0
-:IA: 	The type of the adapted array for indices. [2] 	unbounded_array<std::size_t>
-:TA: 	The type of the adapted array for values. [2] 	unbounded_array<T>
+:T:  The type of object stored in the compressed vector. 	
+:IB: The index base of the compressed vector. [#f2]_ Defaults to `0`
+:IA: The type of the adapted array for indices. [#f3]_ 	Defaults to `unbounded_array<std::size_t>`
+:TA: The type of the adapted array for values. [#f3]_ Defaults to `unbounded_array<T>`
 
 Model of
-
-Vector .
+~~~~~~~~
+* :ref:`vector-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector .
 
 Public base classes
+~~~~~~~~~~~~~~~~~~~
 
-vector_container<compressed_vector<T, IB, IA, TA> >
+`vector_container<compressed_vector<T, IB, IA, TA>>`
 
 Members
 ~~~~~~~
@@ -261,12 +259,6 @@ Members
      - Returns a reverse_iterator pointing to the end of the reversed compressed_vector.
 
 
-Notes
-
-[1] Supported parameters for the index base are 0 and 1 at least.
-
-[2] Supported parameters for the adapted array are unbounded_array<> , bounded_array<> and std::vector<> .
-
 Coordinate Vector
 -----------------
 
@@ -302,20 +294,21 @@ Defined in the header :file:`vector_sparse.hpp`.
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-:T: 	The type of object stored in the coordinate vector. 	
-:IB: 	The index base of the coordinate vector. [1] 	0
-:IA: 	The type of the adapted array for indices. [2] 	unbounded_array<std::size_t>
-:TA: 	The type of the adapted array for values. [2] 	unbounded_array<T>
+:T:  The type of object stored in the coordinate vector. 	
+:IB: The index base of the coordinate vector. [#f2]_ Defaults to `0`
+:IA: The type of the adapted array for indices. [#f3]_ Defaults to `unbounded_array<std::size_t>`
+:TA: The type of the adapted array for values. [#f3]_ Defaults to `unbounded_array<T>`
 
 Model of
+~~~~~~~~
+* :ref:`vector-concept`
 
-Vector .
 Type requirements
-
+~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector .
 Public base classes
 
-vector_container<coordinate_vector<T, IB, IA, TA> >
+`vector_container<coordinate_vector<T, IB, IA, TA>>`
 
 Members
 ~~~~~~~
@@ -397,8 +390,10 @@ Members
    * - `reverse_iterator rend ()`
      - Returns a reverse_iterator pointing to the end of the reversed coordinate_vector.
 
-Notes
+.. rubric:: Footnotes
 
-[1] Supported parameters for the index base are 0 and 1 at least.
+.. [#f1] Supported parameters for the adapted array are `map_array<std::size_t, T>` and `map_std<std::size_t, T>`. The latter is equivalent to `std::map<std::size_t, T>`.
 
-[2] Supported parameters for the adapted array are unbounded_array<> , bounded_array<> and std::vector<> .
+.. [#f2] Supported parameters for the index base are `0` and `1` at least.
+
+.. [#f3] Supported parameters for the adapted array are `unbounded_array<>`, `bounded_array<>`, and `std::vector<>`.

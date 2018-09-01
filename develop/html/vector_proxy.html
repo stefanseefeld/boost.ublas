@@ -70,7 +70,7 @@
 <h2>Vector Range</h2>
 <div class="section" id="description">
 <h3>Description</h3>
-<p>The templated class vector_range&lt;V&gt; allows addressing a sub-range of a vector’s element.</p>
+<p>The templated class <cite>vector_range&lt;V&gt;</cite> allows addressing a sub-range of a vector’s element.</p>
 </div>
 </div>
 <div class="section" id="example">
@@ -92,7 +92,7 @@
 </div>
 <div class="section" id="definition">
 <h3>Definition</h3>
-<p>Defined in the header vector_proxy.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_proxy.hpp</span></code>.</p>
 </div>
 <div class="section" id="template-parameters">
 <h3>Template parameters</h3>
@@ -107,8 +107,10 @@
 </div>
 <div class="section" id="model-of">
 <h3>Model of</h3>
-<p>Vector Expression .</p>
-<p>If the specified range falls outside that of the index range of the vector, then the vector_range is not a well
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></li>
+</ul>
+<p>If the specified range falls outside that of the index range of the vector, then the <cite>vector_range</cite> is not a well
 formed Vector Expression. That is, access to an element which is outside of index range of the vector is undefined.</p>
 </div>
 <div class="section" id="type-requirements">
@@ -117,7 +119,7 @@ formed Vector Expression. That is, access to an element which is outside of inde
 </div>
 <div class="section" id="public-base-classes">
 <h3>Public base classes</h3>
-<p>vector_expression&lt;vector_range&lt;V&gt; &gt;</p>
+<p><cite>vector_expression&lt;vector_range&lt;V&gt;&gt;</cite></p>
 </div>
 <div class="section" id="members">
 <h3>Members</h3>
@@ -257,12 +259,12 @@ composed with a further range. The resulting range is computed using this existi
 </div>
 <div class="section" id="id4">
 <h3>Definition</h3>
-<p>Defined in the header vector_proxy.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_proxy.hpp</span></code>.</p>
 </div>
 <div class="section" id="id5">
 <h3>Type requirements</h3>
 <blockquote>
-<div>V is a model of Vector Expression .</div></blockquote>
+<div><cite>V</cite> is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></div></blockquote>
 </div>
 <div class="section" id="complexity">
 <h3>Complexity</h3>
@@ -290,7 +292,7 @@ composed with a further range. The resulting range is computed using this existi
 <h2>Vector Slice</h2>
 <div class="section" id="id6">
 <h3>Description</h3>
-<p>The templated class vector_slice&lt;V&gt; allows addressing a slice of a vector.</p>
+<p>The templated class <cite>vector_slice&lt;V&gt;</cite> allows addressing a slice of a vector.</p>
 </div>
 <div class="section" id="id7">
 <h3>Example</h3>
@@ -312,7 +314,7 @@ composed with a further range. The resulting range is computed using this existi
 </div>
 <div class="section" id="id8">
 <h3>Definition</h3>
-<p>Defined in the header vector_proxy.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_proxy.hpp</span></code>.</p>
 </div>
 <div class="section" id="id9">
 <h3>Template parameters</h3>
@@ -327,7 +329,9 @@ composed with a further range. The resulting range is computed using this existi
 </div>
 <div class="section" id="id10">
 <h3>Model of</h3>
-<p>Vector Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></li>
+</ul>
 <p>If the specified slice falls outside that of the index range of the vector, then the vector_slice is not a well
 formed Vector Expression. That is, access to an element which is outside of index range of the vector is undefined.</p>
 </div>
@@ -337,7 +341,7 @@ formed Vector Expression. That is, access to an element which is outside of inde
 </div>
 <div class="section" id="id12">
 <h3>Public base classes</h3>
-<p>vector_expression&lt;vector_slice&lt;V&gt; &gt;</p>
+<p><cite>vector_expression&lt;vector_slice&lt;V&gt;&gt;</cite></p>
 </div>
 <div class="section" id="id13">
 <h3>Members</h3>
@@ -478,12 +482,18 @@ with a further range or slices. The resulting slice is computed using this exist
 </div>
 <div class="section" id="id20">
 <h3>Definition</h3>
-<p>Defined in the header vector_proxy.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_proxy.hpp</span></code>.</p>
 </div>
 <div class="section" id="id21">
 <h3>Type requirements</h3>
-<blockquote>
-<div>V is a model of Vector Expression .</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>V</cite>:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="id22">
 <h3>Complexity</h3>

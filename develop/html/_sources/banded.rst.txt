@@ -31,29 +31,18 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header banded.hpp.
+Defined in the header :file:`banded.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-.. list-table::
-   
-   * - Parameter
-     - Description
-     - Default
-   * - T
-     - The type of object stored in the matrix.
-     -
-   * - F
-     - Functor describing the storage organization.
-     - [1]	`row_major`
-   * - A
-     - The type of the adapted array.
-     - [2]	`unbounded_array<T>`
+:`T`: The type of object stored in the matrix.
+:`F`: Functor describing the storage organization. [#f1]_ Defaults to `row_major`
+:`A`: The type of the adapted array. [#f2]_ Defaults to `unbounded_array<T>`
 
 Model of
 ~~~~~~~~
-Matrix .
+* :ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -160,11 +149,6 @@ Members
    * - `reverse_iterator2 rend2 ()`
      - Returns a reverse_iterator2 pointing to the end of the reversed banded_matrix.
 
-Notes
-[1] Supported parameters for the storage organization are row_major and column_major.
-
-[2] Supported parameters for the adapted array are unbounded_array<T> , bounded_array<T> and std::vector<T> .
-
 Banded Adaptor
 --------------
 Description
@@ -191,7 +175,7 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header banded.hpp.
+Defined in the header :file:`banded.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -207,7 +191,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Matrix Expression .
+* :ref:`matrix-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -215,7 +199,7 @@ None, except for those imposed by the requirements of Matrix Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_expression<banded_adaptor<M> >
+`matrix_expression<banded_adaptor<M> >`
 
 Members
 ~~~~~~~
@@ -296,3 +280,10 @@ Members
      - Returns a reverse_iterator2 pointing to the beginning of the reversed banded_adaptor.
    * - `reverse_iterator2 rend2 ()`
      - Returns a reverse_iterator2 pointing to the end of the reversed banded_adaptor.
+
+.. rubric:: Footnotes
+
+.. [#f1] Supported parameters for the storage organization are `row_major` and `column_major`.
+
+.. [#f2] Supported parameters for the adapted array are `unbounded_array<T>`, `bounded_array<T>`, and `std::vector<T>`.
+

@@ -40,18 +40,18 @@ Please read the full triangular example for more details.
 
 Definition
 ~~~~~~~~~~
-Defined in the header triangular.hpp.
+Defined in the header :file:`triangular.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 :T:	The type of object stored in the matrix.	
-:F1:	Functor describing the type of the triangular matrix. [1]	lower
-:F2:	Functor describing the storage organization. [2]	row_major
-:A:	The type of the adapted array. [3]	unbounded_array<T>
+:F1:	Functor describing the type of the triangular matrix. [#f1]_	Defaults to `lower`
+:F2:	Functor describing the storage organization. [#f2]_ Defaults to `row_major`
+:A:	The type of the adapted array. [#f3]_ Defaults to `unbounded_array<T>`
 
 Model of
 ~~~~~~~~
-Matrix .
+* :ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<triangular_matrix<T, F1, F2, A> >
+`matrix_container<triangular_matrix<T, F1, F2, A>>`
 
 Members
 ~~~~~~~
@@ -165,13 +165,6 @@ Members
      - Returns a reverse_iterator2 pointing to the end of the reversed
        triangular_matrix.
 
-Notes
-[1] Supported parameters for the type of the triangular matrix are lower , unit_lower, upper and unit_upper .
-
-[2] Supported parameters for the storage organization are row_major and column_major.
-
-[3] Supported parameters for the adapted array are unbounded_array<T> , bounded_array<T> and std::vector<T> .
-
 Triangular Adaptor
 ------------------
 Description
@@ -205,16 +198,16 @@ Please read the full triangular example for more details.
 
 Definition
 ~~~~~~~~~~
-Defined in the header triangular.hpp.
+Defined in the header :file:`triangular.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 :M:	The type of the adapted matrix.	
-:F:	Functor describing the type of the triangular adaptor. [1]	lower
+:F:	Functor describing the type of the triangular adaptor. [#f1]_ Defaults to `lower`
 
 Model of
 ~~~~~~~~
-Matrix Expression .
+* :ref:`matrix-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -222,7 +215,7 @@ None, except for those imposed by the requirements of Matrix Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_expression<triangular_adaptor<M, F> >
+`matrix_expression<triangular_adaptor<M, F>>`
 
 Members
 ~~~~~~~
@@ -317,5 +310,11 @@ Members
      - Returns a reverse_iterator2 pointing to the end of the reversed
        triangular_adaptor.
 
-Notes
-[1] Supported parameters for the type of the triangular adaptor are lower , unit_lower, upper and unit_upper .
+.. rubric:: Footnotes
+
+.. [#f1] Supported parameters for the type of the triangular matrix are `lower`, `unit_lower`, `upper`, and `unit_upper`.
+
+.. [#f2] Supported parameters for the storage organization are `row_major` and `column_major`.
+
+.. [#f3] Supported parameters for the adapted array are `unbounded_array<T>`, `bounded_array<T>`, and `std::vector<T>`.
+

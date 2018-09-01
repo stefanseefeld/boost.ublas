@@ -103,7 +103,7 @@ for hermitian matrices. For a (n x n )-dimensional hermitian matrix and <cite>0 
 </div>
 <div class="section" id="definition">
 <h3>Definition</h3>
-<p>Defined in the header hermitian.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">hermitian.hpp</span></code>.</p>
 </div>
 <div class="section" id="template-parameters">
 <h3>Template parameters</h3>
@@ -113,18 +113,20 @@ for hermitian matrices. For a (n x n )-dimensional hermitian matrix and <cite>0 
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the matrix.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">F1:</th><td class="field-body">Functor describing the type of the hermitian matrix. [1]        lower</td>
+<tr class="field-even field"><th class="field-name">F1:</th><td class="field-body">Functor describing the type of the hermitian matrix. <a class="footnote-reference" href="#f1" id="id2">[1]</a> Defaults to <cite>lower</cite></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">F2:</th><td class="field-body">Functor describing the storage organization. [2]        row_major</td>
+<tr class="field-odd field"><th class="field-name">F2:</th><td class="field-body">Functor describing the storage organization. <a class="footnote-reference" href="#f2" id="id3">[2]</a> Defaults to <cite>row_major</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">A:</th><td class="field-body">The type of the adapted array. [3]      unbounded_array&lt;T&gt;</td>
+<tr class="field-even field"><th class="field-name">A:</th><td class="field-body">The type of the adapted array. <a class="footnote-reference" href="#f3" id="id4">[3]</a> Defaults to <cite>unbounded_array&lt;T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="model-of">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></li>
+</ul>
 </div>
 <div class="section" id="type-requirements">
 <h3>Type requirements</h3>
@@ -132,7 +134,7 @@ for hermitian matrices. For a (n x n )-dimensional hermitian matrix and <cite>0 
 </div>
 <div class="section" id="public-base-classes">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;hermitian_matrix&lt;T, F1, F2, A&gt; &gt;</p>
+<p><cite>matrix_container&lt;hermitian_matrix&lt;T, F1, F2, A&gt;&gt;</cite></p>
 </div>
 <div class="section" id="members">
 <h3>Members</h3>
@@ -282,19 +284,15 @@ hermitian_matrix.</td>
 </tr>
 </tbody>
 </table>
-<p>Notes
-[1] Supported parameters for the type of the hermitian matrix are lower and upper.</p>
-<p>[2] Supported parameters for the storage organization are row_major and column_major.</p>
-<p>[3] Supported parameters for the adapted array are unbounded_array&lt;T&gt; , bounded_array&lt;T&gt; and std::vector&lt;T&gt; .</p>
 </div>
 </div>
 <div class="section" id="hermitian-adaptor">
 <h2>Hermitian Adaptor</h2>
-<div class="section" id="id2">
+<div class="section" id="id5">
 <h3>Description</h3>
-<p>The templated class hermitian_adaptor&lt;M, F&gt; is a hermitian matrix adaptor for other matrices.</p>
+<p>The templated class <cite>hermitian_adaptor&lt;M, F&gt;</cite> is a hermitian matrix adaptor for other matrices.</p>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id6">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/hermitian.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -323,11 +321,11 @@ hermitian_matrix.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id7">
 <h3>Definition</h3>
 <p>Defined in the header hermitian.hpp.</p>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id8">
 <h3>Template parameters</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -335,24 +333,26 @@ hermitian_matrix.</td>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">M:</th><td class="field-body">The type of the adapted matrix.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">F:</th><td class="field-body">Functor describing the type of the hermitian adaptor. [1]       lower</td>
+<tr class="field-even field"><th class="field-name">F:</th><td class="field-body">Functor describing the type of the hermitian adaptor. <a class="footnote-reference" href="#f4" id="id9">[4]</a> Defaults to <cite>lower</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id10">
 <h3>Model of</h3>
-<p>Matrix Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-expression-concept"><span class="std std-ref">Matrix Expression</span></a></li>
+</ul>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id11">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix Expression .</p>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id12">
 <h3>Public base classes</h3>
-<p>matrix_expression&lt;hermitian_adaptor&lt;M, F&gt; &gt;</p>
+<p><cite>matrix_expression&lt;hermitian_adaptor&lt;M, F&gt;&gt;</cite></p>
 </div>
-<div class="section" id="id9">
+<div class="section" id="id13">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -474,8 +474,31 @@ Divides the hermitian adaptor through a scalar.</td>
 </tr>
 </tbody>
 </table>
-<p>Notes
-[1] Supported parameters for the type of the hermitian adaptor are lower and upper.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Supported parameters for the type of the hermitian matrix are <cite>lower</cite> and <cite>upper</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Supported parameters for the storage organization are <cite>row_major</cite> and <cite>column_major</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Supported parameters for the adapted array are <cite>unbounded_array&lt;T&gt;</cite>, <cite>bounded_array&lt;T&gt;</cite>, and <cite>std::vector&lt;T&gt;</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[4]</a></td><td>Supported parameters for the type of the hermitian adaptor are <cite>lower</cite> and <cite>upper</cite>.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

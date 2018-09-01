@@ -70,12 +70,12 @@
 <h2>Vector Expression</h2>
 <div class="section" id="description">
 <h3>Description</h3>
-<p>The templated class vector_expression&lt;E&gt; is required to be a public base of all classes which model
+<p>The templated class <cite>vector_expression&lt;E&gt;</cite> is required to be a public base of all classes which model
 the Vector Expression concept.</p>
 </div>
 <div class="section" id="definition">
 <h3>Definition</h3>
-<p>Defined in the header expression_types.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">expression_types.hpp</span></code>.</p>
 </div>
 <div class="section" id="template-parameters">
 <h3>Template parameters</h3>
@@ -134,7 +134,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id2">
 <h3>Definition</h3>
-<p>Defined in the header expression_types.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">expression_types.hpp</span></code>.</p>
 </div>
 <div class="section" id="id3">
 <h3>Template parameters</h3>
@@ -157,7 +157,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id6">
 <h3>Public base classes</h3>
-<p>vector_expression&lt;C&gt;</p>
+<p><cite>vector_expression&lt;C&gt;</cite></p>
 </div>
 <div class="section" id="id7">
 <h3>Members</h3>
@@ -189,11 +189,11 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id8">
 <h3>Description</h3>
-<p>The templated class vector_reference&lt;E&gt; contains a reference to a vector expression.</p>
+<p>The templated class <cite>vector_reference&lt;E&gt;</cite> contains a reference to a vector expression.</p>
 </div>
 <div class="section" id="id9">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id10">
 <h3>Template parameters</h3>
@@ -208,7 +208,9 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id11">
 <h3>Model of</h3>
-<p>Vector Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></li>
+</ul>
 </div>
 <div class="section" id="id12">
 <h3>Type requirements</h3>
@@ -216,7 +218,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id13">
 <h3>Public base classes</h3>
-<p>vector_expression&lt;vector_reference&lt;E&gt; &gt;</p>
+<p><cite>vector_expression&lt;vector_reference&lt;E&gt;&gt;</cite></p>
 </div>
 <div class="section" id="id14">
 <h3>Members</h3>
@@ -281,11 +283,11 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id15">
 <h3>Description</h3>
-<p>The templated class vector_unary&lt;E, F&gt; describes a unary vector operation.</p>
+<p>The templated class <cite>vector_unary&lt;E, F&gt;</cite> describes a unary vector operation.</p>
 </div>
 <div class="section" id="id16">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id17">
 <h3>Template parameters</h3>
@@ -302,7 +304,9 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id18">
 <h3>Model of</h3>
-<p>Vector Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></li>
+</ul>
 </div>
 <div class="section" id="id19">
 <h3>Type requirements</h3>
@@ -310,7 +314,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id20">
 <h3>Public base classes</h3>
-<p>vector_expression&lt;vector_unary&lt;E, F&gt; &gt;</p>
+<p><cite>vector_expression&lt;vector_unary&lt;E, F&gt;&gt;</cite></p>
 </div>
 <div class="section" id="id21">
 <h3>Members</h3>
@@ -403,11 +407,18 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id23">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id24">
 <h3>Type requirements</h3>
-<p>E is a model of Vector Expression .</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name"><cite>E</cite>:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="preconditions">
 <h3>Preconditions</h3>
@@ -444,11 +455,11 @@ Vector concept. This includes the class vector itself.</p>
 <h2>Binary Operation Description</h2>
 <div class="section" id="id25">
 <h3>Description</h3>
-<p>The templated class vector_binary&lt;E1, E2, F&gt; describes a binary vector operation.</p>
+<p>The templated class <cite>vector_binary&lt;E1, E2, F&gt;</cite> describes a binary vector operation.</p>
 </div>
 <div class="section" id="id26">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id27">
 <h3>Template parameters</h3>
@@ -467,7 +478,9 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id28">
 <h3>Model of</h3>
-<p>Vector Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></li>
+</ul>
 </div>
 <div class="section" id="id29">
 <h3>Type requirements</h3>
@@ -550,7 +563,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id34">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id35">
 <h3>Type requirements</h3>
@@ -558,16 +571,16 @@ Vector concept. This includes the class vector itself.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id36">
 <h3>Preconditions</h3>
-<p><cite>e1 ().size () == e2 ().size ()</cite></p>
+<p><cite>e1().size() == e2().size()</cite></p>
 </div>
 <div class="section" id="id37">
 <h3>Complexity</h3>
@@ -596,11 +609,11 @@ Vector concept. This includes the class vector itself.</p>
 <h2>Binary Outer Operation Description</h2>
 <div class="section" id="id39">
 <h3>Description</h3>
-<p>The templated class vector_matrix_binary&lt;E1, E2, F&gt; describes a binary outer vector operation.</p>
+<p>The templated class <cite>vector_matrix_binary&lt;E1, E2, F&gt;</cite> describes a binary outer vector operation.</p>
 </div>
 <div class="section" id="id40">
 <h3>Definition</h3>
-<p>Defined in the header matrix_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id41">
 <h3>Template parameters</h3>
@@ -619,7 +632,9 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id42">
 <h3>Model of</h3>
-<p>Matrix Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-expression-concept"><span class="std std-ref">Matrix Expression</span></a></li>
+</ul>
 </div>
 <div class="section" id="id43">
 <h3>Type requirements</h3>
@@ -627,7 +642,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id44">
 <h3>Public base classes</h3>
-<p>matrix_expression&lt;vector_matrix_binary&lt;E1, E2, F&gt; &gt;</p>
+<p><cite>matrix_expression&lt;vector_matrix_binary&lt;E1, E2, F&gt;&gt;</cite></p>
 </div>
 <div class="section" id="id45">
 <h3>Members</h3>
@@ -710,7 +725,7 @@ Vector concept. This includes the class vector itself.</p>
 </div>
 <div class="section" id="id48">
 <h3>Definition</h3>
-<p>Defined in the header matrix_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id49">
 <h3>Type requirements</h3>
@@ -718,9 +733,9 @@ Vector concept. This includes the class vector itself.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
 </tbody>
 </table>
@@ -755,12 +770,12 @@ Vector concept. This includes the class vector itself.</p>
 <h2>Scalar Vector Operation Description</h2>
 <div class="section" id="id53">
 <h3>Description</h3>
-<p>The templated classes vector_binary_scalar1&lt;E1, E2, F&gt; and vector_binary_scalar2&lt;E1, E2, F&gt; describe
+<p>The templated classes <cite>vector_binary_scalar1&lt;E1, E2, F&gt;</cite> and <cite>vector_binary_scalar2&lt;E1, E2, F&gt;</cite> describe
 binary operations between a scalar and a vector.</p>
 </div>
 <div class="section" id="id54">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id55">
 <h3>Template parameters</h3>
@@ -779,7 +794,9 @@ binary operations between a scalar and a vector.</p>
 </div>
 <div class="section" id="id56">
 <h3>Model of</h3>
-<p>Vector Expression .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></li>
+</ul>
 </div>
 <div class="section" id="id57">
 <h3>Type requirements</h3>
@@ -787,7 +804,7 @@ binary operations between a scalar and a vector.</p>
 </div>
 <div class="section" id="id58">
 <h3>Public base classes</h3>
-<p>vector_expression&lt;vector_binary_scalar1&lt;E1, E2, F&gt; &gt; and vector_expression&lt;vector_binary_scalar2&lt;E1, E2, F&gt; &gt; resp.</p>
+<p><cite>vector_expression&lt;vector_binary_scalar1&lt;E1, E2, F&gt;&gt;</cite> and <cite>vector_expression&lt;vector_binary_scalar2&lt;E1, E2, F&gt;&gt;</cite> resp.</p>
 </div>
 <div class="section" id="id59">
 <h3>Members</h3>
@@ -876,7 +893,7 @@ binary operations between a scalar and a vector.</p>
 </div>
 <div class="section" id="id62">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id63">
 <h3>Type requirements</h3>
@@ -884,9 +901,9 @@ binary operations between a scalar and a vector.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">T1/T2:</th><td class="field-body">is a model of Scalar Expression .</td>
+<tr class="field-odd field"><th class="field-name">T1/T2:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#scalar-expression-concept"><span class="std std-ref">Scalar Expression</span></a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">E2/E1:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-even field"><th class="field-name">E2/E1:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
 </tbody>
 </table>
@@ -973,11 +990,11 @@ binary operations between a scalar and a vector.</p>
 </div>
 <div class="section" id="id69">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id70">
 <h3>Type requirements</h3>
-<p>E is a model of Vector Expression .</p>
+<p>E is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></p>
 </div>
 <div class="section" id="id71">
 <h3>Preconditions</h3>
@@ -1044,7 +1061,7 @@ binary operations between a scalar and a vector.</p>
 </div>
 <div class="section" id="id76">
 <h3>Definition</h3>
-<p>Defined in the header vector_expression.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_expression.hpp</span></code>.</p>
 </div>
 <div class="section" id="id77">
 <h3>Type requirements</h3>
@@ -1052,16 +1069,16 @@ binary operations between a scalar and a vector.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-odd field"><th class="field-name">E1:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of Vector Expression .</td>
+<tr class="field-even field"><th class="field-name">E2:</th><td class="field-body">is a model of <a class="reference internal" href="concepts.html#vector-expression-concept"><span class="std std-ref">Vector Expression</span></a></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id78">
 <h3>Preconditions</h3>
-<p><cite>e1 ().size () == e2 ().size ()</cite></p>
+<p><cite>e1().size() == e2().size()</cite></p>
 </div>
 <div class="section" id="id79">
 <h3>Complexity</h3>

@@ -37,12 +37,12 @@ Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
 :T:	The type of object stored in the matrix.	
-:F:	Functor describing the storage organization. [1]	row_major
-:A:	The type of the Storage array. [2]	unbounded_array<T>
+:F:	Functor describing the storage organization. [#f1]_ Defaults to `row_major`
+:A:	The type of the Storage array. [#f2]_ Defaults to `unbounded_array<T>`
 
 Model of
 ~~~~~~~~
-Matrix .
+* :ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -50,7 +50,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<matrix<T, F, A> >
+`matrix_container<matrix<T, F, A>>`
 
 Members
 ~~~~~~~
@@ -153,11 +153,6 @@ Members
    * - `reverse_iterator2 rend2 ()`
      - Returns a reverse_iterator2 pointing to the end of the reversed matrix.
 
-Notes
-[1] Supported parameters for the storage organization are row_major and column_major.
-
-[2] Common parameters for the storage array are unbounded_array<T> , bounded_array<T> and std::vector<T> .
-
 Identity Matrix
 ---------------
 
@@ -184,17 +179,17 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix.hpp.
+Defined in the header :file:`matrix.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-:T:	The type of object stored in the matrix.	int
-:ALLOC:	An STL Allocator for size_type and difference_type.	std::allocator
+:T:	The type of object stored in the matrix. Defaults to `int`
+:ALLOC:	An STL Allocator for `size_type` and `difference_type`. Defaults to `std::allocator`
 
 Model of
 ~~~~~~~~
-Matrix .
+:ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -202,7 +197,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<identity_matrix<T> >
+`matrix_container<identity_matrix<T>>`
 
 Members
 ~~~~~~~
@@ -278,17 +273,17 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix.hpp.
+Defined in the header :file:`matrix.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
-:T:	The type of object stored in the matrix.	int
-:ALLOC:	An STL Allocator for size_type and difference_type.	std::allocator
+:T:	The type of object stored in the matrix. Defaults to `int`
+:ALLOC:	An STL Allocator for `size_type` and `difference_type`.	Defaults to `std::allocator`
 
 Model of
 ~~~~~~~~
-Matrix .
+:ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -296,7 +291,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<zero_matrix<T> >
+`matrix_container<zero_matrix<T>>`
 
 Members
 ~~~~~~~
@@ -371,17 +366,16 @@ Example
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix.hpp.
+Defined in the header :file:`matrix.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
-:T:	The type of object stored in the matrix.	int
-:ALLOC:	An STL Allocator for size_type and difference_type.	std::allocator
-
+:T:	The type of object stored in the matrix. Defaults to `int`
+:ALLOC:	An STL Allocator for `size_type` and `difference_type`. Defaults to `std::allocator`
 
 Model of
 ~~~~~~~~
-Matrix .
+:ref:`matrix-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -389,7 +383,7 @@ None, except for those imposed by the requirements of Matrix .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_container<scalar_matrix<T> >
+`matrix_container<scalar_matrix<T>>`
 
 Members
 ~~~~~~~
@@ -440,3 +434,10 @@ Members
    * - `const_reverse_iterator2 rend2 () const`
      - Returns a const_reverse_iterator2 pointing to the end of the
        reversed scalar_matrix.
+
+.. rubric:: Footnotes
+
+.. [#f1] Supported parameters for the storage organization are `row_major` and `column_major`.
+
+.. [#f2] Common parameters for the storage array are `unbounded_array<T>`, `bounded_array<T>`, and `std::vector<T>`.
+

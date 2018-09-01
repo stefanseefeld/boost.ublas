@@ -93,39 +93,28 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </div>
 <div class="section" id="definition">
 <h3>Definition</h3>
-<p>Defined in the header matrix_sparse.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix_sparse.hpp</span></code>.</p>
 </div>
 <div class="section" id="template-parameters">
 <h3>Template parameters</h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td>Parameter</td>
-<td>Description</td>
-<td>Default</td>
+<tr class="field-odd field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The type of object stored in the mapped matrix.</td>
 </tr>
-<tr class="row-even"><td><cite>T</cite></td>
-<td>The type of object stored in the mapped matrix.</td>
-<td>&#160;</td>
+<tr class="field-even field"><th class="field-name"><cite>F</cite>:</th><td class="field-body">Functor describing the storage organization. <a class="footnote-reference" href="#f1" id="id1">[1]</a> Defaults to <cite>row_major</cite></td>
 </tr>
-<tr class="row-odd"><td><cite>F</cite></td>
-<td>Functor describing the storage organization.</td>
-<td>[1]      row_major</td>
-</tr>
-<tr class="row-even"><td><cite>A</cite></td>
-<td>The type of the adapted array.</td>
-<td>[2]      map_std&lt;std::size_t, T&gt;</td>
+<tr class="field-odd field"><th class="field-name"><cite>A</cite>:</th><td class="field-body">The type of the adapted array. <a class="footnote-reference" href="#f2" id="id2">[2]</a> Defaults to <cite>map_std&lt;std::size_t, T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="model-of">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></li>
+</ul>
 </div>
 <div class="section" id="type-requirements">
 <h3>Type requirements</h3>
@@ -133,7 +122,7 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </div>
 <div class="section" id="public-base-classes">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;mapped_matrix&lt;T, F, A&gt; &gt;</p>
+<p><cite>matrix_container&lt;mapped_matrix&lt;T, F, A&gt; &gt;</cite></p>
 </div>
 <div class="section" id="members">
 <h3>Members</h3>
@@ -265,18 +254,15 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </tr>
 </tbody>
 </table>
-<p>Notes
-[1] Supported parameters for the storage organization are row_major and column_major.</p>
-<p>[2] Supported parameters for the adapted array are map_array&lt;std::size_t, T&gt; and map_std&lt;std::size_t, T&gt;. The latter is equivalent to std::map&lt;std::size_t, T&gt;.</p>
 </div>
 </div>
 <div class="section" id="compressed-matrix">
 <h2>Compressed Matrix</h2>
-<div class="section" id="id1">
+<div class="section" id="id3">
 <h3>Description</h3>
 <p>The templated class <cite>compressed_matrix&lt;T, F, IB, IA, TA&gt;</cite> is the base container adaptor for compressed matrices. For a (m x n )-dimensional compressed matrix and 0 &lt;= i &lt; m, 0 &lt;= j &lt; n the non-zero elements mi, j are mapped via (i x n + j) for row major orientation or via (i + j x m) for column major orientation to consecutive elements of the index and value containers, i.e. for elements k = mi1 ,j1and k + 1 = mi2 ,j2of the container holds i1 &lt; i2 or (i1 = i2 and j1 &lt; j2) with row major orientation or j1 &lt; j2 or (j1 = j2 and i1 &lt; i2) with column major orientation.</p>
 </div>
-<div class="section" id="id2">
+<div class="section" id="id4">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix_sparse.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -293,59 +279,44 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id5">
 <h3>Definition</h3>
-<p>Defined in the header matrix_sparse.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix_sparse.hpp</span></code>.</p>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id6">
 <h3>Template parameters</h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td>Parameter</td>
-<td>Description</td>
-<td>Default</td>
+<tr class="field-odd field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The type of object stored in the compressed matrix.</td>
 </tr>
-<tr class="row-even"><td><cite>T</cite></td>
-<td>The type of object stored in the compressed matrix.</td>
-<td>&#160;</td>
+<tr class="field-even field"><th class="field-name"><cite>F</cite>:</th><td class="field-body">Functor describing the storage organization. <a class="footnote-reference" href="#f3" id="id7">[3]</a> Defaults to <cite>row_major</cite></td>
 </tr>
-<tr class="row-odd"><td><cite>F</cite></td>
-<td>Functor describing the storage organization.</td>
-<td>[1]      row_major</td>
+<tr class="field-odd field"><th class="field-name"><cite>IB</cite>:</th><td class="field-body">The index base of the compressed vector. <a class="footnote-reference" href="#f4" id="id8">[4]</a> Defaults to <cite>0</cite></td>
 </tr>
-<tr class="row-even"><td><cite>IB</cite></td>
-<td>The index base of the compressed vector.</td>
-<td>[2]      0</td>
+<tr class="field-even field"><th class="field-name"><cite>IA</cite>:</th><td class="field-body">The type of the adapted array for indices. <a class="footnote-reference" href="#f5" id="id9">[5]</a> Defaults to <cite>unbounded_array&lt;std::size_t&gt;</cite></td>
 </tr>
-<tr class="row-odd"><td><cite>IA</cite></td>
-<td>The type of the adapted array for indices.</td>
-<td>[3]      unbounded_array&lt;std::size_t&gt;</td>
-</tr>
-<tr class="row-even"><td><cite>TA</cite></td>
-<td>The type of the adapted array for values.</td>
-<td>[3]      unbounded_array&lt;T&gt;</td>
+<tr class="field-odd field"><th class="field-name"><cite>TA</cite>:</th><td class="field-body">The type of the adapted array for values. <a href="#id24"><span class="problematic" id="id10">[#f6]_</span></a> Defaults to <cite>unbounded_array&lt;T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id11">
 <h3>Model of</h3>
-<p>Matrix .</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#matrix-concept"><span class="std std-ref">Matrix</span></a></li>
+</ul>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id12">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix .</p>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id13">
 <h3>Public base classes</h3>
-<p>matrix_container&lt;compressed_matrix&lt;T, F, IB, IA, TA&gt; &gt;</p>
+<p><cite>matrix_container&lt;compressed_matrix&lt;T, F, IB, IA, TA&gt; &gt;</cite></p>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id14">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -475,19 +446,15 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </tr>
 </tbody>
 </table>
-<p>Notes
-[1] Supported parameters for the storage organization are row_major and column_major.</p>
-<p>[2] Supported parameters for the index base are 0 and 1 at least.</p>
-<p>[3] Supported parameters for the adapted array are unbounded_array&lt;&gt; , bounded_array&lt;&gt; and std::vector&lt;&gt; .</p>
 </div>
 </div>
 <div class="section" id="coordinate-matrix">
 <h2>Coordinate Matrix</h2>
-<div class="section" id="id9">
+<div class="section" id="id15">
 <h3>Description</h3>
-<p>The templated class coordinate_matrix&lt;T, F, IB, IA, TA&gt; is the base container adaptor for compressed matrices. For a (m x n )-dimensional sorted coordinate matrix and 0 &lt;= i &lt; m, 0 &lt;= j &lt; n the non-zero elements mi, j are mapped via (i x n + j) for row major orientation or via (i + j x m) for column major orientation to consecutive elements of the index and value containers, i.e. for elements k = mi1 ,j1and k + 1 = mi2 ,j2of the container holds i1 &lt; i2 or (i1 = i2 and j1 &lt; j2) with row major orientation or j1 &lt; j2 or (j1 = j2 and i1 &lt; i2) with column major orientation.</p>
+<p>The templated class <cite>coordinate_matrix&lt;T, F, IB, IA, TA&gt;</cite> is the base container adaptor for compressed matrices. For a (m x n )-dimensional sorted coordinate matrix and <cite>0 &lt;= i &lt; m</cite>, <cite>0 &lt;= j &lt; n</cite> the non-zero elements mi, j are mapped via (i x n + j) for row major orientation or via (i + j x m) for column major orientation to consecutive elements of the index and value containers, i.e. for elements <cite>k = mi1</cite> ,`j1` and <cite>k + 1 = mi2</cite>, <cite>j2</cite> of the container holds <cite>i1 &lt; i2</cite> or <cite>(i1 = i2</cite> and <cite>j1 &lt; j2</cite>) with row major orientation or <cite>j1 &lt; j2</cite> or (<cite>j1 = j2</cite> and <cite>i1 &lt; i2</cite>) with column major orientation.</p>
 </div>
-<div class="section" id="id10">
+<div class="section" id="id16">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/matrix_sparse.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -504,11 +471,11 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id11">
+<div class="section" id="id17">
 <h3>Definition</h3>
-<p>Defined in the header matrix_sparse.hpp.</p>
+<p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">matrix_sparse.hpp</span></code>.</p>
 </div>
-<div class="section" id="id12">
+<div class="section" id="id18">
 <h3>Template parameters</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -544,19 +511,19 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 </tbody>
 </table>
 </div>
-<div class="section" id="id13">
+<div class="section" id="id19">
 <h3>Model of</h3>
 <p>Matrix .</p>
 </div>
-<div class="section" id="id14">
+<div class="section" id="id20">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Matrix .</p>
 </div>
-<div class="section" id="id15">
+<div class="section" id="id21">
 <h3>Public base classes</h3>
 <p>matrix_container&lt;coordinate_matrix&lt;T, F, IB, IA, TA&gt; &gt;</p>
 </div>
-<div class="section" id="id16">
+<div class="section" id="id22">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -693,6 +660,37 @@ and <cite>0 &lt;= i &lt; m, 0 &lt;= j &lt; n</cite> the non-zero elements <cite>
 [1] Supported parameters for the storage organization are row_major and column_major.</p>
 <p>[2] Supported parameters for the index base are 0 and 1 at least.</p>
 <p>[3] Supported parameters for the adapted array are unbounded_array&lt;&gt; , bounded_array&lt;&gt; and std::vector&lt;&gt; .</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Supported parameters for the storage organization are <cite>row_major</cite> and <cite>column_major</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Supported parameters for the adapted array are <cite>map_array&lt;std::size_t, T&gt;</cite> and <cite>map_std&lt;std::size_t, T&gt;</cite>. The latter is equivalent to <cite>std::map&lt;std::size_t, T&gt;</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[3]</a></td><td>Supported parameters for the storage organization are row_major and column_major.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[4]</a></td><td>Supported parameters for the index base are 0 and 1 at least.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td>Supported parameters for the adapted array are unbounded_array&lt;&gt; , bounded_array&lt;&gt; and std::vector&lt;&gt; .</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

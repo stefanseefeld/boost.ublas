@@ -257,7 +257,7 @@
 </div>
 </div>
 <div class="section" id="matrix">
-<h3>Matrix</h3>
+<span id="matrix-concept"></span><h3>Matrix</h3>
 <div class="section" id="id1">
 <h4>Description</h4>
 <p>A Matrix describes common aspects of dense, packed and sparse matrices.</p>
@@ -444,7 +444,7 @@ When p == false then existing elements are not preserved and elements will not a
 <div class="section" id="expression-concepts">
 <h2>Expression Concepts</h2>
 <div class="section" id="scalar-expression">
-<h3>Scalar Expression</h3>
+<span id="scalar-expression-concept"></span><h3>Scalar Expression</h3>
 <div class="section" id="id11">
 <h4>Description</h4>
 <p>A Scalar Expression is an expression convertible to a scalar type.</p>
@@ -908,7 +908,7 @@ Multiplies every element of
 </div>
 </div>
 <div class="section" id="matrix-expression">
-<h3>Matrix Expression</h3>
+<span id="matrix-expression-concept"></span><h3>Matrix Expression</h3>
 <div class="section" id="id31">
 <h4>Description</h4>
 <p>A Matrix Expression is an expression evaluatable to a matrix. Matrix Expression provides an Indexed Bidirectional Column/Row Iterator or an Indexed Random Access Column/Row Iterator .</p>
@@ -1385,21 +1385,21 @@ with <cite>t</cite>.</p>
 </div>
 </div>
 <div class="section" id="storage-concept">
-<h2>Storage concept</h2>
-<div class="section" id="id41">
+<span id="id41"></span><h2>Storage concept</h2>
+<div class="section" id="id42">
 <h3>Description</h3>
 <p>Storage is a variable-size container whose elements are arranged in a strict linear order.</p>
 <p>Storage extends the STL Container concept with some STL Sequence-like functionality. The main difference with the Sequence concept however is that the Storage concept does not require default-initialisation of its elements.</p>
 </div>
-<div class="section" id="id42">
+<div class="section" id="id43">
 <h3>Refinement of</h3>
 <p>Random Access Container and Default Constructible</p>
 </div>
-<div class="section" id="id43">
+<div class="section" id="id44">
 <h3>Associated types</h3>
 <p>No additional types beyond those defined by Random Access Container</p>
 </div>
-<div class="section" id="id44">
+<div class="section" id="id45">
 <h3>Notation</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1416,9 +1416,9 @@ with <cite>t</cite>.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id45">
-<h3>Definitions</h3>
 <div class="section" id="id46">
+<h3>Definitions</h3>
+<div class="section" id="id47">
 <h4>Valid expressions</h4>
 <p>In addition to the expressions defined in Random Access Container, and Default Constructible the following expressions must be valid:</p>
 <table border="1" class="docutils">
@@ -1465,7 +1465,7 @@ value type is convertible to <cite>T</cite></td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id47">
+<div class="section" id="id48">
 <h4>Expression semantics</h4>
 <table border="1" class="docutils">
 <colgroup>
@@ -1545,13 +1545,13 @@ value or default construced value for <cite>T</cite>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id48">
+<div class="section" id="id49">
 <h4>Complexity guarantees</h4>
 </div>
-<div class="section" id="id49">
+<div class="section" id="id50">
 <h4>Invariants</h4>
 </div>
-<div class="section" id="id50">
+<div class="section" id="id51">
 <h4>Models</h4>
 <ul class="simple">
 <li><cite>unbounded_array</cite></li>
@@ -1567,15 +1567,15 @@ value or default construced value for <cite>T</cite>.</td>
 </div>
 <div class="section" id="indexed-bidirectional-iterator">
 <h2>Indexed Bidirectional Iterator</h2>
-<div class="section" id="id51">
+<div class="section" id="id52">
 <h3>Description</h3>
 <p>An Indexed Bidirectional Iterator is an iterator of a container that can be dereferenced, incremented, decremented and carries index information.</p>
 </div>
-<div class="section" id="id52">
+<div class="section" id="id53">
 <h3>Refinement of</h3>
 <p>Assignable, Equality Comparable, Default Constructible.</p>
 </div>
-<div class="section" id="id53">
+<div class="section" id="id54">
 <h3>Associated types</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1588,7 +1588,7 @@ value or default construced value for <cite>T</cite>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id54">
+<div class="section" id="id55">
 <h3>Notation</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1610,7 +1610,7 @@ value or default construced value for <cite>T</cite>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id55">
+<div class="section" id="id56">
 <h3>Definitions</h3>
 <p>A Indexed Bidirectional Iterator may be mutable, meaning that the values referred to by objects of that type may be modified, or constant , meaning that they may not. If an iterator type is mutable, this implies that its value type is a model of Assignable; the converse, though, is not necessarily true.</p>
 <p>A Indexed Bidirectional Iterator may have a singular value, meaning that the results of most operations, including comparison for equality, are undefined. The only operation that is guaranteed to be supported is assigning a nonsingular iterator to a singular iterator.</p>
@@ -1681,7 +1681,7 @@ In addition to the expressions defined for Assignable, Equality Comparable and D
 </tbody>
 </table>
 </div>
-<div class="section" id="id56">
+<div class="section" id="id57">
 <h3>Expression Semantics</h3>
 <p>Semantics of an expression is defined only where it differs from, or is not defined in, Assignable, Equality Comparable and Default Constructible.</p>
 <table border="1" class="docutils">
@@ -1777,11 +1777,11 @@ If <cite>it2</cite> is dereferenceable and
 </tr>
 </tbody>
 </table>
-<div class="section" id="id57">
+<div class="section" id="id58">
 <h4>Complexity guarantees</h4>
 <p>The complexity of operations on indexed bidirectional iterators is guaranteed to be amortized constant time.</p>
 </div>
-<div class="section" id="id58">
+<div class="section" id="id59">
 <h4>Invariants</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1798,7 +1798,7 @@ If <cite>it2</cite> is dereferenceable and
 </tbody>
 </table>
 </div>
-<div class="section" id="id59">
+<div class="section" id="id60">
 <h4>Models</h4>
 <ul class="simple">
 <li><cite>sparse_vector::iterator</cite></li>
@@ -1807,15 +1807,15 @@ If <cite>it2</cite> is dereferenceable and
 </div>
 <div class="section" id="indexed-random-access-iterator">
 <h3>Indexed Random Access Iterator</h3>
-<div class="section" id="id60">
+<div class="section" id="id61">
 <h4>Description</h4>
 <p>An Indexed Random Access Iterator is an iterator of a container that can be dereferenced, moved forward, moved backward and carries index information.</p>
 </div>
-<div class="section" id="id61">
+<div class="section" id="id62">
 <h4>Refinement of</h4>
 <p>LessThanComparable, Indexed Bidirectional Iterator .</p>
 </div>
-<div class="section" id="id62">
+<div class="section" id="id63">
 <h4>Associated types</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1828,7 +1828,7 @@ If <cite>it2</cite> is dereferenceable and
 </tbody>
 </table>
 </div>
-<div class="section" id="id63">
+<div class="section" id="id64">
 <h4>Notation</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1850,11 +1850,11 @@ If <cite>it2</cite> is dereferenceable and
 </tbody>
 </table>
 </div>
-<div class="section" id="id64">
+<div class="section" id="id65">
 <h4>Definitions</h4>
 <p>An Indexed Random Access Iterator it1 is reachable from an Indexed Random Access Iterator it2 if, after applying operator ++ to it2 a finite number of times, it1 == it2.</p>
 </div>
-<div class="section" id="id65">
+<div class="section" id="id66">
 <h4>Valid expressions</h4>
 <p>In addition to the expressions defined for Indexed Bidirectional Iterator , the following expressions must be valid.</p>
 <table border="1" class="docutils">
@@ -1910,7 +1910,7 @@ If <cite>it2</cite> is dereferenceable and
 </tbody>
 </table>
 </div>
-<div class="section" id="id66">
+<div class="section" id="id67">
 <h4>Expression Semantics</h4>
 <p>Semantics of an expression is defined only where it differs from, or is not defined in, Indexed Bidirectional Iterator .</p>
 <table border="1" class="docutils">
@@ -2002,11 +2002,11 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id67">
+<div class="section" id="id68">
 <h4>Complexity guarantees</h4>
 <p>The complexity of operations on indexed random access iterators is guaranteed to be amortized constant time.</p>
 </div>
-<div class="section" id="id68">
+<div class="section" id="id69">
 <h4>Invariants</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2024,7 +2024,7 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id69">
+<div class="section" id="id70">
 <h4>Models</h4>
 <ul class="simple">
 <li><cite>vector::iterator</cite></li>
@@ -2033,15 +2033,15 @@ dereferenceable.</td>
 </div>
 <div class="section" id="indexed-bidirectional-column-row-iterator">
 <h3>Indexed Bidirectional Column/Row Iterator</h3>
-<div class="section" id="id70">
+<div class="section" id="id71">
 <h4>Description</h4>
 <p>An Indexed Bidirectional Column/Row Iterator is an iterator of a container that can be dereferenced, incremented, decremented and carries index information.</p>
 </div>
-<div class="section" id="id71">
+<div class="section" id="id72">
 <h4>Refinement of</h4>
 <p>Assignable, Equality Comparable, Default Constructible.</p>
 </div>
-<div class="section" id="id72">
+<div class="section" id="id73">
 <h4>Associated types</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2054,7 +2054,7 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id73">
+<div class="section" id="id74">
 <h4>Notation</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2080,10 +2080,10 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id74">
+<div class="section" id="id75">
 <h4>Definitions</h4>
 </div>
-<div class="section" id="id75">
+<div class="section" id="id76">
 <h4>Valid expressions</h4>
 <p>In addition to the expressions defined for Assignable, Equality Comparable and Default Constructible, the following expressions must be valid.</p>
 <table border="1" class="docutils">
@@ -2174,7 +2174,7 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id76">
+<div class="section" id="id77">
 <h4>Expression Semantics</h4>
 <p>Semantics of an expression is defined only where it differs from, or is not defined in, Assignable, Equality Comparable and Default Constructible.</p>
 <table border="1" class="docutils">
@@ -2344,11 +2344,11 @@ Iterator with
 </tbody>
 </table>
 </div>
-<div class="section" id="id77">
+<div class="section" id="id78">
 <h4>Complexity guarantees</h4>
 <p>The complexity of operations on indexed bidirectional column/row iterators is guaranteed to be logarithmic depending on the size of the container. The complexity of one iterator (depending on the storage layout) can be lifted to be amortized constant time. The complexity of the other iterator (depending on the storage layout and the container) can be lifted to be amortized constant time for the first row/first column respectively.</p>
 </div>
-<div class="section" id="id78">
+<div class="section" id="id79">
 <h4>Invariants</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2373,7 +2373,7 @@ If <cite>it</cite> is a Row Iterator and <cite>it2 = it.end ()</cite> then <cite
 </tbody>
 </table>
 </div>
-<div class="section" id="id79">
+<div class="section" id="id80">
 <h4>Models</h4>
 <ul class="simple">
 <li><cite>sparse_matrix::iterator1</cite></li>
@@ -2383,15 +2383,15 @@ If <cite>it</cite> is a Row Iterator and <cite>it2 = it.end ()</cite> then <cite
 </div>
 <div class="section" id="indexed-random-access-column-row-iterator">
 <h3>Indexed Random Access Column/Row Iterator</h3>
-<div class="section" id="id80">
+<div class="section" id="id81">
 <h4>Description</h4>
 <p>An Indexed Random Access Column/Row Iterator is an iterator of a container that can be dereferenced, incremented, decremented and carries index information.</p>
 </div>
-<div class="section" id="id81">
+<div class="section" id="id82">
 <h4>Refinement of</h4>
 <p>Indexed Bidirectional Column/Row Iterator .</p>
 </div>
-<div class="section" id="id82">
+<div class="section" id="id83">
 <h4>Associated types</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2404,7 +2404,7 @@ If <cite>it</cite> is a Row Iterator and <cite>it2 = it.end ()</cite> then <cite
 </tbody>
 </table>
 </div>
-<div class="section" id="id83">
+<div class="section" id="id84">
 <h4>Notation</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2426,10 +2426,10 @@ If <cite>it</cite> is a Row Iterator and <cite>it2 = it.end ()</cite> then <cite
 </tbody>
 </table>
 </div>
-<div class="section" id="id84">
+<div class="section" id="id85">
 <h4>Definitions</h4>
 </div>
-<div class="section" id="id85">
+<div class="section" id="id86">
 <h4>Valid expressions</h4>
 <p>In addition to the expressions defined for Indexed Bidirectional Column/Row Iterator , the following expressions must be valid.</p>
 <table border="1" class="docutils">
@@ -2485,7 +2485,7 @@ If <cite>it</cite> is a Row Iterator and <cite>it2 = it.end ()</cite> then <cite
 </tbody>
 </table>
 </div>
-<div class="section" id="id86">
+<div class="section" id="id87">
 <h4>Expression Semantics</h4>
 <p>Semantics of an expression is defined only where it differs from, or is not defined in, Indexed Bidirectional Column/Row Iterator .</p>
 <table border="1" class="docutils">
@@ -2575,11 +2575,11 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id87">
+<div class="section" id="id88">
 <h4>Complexity guarantees</h4>
 <p>The complexity of operations on indexed random access Column/Row iterators is guaranteed to be amortized constant time.</p>
 </div>
-<div class="section" id="id88">
+<div class="section" id="id89">
 <h4>Invariants</h4>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -2597,7 +2597,7 @@ dereferenceable.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id89">
+<div class="section" id="id90">
 <h4>Models</h4>
 <ul class="simple">
 <li><cite>matrix::iterator1</cite></li>

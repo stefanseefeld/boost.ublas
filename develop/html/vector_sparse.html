@@ -100,20 +100,24 @@ of the associative container, i.e. for elements <cite>k = vi1</cite> and <cite>k
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the mapped vector.</td>
+<tr class="field-odd field"><th class="field-name"><cite>T</cite>:</th><td class="field-body">The type of object stored in the mapped vector.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">A:</th><td class="field-body">The type of the adapted array. [1]  map_std&lt;std::size_t, T&gt;</td>
+<tr class="field-even field"><th class="field-name"><cite>A</cite>:</th><td class="field-body">The type of the adapted array. <a class="footnote-reference" href="#f1" id="id1">[1]</a> Defaults to <cite>map_std&lt;std::size_t, T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="model-of">
 <h3>Model of</h3>
-<p>Vector .</p>
-<p>Type requirements</p>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-concept"><span class="std std-ref">Vector</span></a></li>
+</ul>
+</div>
+<div class="section" id="type-requirements">
+<h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Vector .
 Public base classes</p>
-<p>vector_container&lt;mapped_vector&lt;T, A&gt; &gt;</p>
+<p><cite>vector_container&lt;mapped_vector&lt;T, A&gt;&gt;</cite></p>
 </div>
 <div class="section" id="members">
 <h3>Members</h3>
@@ -230,20 +234,18 @@ be independent.</td>
 </tr>
 </tbody>
 </table>
-<p>Notes</p>
-<p>[1] Supported parameters for the adapted array are map_array&lt;std::size_t, T&gt; and map_std&lt;std::size_t, T&gt;. The latter is equivalent to std::map&lt;std::size_t, T&gt;.</p>
 </div>
 </div>
 <div class="section" id="compressed-vector">
 <h2>Compressed Vector</h2>
-<div class="section" id="id1">
+<div class="section" id="id2">
 <h3>Description</h3>
 <p>The templated class <cite>compressed_vector&lt;T, IB, IA, TA&gt;</cite> is the base container adaptor for compressed vectors.
 For a n-dimensional compressed vector and <cite>0 &lt;= i &lt; n</cite> the non-zero elements <cite>vi</cite> are mapped to consecutive
 elements of the index and value container, i.e. for elements k = vi1and k + 1 = vi2of these containers holds
 <cite>i1 &lt; i2</cite>.</p>
 </div>
-<div class="section" id="id2">
+<div class="section" id="id3">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector_sparse.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -259,11 +261,11 @@ elements of the index and value container, i.e. for elements k = vi1and k + 1 = 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id4">
 <h3>Definition</h3>
 <p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_sparse.hpp</span></code>.</p>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id5">
 <h3>Template parameters</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -271,24 +273,30 @@ elements of the index and value container, i.e. for elements k = vi1and k + 1 = 
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the compressed vector.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">IB:</th><td class="field-body">The index base of the compressed vector. [1]    0</td>
+<tr class="field-even field"><th class="field-name">IB:</th><td class="field-body">The index base of the compressed vector. <a class="footnote-reference" href="#f2" id="id6">[2]</a> Defaults to <cite>0</cite></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">IA:</th><td class="field-body">The type of the adapted array for indices. [2]  unbounded_array&lt;std::size_t&gt;</td>
+<tr class="field-odd field"><th class="field-name">IA:</th><td class="field-body">The type of the adapted array for indices. <a class="footnote-reference" href="#f3" id="id7">[3]</a>  Defaults to <cite>unbounded_array&lt;std::size_t&gt;</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">TA:</th><td class="field-body">The type of the adapted array for values. [2]   unbounded_array&lt;T&gt;</td>
+<tr class="field-even field"><th class="field-name">TA:</th><td class="field-body">The type of the adapted array for values. <a class="footnote-reference" href="#f3" id="id8">[3]</a> Defaults to <cite>unbounded_array&lt;T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
-<p>Model of</p>
-<p>Vector .</p>
 </div>
-<div class="section" id="type-requirements">
+<div class="section" id="id9">
+<h3>Model of</h3>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-concept"><span class="std std-ref">Vector</span></a></li>
+</ul>
+</div>
+<div class="section" id="id10">
 <h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Vector .</p>
-<p>Public base classes</p>
-<p>vector_container&lt;compressed_vector&lt;T, IB, IA, TA&gt; &gt;</p>
 </div>
-<div class="section" id="id5">
+<div class="section" id="public-base-classes">
+<h3>Public base classes</h3>
+<p><cite>vector_container&lt;compressed_vector&lt;T, IB, IA, TA&gt;&gt;</cite></p>
+</div>
+<div class="section" id="id11">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -403,21 +411,18 @@ should be independent.</td>
 </tr>
 </tbody>
 </table>
-<p>Notes</p>
-<p>[1] Supported parameters for the index base are 0 and 1 at least.</p>
-<p>[2] Supported parameters for the adapted array are unbounded_array&lt;&gt; , bounded_array&lt;&gt; and std::vector&lt;&gt; .</p>
 </div>
 </div>
 <div class="section" id="coordinate-vector">
 <h2>Coordinate Vector</h2>
-<div class="section" id="id6">
+<div class="section" id="id12">
 <h3>Description</h3>
 <p>The templated class coordinate_vector&lt;T, IB, IA, TA&gt; is the base container adaptor for compressed vectors.
 For a n-dimensional sorted coordinate vector and 0 &lt;= i &lt; n the non-zero elements vi are mapped to consecutive
 elements of the index and value container, i.e. for elements k = vi1and k + 1 = vi2of these containers holds
 i1 &lt; i2.</p>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id13">
 <h3>Example</h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/vector_sparse.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;boost/numeric/ublas/io.hpp&gt;</span><span class="cp"></span>
@@ -433,11 +438,11 @@ i1 &lt; i2.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id14">
 <h3>Definition</h3>
 <p>Defined in the header <code class="file docutils literal notranslate"><span class="pre">vector_sparse.hpp</span></code>.</p>
 </div>
-<div class="section" id="id9">
+<div class="section" id="id15">
 <h3>Template parameters</h3>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -445,22 +450,28 @@ i1 &lt; i2.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">T:</th><td class="field-body">The type of object stored in the coordinate vector.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">IB:</th><td class="field-body">The index base of the coordinate vector. [1]    0</td>
+<tr class="field-even field"><th class="field-name">IB:</th><td class="field-body">The index base of the coordinate vector. <a class="footnote-reference" href="#f2" id="id16">[2]</a> Defaults to <cite>0</cite></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">IA:</th><td class="field-body">The type of the adapted array for indices. [2]  unbounded_array&lt;std::size_t&gt;</td>
+<tr class="field-odd field"><th class="field-name">IA:</th><td class="field-body">The type of the adapted array for indices. <a class="footnote-reference" href="#f3" id="id17">[3]</a> Defaults to <cite>unbounded_array&lt;std::size_t&gt;</cite></td>
 </tr>
-<tr class="field-even field"><th class="field-name">TA:</th><td class="field-body">The type of the adapted array for values. [2]   unbounded_array&lt;T&gt;</td>
+<tr class="field-even field"><th class="field-name">TA:</th><td class="field-body">The type of the adapted array for values. <a class="footnote-reference" href="#f3" id="id18">[3]</a> Defaults to <cite>unbounded_array&lt;T&gt;</cite></td>
 </tr>
 </tbody>
 </table>
-<p>Model of</p>
-<p>Vector .
-Type requirements</p>
+</div>
+<div class="section" id="id19">
+<h3>Model of</h3>
+<ul class="simple">
+<li><a class="reference internal" href="concepts.html#vector-concept"><span class="std std-ref">Vector</span></a></li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h3>Type requirements</h3>
 <p>None, except for those imposed by the requirements of Vector .
 Public base classes</p>
-<p>vector_container&lt;coordinate_vector&lt;T, IB, IA, TA&gt; &gt;</p>
+<p><cite>vector_container&lt;coordinate_vector&lt;T, IB, IA, TA&gt;&gt;</cite></p>
 </div>
-<div class="section" id="id10">
+<div class="section" id="id21">
 <h3>Members</h3>
 <table border="1" class="docutils">
 <colgroup>
@@ -579,9 +590,25 @@ They are merged into a single arithmetically summed element by the sort function
 </tr>
 </tbody>
 </table>
-<p>Notes</p>
-<p>[1] Supported parameters for the index base are 0 and 1 at least.</p>
-<p>[2] Supported parameters for the adapted array are unbounded_array&lt;&gt; , bounded_array&lt;&gt; and std::vector&lt;&gt; .</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Supported parameters for the adapted array are <cite>map_array&lt;std::size_t, T&gt;</cite> and <cite>map_std&lt;std::size_t, T&gt;</cite>. The latter is equivalent to <cite>std::map&lt;std::size_t, T&gt;</cite>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id6">1</a>, <a class="fn-backref" href="#id16">2</a>)</em> Supported parameters for the index base are <cite>0</cite> and <cite>1</cite> at least.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id8">2</a>, <a class="fn-backref" href="#id17">3</a>, <a class="fn-backref" href="#id18">4</a>)</em> Supported parameters for the adapted array are <cite>unbounded_array&lt;&gt;</cite>, <cite>bounded_array&lt;&gt;</cite>, and <cite>std::vector&lt;&gt;</cite>.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

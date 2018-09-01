@@ -6,12 +6,12 @@ Vector Expression
 
 Description
 ~~~~~~~~~~~
-The templated class vector_expression<E> is required to be a public base of all classes which model
+The templated class `vector_expression<E>` is required to be a public base of all classes which model
 the Vector Expression concept.
 
 Definition
 ~~~~~~~~~~
-Defined in the header expression_types.hpp.
+Defined in the header :file:`expression_types.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -57,7 +57,7 @@ Vector concept. This includes the class vector itself.
 
 Definition
 ~~~~~~~~~~
-Defined in the header expression_types.hpp.
+Defined in the header :file:`expression_types.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -73,7 +73,7 @@ None.
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-vector_expression<C>
+`vector_expression<C>`
 
 Members
 ~~~~~~~
@@ -96,11 +96,11 @@ Reference
 
 Description
 ~~~~~~~~~~~
-The templated class vector_reference<E> contains a reference to a vector expression.
+The templated class `vector_reference<E>` contains a reference to a vector expression.
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -108,7 +108,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector Expression .
+* :ref:`vector-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -116,7 +116,7 @@ None, except for those imposed by the requirements of Vector Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-vector_expression<vector_reference<E> >
+`vector_expression<vector_reference<E>>`
 
 Members
 ~~~~~~~
@@ -161,11 +161,11 @@ Unary Operation Description
 
 Description
 ~~~~~~~~~~~
-The templated class vector_unary<E, F> describes a unary vector operation.
+The templated class `vector_unary<E, F>` describes a unary vector operation.
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -174,7 +174,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector Expression .
+* :ref:`vector-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -182,7 +182,7 @@ None, except for those imposed by the requirements of Vector Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-vector_expression<vector_unary<E, F> >
+`vector_expression<vector_unary<E, F>>`
 
 Members
 ~~~~~~~
@@ -260,11 +260,11 @@ Description
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-E is a model of Vector Expression .
+:`E`: is a model of :ref:`vector-expression-concept`
 
 Preconditions
 ~~~~~~~~~~~~~
@@ -302,11 +302,11 @@ Binary Operation Description
 Description
 ~~~~~~~~~~~
 
-The templated class vector_binary<E1, E2, F> describes a binary vector operation.
+The templated class `vector_binary<E1, E2, F>` describes a binary vector operation.
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -316,7 +316,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector Expression .
+* :ref:`vector-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -384,16 +384,16 @@ Description
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-:E1: is a model of Vector Expression .
-:E2: is a model of Vector Expression .
+:E1: is a model of :ref:`vector-expression-concept`
+:E2: is a model of :ref:`vector-expression-concept`
 
 Preconditions
 ~~~~~~~~~~~~~
-`e1 ().size () == e2 ().size ()`
+`e1().size() == e2().size()`
 
 Complexity
 ~~~~~~~~~~
@@ -422,11 +422,11 @@ Binary Outer Operation Description
 
 Description
 ~~~~~~~~~~~
-The templated class vector_matrix_binary<E1, E2, F> describes a binary outer vector operation.
+The templated class `vector_matrix_binary<E1, E2, F>` describes a binary outer vector operation.
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix_expression.hpp.
+Defined in the header :file:`matrix_expression.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -436,7 +436,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Matrix Expression .
+* :ref:`matrix-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -444,7 +444,7 @@ None, except for those imposed by the requirements of Matrix Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-matrix_expression<vector_matrix_binary<E1, E2, F> >
+`matrix_expression<vector_matrix_binary<E1, E2, F>>`
 
 Members
 ~~~~~~~
@@ -506,12 +506,12 @@ Description
 
 Definition
 ~~~~~~~~~~
-Defined in the header matrix_expression.hpp.
+Defined in the header :file:`matrix_expression.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-:E1: is a model of Vector Expression .
-:E2: is a model of Vector Expression .
+:E1: is a model of :ref:`vector-expression-concept`
+:E2: is a model of :ref:`vector-expression-concept`
 
 Preconditions
 ~~~~~~~~~~~~~
@@ -543,12 +543,12 @@ Scalar Vector Operation Description
 
 Description
 ~~~~~~~~~~~
-The templated classes vector_binary_scalar1<E1, E2, F> and vector_binary_scalar2<E1, E2, F> describe
+The templated classes `vector_binary_scalar1<E1, E2, F>` and `vector_binary_scalar2<E1, E2, F>` describe
 binary operations between a scalar and a vector.
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Template parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -558,7 +558,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector Expression .
+* :ref:`vector-expression-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -566,7 +566,7 @@ None, except for those imposed by the requirements of Vector Expression .
 
 Public base classes
 ~~~~~~~~~~~~~~~~~~~
-vector_expression<vector_binary_scalar1<E1, E2, F> > and vector_expression<vector_binary_scalar2<E1, E2, F> > resp.
+`vector_expression<vector_binary_scalar1<E1, E2, F>>` and `vector_expression<vector_binary_scalar2<E1, E2, F>>` resp.
 
 Members
 ~~~~~~~
@@ -638,12 +638,12 @@ Description
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-:T1/T2: is a model of Scalar Expression .
-:E2/E1: is a model of Vector Expression .
+:T1/T2: is a model of :ref:`scalar-expression-concept`
+:E2/E1: is a model of :ref:`vector-expression-concept`
 
 Preconditions
 ~~~~~~~~~~~~~
@@ -727,11 +727,11 @@ Description
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-E is a model of Vector Expression .
+E is a model of :ref:`vector-expression-concept`
 
 Preconditions
 ~~~~~~~~~~~~~
@@ -796,16 +796,16 @@ Description
 
 Definition
 ~~~~~~~~~~
-Defined in the header vector_expression.hpp.
+Defined in the header :file:`vector_expression.hpp`.
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
-:E1: is a model of Vector Expression .
-:E2: is a model of Vector Expression .
+:E1: is a model of :ref:`vector-expression-concept`
+:E2: is a model of :ref:`vector-expression-concept`
 
 Preconditions
 ~~~~~~~~~~~~~
-`e1 ().size () == e2 ().size ()`
+`e1().size() == e2().size()`
 
 Complexity
 ~~~~~~~~~~

@@ -39,12 +39,12 @@ Template parameters
 ~~~~~~~~~~~~~~~~~~~
 
 :T: 	The type of object stored in the vector. 	
-:A: 	The type of the Storage array. Defaults to `unbounded_array<T>`
+:A: 	The type of the :ref:`storage-concept` array. [#f1]_ Defaults to `unbounded_array<T>`
 
 Model of
 ~~~~~~~~
 
-* Vector
+* :ref:`vector-concept`
 * RandomAccessContainer
 
 
@@ -207,10 +207,6 @@ Members
      - :ref:`vector-expression-concept`
      - Returns a reverse_iterator pointing to the end of the reversed vector.
 
-Notes:
-
-[1] Common parameters for the Storage array are unbounded_array<T> , bounded_array<T> and std::vector<T> .
-
 Unit Vector
 -----------
 
@@ -250,7 +246,7 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector .
+* :ref:`vector-concept`
 
 Type requirements
 ~~~~~~~~~~~~~~~~~
@@ -338,14 +334,14 @@ Template parameters
 Model of
 ~~~~~~~~
 
-Vector .
+* :ref:`vector-concept`
 
 Type requirements
-
+~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector .
 Public base classes
-
-vector_container<zero_vector<T> >
+~~~~~~~~~~~~~~~~~~~
+`vector_container<zero_vector<T>>`
 
 Members
 ~~~~~~~
@@ -419,7 +415,8 @@ Template parameters
 
 Model of
 ~~~~~~~~
-Vector .
+* :ref:`vector-concept`
+
 Type requirements
 ~~~~~~~~~~~~~~~~~
 None, except for those imposed by the requirements of Vector .
@@ -464,3 +461,7 @@ Members
      - Returns a const_reverse_iterator pointing to the beginning of the reversed scalar_vector.
    * - `const_reverse_iterator rend () const`
      - Returns a const_reverse_iterator pointing to the end of the reversed scalar_vector.
+
+.. rubric:: Footnotes
+
+.. [#f1] Common parameters for the Storage array are `unbounded_array<T>`, `bounded_array<T>` and `std::vector<T>`.
