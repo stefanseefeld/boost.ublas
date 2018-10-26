@@ -18,3 +18,5 @@ exe reference/mm_prod : reference/mm_prod.cpp ;
 exe reference/mv_prod : reference/mv_prod.cpp ;
 exe reference/inner_prod : reference/inner_prod.cpp ;
 exe reference/outer_prod : reference/outer_prod.cpp ;
+
+build-project opencl ;
