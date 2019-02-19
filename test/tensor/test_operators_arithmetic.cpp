@@ -1,4 +1,4 @@
-//  Copyright (c) 2018 Cem Bassoy
+//  Copyright (c) 2018-2019 Cem Bassoy
 //
 //  Distributed under the Boost Software License, Version 1.0. (See
 //  accompanying file LICENSE_1_0.txt or copy at
@@ -11,8 +11,8 @@
 
 
 
-#include <boost/numeric/ublas/tensor/operators_arithmetic.hpp>
 #include <boost/numeric/ublas/tensor.hpp>
+
 #include <boost/test/unit_test.hpp>
 #include <boost/multiprecision/cpp_bin_float.hpp>
 #include "utility.hpp"
@@ -22,21 +22,23 @@ using double_extended = boost::multiprecision::cpp_bin_float_double_extended;
 
 using test_types = zip<int,long,float,double,double_extended>::with_t<boost::numeric::ublas::first_order, boost::numeric::ublas::last_order>;
 
-struct fixture {
+struct fixture
+{
 	using extents_type = boost::numeric::ublas::basic_extents<std::size_t>;
-	fixture() : extents{
-				extents_type{},    // 0
-				extents_type{1,1}, // 1
-				extents_type{1,2}, // 2
-				extents_type{2,1}, // 3
-				extents_type{2,3}, // 4
-				extents_type{2,3,1}, // 5
-				extents_type{4,1,3}, // 6
-				extents_type{1,2,3}, // 7
-				extents_type{4,2,3}, // 8
-				extents_type{4,2,3,5} // 9
-				}
-	{}
+	fixture()
+	  : extents{
+	      extents_type{},    // 0
+	      extents_type{1,1}, // 1
+	      extents_type{1,2}, // 2
+	      extents_type{2,1}, // 3
+	      extents_type{2,3}, // 4
+	      extents_type{2,3,1}, // 5
+	      extents_type{4,1,3}, // 6
+	      extents_type{1,2,3}, // 7
+	      extents_type{4,2,3}, // 8
+	      extents_type{4,2,3,5}} // 9
+	{
+	}
 	std::vector<extents_type> extents;
 };
 
