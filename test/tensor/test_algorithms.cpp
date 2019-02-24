@@ -23,7 +23,7 @@
 
 BOOST_AUTO_TEST_SUITE ( test_tensor_algorithms,
                         * boost::unit_test::depends_on("test_extents")
-                        * boost::unit_test::depends_on("test_strides")) ;
+                        * boost::unit_test::depends_on("test_strides"))
 
 
 using test_types  = zip<int,long,float,double,std::complex<float>>::with_t<boost::numeric::ublas::first_order, boost::numeric::ublas::last_order>;
