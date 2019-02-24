@@ -285,5 +285,4 @@ BOOST_FIXTURE_TEST_CASE_TEMPLATE( test_tensor_algorithms_trans, value,  test_typ
 }
 
 
-BOOST_AUTO_TEST_SUITE_END();
-
+BOOST_AUTO_TEST_SUITE_END()

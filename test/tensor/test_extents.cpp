@@ -8,7 +8,7 @@
 #include <boost/numeric/ublas/tensor/extents.hpp>
 #include <vector>
 
-BOOST_AUTO_TEST_SUITE ( test_extents );
+BOOST_AUTO_TEST_SUITE ( test_extents )
 
 
 //*boost::unit_test::label("extents")
@@ -445,5 +445,5 @@ BOOST_FIXTURE_TEST_CASE(test_extents_product, fixture, *boost::unit_test::label(
 
 }
 
-BOOST_AUTO_TEST_SUITE_END();
+BOOST_AUTO_TEST_SUITE_END()
 

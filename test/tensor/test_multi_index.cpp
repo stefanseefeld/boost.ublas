@@ -21,7 +21,7 @@
 #include "utility.hpp"
 
 
-BOOST_AUTO_TEST_SUITE ( test_multi_index ) ;
+BOOST_AUTO_TEST_SUITE ( test_multi_index )
 
 
 using test_types = zip<int,long,float,double,std::complex<float>>::with_t<boost::numeric::ublas::first_order, boost::numeric::ublas::last_order>;
@@ -142,5 +142,5 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( test_tensor_multi_index_class_generation, value, 
 
 }
 
-BOOST_AUTO_TEST_SUITE_END();
+BOOST_AUTO_TEST_SUITE_END()
 

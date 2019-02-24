@@ -21,7 +21,7 @@
 #include "utility.hpp"
 
 //BOOST_AUTO_TEST_SUITE ( test_tensor, * boost::unit_test::depends_on("test_extents") ) ;
-BOOST_AUTO_TEST_SUITE ( test_tensor ) ;
+BOOST_AUTO_TEST_SUITE ( test_tensor )
 
 using test_types = zip<int,long,float,double,std::complex<float>>::with_t<boost::numeric::ublas::first_order, boost::numeric::ublas::last_order>;
 
@@ -470,4 +470,4 @@ BOOST_FIXTURE_TEST_CASE_TEMPLATE( test_tensor_standard_iterator, value,  test_ty
 	}
 }
 
-BOOST_AUTO_TEST_SUITE_END();
+BOOST_AUTO_TEST_SUITE_END()

@@ -20,7 +20,7 @@
 
 // BOOST_AUTO_TEST_SUITE ( test_tensor_matrix_interoperability, * boost::unit_test::depends_on("test_tensor") ) ;
 
-BOOST_AUTO_TEST_SUITE ( test_tensor_matrix_interoperability ) ;
+BOOST_AUTO_TEST_SUITE ( test_tensor_matrix_interoperability )
 
 using test_types = zip<int,long,float,double>::with_t<boost::numeric::ublas::first_order, boost::numeric::ublas::last_order>;
 
@@ -468,5 +468,5 @@ BOOST_FIXTURE_TEST_CASE_TEMPLATE( test_tensor_matrix_vector_expressions, value, 
 }
 
 
-BOOST_AUTO_TEST_SUITE_END();
+BOOST_AUTO_TEST_SUITE_END()
 
